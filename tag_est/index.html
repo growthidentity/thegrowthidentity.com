@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAG Markets — Kulla kauplemine | SONIC AI</title>
+<title>TAG Markets | SONIC AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -26,7 +26,6 @@ body {
 .gold-light { color: #e8d48b; }
 .muted { color: rgba(232,228,220,0.4); }
 .dim { color: rgba(232,228,220,0.6); }
-.white { color: #fff; }
 
 a { cursor: pointer; }
 
@@ -121,6 +120,67 @@ a { cursor: pointer; }
   font-weight: 300;
   color: rgba(232,228,220,0.4);
   margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* Timer */
+.timer-display {
+  font-size: clamp(80px, 15vw, 180px);
+  font-weight: 900;
+  color: #e8d48b;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.timer-bar-track {
+  width: 100%;
+  max-width: 600px;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.timer-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c9a84c, #e8d48b);
+  border-radius: 3px;
+  transition: width 1s linear;
+}
+
+.timer-label {
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: rgba(232,228,220,0.4);
+  margin-top: 24px;
+  font-weight: 400;
+}
+
+/* Presenter */
+.presenter-photo {
+  width: clamp(140px, 18vw, 200px);
+  height: clamp(140px, 18vw, 200px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid rgba(201,168,76,0.4);
+  margin-bottom: 24px;
+}
+
+.presenter-name {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900;
+  color: #e8e4dc;
+  letter-spacing: -0.02em;
+}
+
+.presenter-role {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: rgba(232,228,220,0.5);
+  font-weight: 400;
+  margin-top: 8px;
 }
 
 /* Volume bars */
@@ -314,7 +374,7 @@ a { cursor: pointer; }
   margin: 24px auto 0;
 }
 
-/* Performance fee / distribution */
+/* Performance fee */
 .fee-layout {
   display: flex;
   align-items: stretch;
@@ -662,11 +722,8 @@ a { cursor: pointer; }
   .volume-label { width: 60px; font-size: 12px; }
   .ref-gen { width: 80px; font-size: 12px; }
   .highlight-box { padding: 16px 18px; }
-
   .fee-layout { gap: 12px; }
-  .fee-card { padding: 20px 24px; }
   .stat-cards { gap: 12px; }
-  .stat-card { padding: 18px 24px; }
 }
 
 @media (max-width: 480px) {
@@ -674,18 +731,39 @@ a { cursor: pointer; }
   .chart-container { height: 110px; gap: 2px; }
   .chart-bar-value { font-size: 9px; top: -16px; }
   .chart-bar-label { font-size: 8px; }
-  .amp-step-text strong { font-size: 14px; }
-  .amp-step-text .dim { font-size: 12px; }
 }
 </style>
 </head>
 <body>
 
 <div id="progress" style="width: 0%"></div>
-<div id="counter">1 / 15</div>
+<div id="counter"></div>
 
-<!-- SLIDE 1 — HOOK -->
-<div class="slide active" data-slide="1">
+<!-- SLIDE 0 — TIMER -->
+<div class="slide active" data-slide="0" id="timerSlide">
+  <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80')"></div>
+  <div class="slide-overlay" style="background: rgba(0,0,0,0.85);"></div>
+  <div class="slide-content">
+    <p class="subtitle-sm" style="margin-bottom: 20px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;">Alustame varsti</p>
+    <div class="timer-display" id="timerDisplay">5:00</div>
+    <div class="timer-bar-track">
+      <div class="timer-bar-fill" id="timerBar"></div>
+    </div>
+    <p class="timer-label">TAG Markets | SONIC AI</p>
+  </div>
+</div>
+
+<!-- SLIDE 1 — PRESENTER -->
+<div class="slide" data-slide="1">
+  <div class="slide-content">
+    <img src="vambola.jpg" alt="Vambola Tullus" class="presenter-photo">
+    <div class="presenter-name">Vambola Tullus</div>
+    <div class="presenter-role">TAG Markets | Growth Identity</div>
+  </div>
+</div>
+
+<!-- SLIDE 2 — HOOK -->
+<div class="slide" data-slide="2">
   <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80')"></div>
   <div class="slide-overlay"></div>
   <div class="slide-content">
@@ -695,11 +773,11 @@ a { cursor: pointer; }
   </div>
 </div>
 
-<!-- SLIDE 2 — THE OPPORTUNITY -->
-<div class="slide" data-slide="2">
+<!-- SLIDE 3 — OPPORTUNITY -->
+<div class="slide" data-slide="3">
   <div class="slide-content">
-    <div class="headline headline-xl gold" style="margin-bottom: 4px;">$9.6 triljonit</div>
-    <p class="subtitle" style="margin-top: 6px;">Nii palju raha liigub forexi turul. Iga. P&auml;ev.</p>
+    <div class="headline headline-xl gold" style="margin-bottom: 4px;">$9.6 triljonit p&auml;evas</div>
+    <p class="subtitle" style="margin-top: 6px;">Nii palju raha liigub iga p&auml;ev forexi turul.</p>
 
     <div class="volume-bars">
       <div class="volume-bar-row">
@@ -722,43 +800,43 @@ a { cursor: pointer; }
       </div>
     </div>
 
-    <p class="subtitle" style="margin-top: 8px;">See on maailma suurim turg. Ja sina saad sellest osa.</p>
+    <p class="subtitle" style="margin-top: 8px;">See on maailma suurim finantsturg. Ja sina saad sellest osa.</p>
   </div>
 </div>
 
-<!-- SLIDE 3 — THE PROBLEM -->
-<div class="slide" data-slide="3">
+<!-- SLIDE 4 — PROBLEM -->
+<div class="slide" data-slide="4">
   <div class="slide-content">
     <h2 class="headline headline-lg" style="margin-bottom: 28px;">Probleem?</h2>
-    <p class="subtitle" style="font-size: clamp(18px, 2.4vw, 28px); color: rgba(232,228,220,0.65);">Kauplemine on raske.<br>95% inimestest kaotavad raha.</p>
-    <p class="subtitle" style="margin-top: 24px;">Vaja on aastaid kogemust, pidevat j&auml;lgimist<br>ja tugevaid n&auml;rve.</p>
+    <p class="subtitle" style="font-size: clamp(18px, 2.4vw, 28px); color: rgba(232,228,220,0.65);">Kauplemine on raske. 95% inimestest kaotavad raha.</p>
+    <p class="subtitle" style="margin-top: 24px;">Vaja on aastaid kogemust, pidevat j&auml;lgimist ja tugevaid n&auml;rve.</p>
     <p class="subtitle" style="margin-top: 40px; color: #e8d48b; font-weight: 400;">Aga mis siis, kui keegi teine teeks seda sinu eest?</p>
   </div>
 </div>
 
-<!-- SLIDE 4 — SONIC AI -->
-<div class="slide" data-slide="4">
+<!-- SLIDE 5 — SONIC AI -->
+<div class="slide" data-slide="5">
   <div class="slide-content">
     <h2 class="headline headline-lg gold" style="margin-bottom: 4px;"><a href="https://www.myfxbook.com/members/SonicExperts/sonic-ai/11968359" target="_blank" rel="noopener" style="color: #c9a84c; text-decoration: none; border-bottom: 2px solid rgba(201,168,76,0.3);">SONIC AI</a></h2>
-    <p class="subtitle" style="margin-top: 8px;">3 professionaalset kullakauplejat Saksamaalt. Koos alates 2011.</p>
+    <p class="subtitle" style="margin-top: 8px;">3 professionaalset kullakauplejat Saksamaalt, koos alates 2011.</p>
 
     <div class="steps-flow">
-      <div class="step-box"><strong>Copy X</strong><br>platvorm &uuml;hendab su konto</div>
+      <div class="step-box"><strong>Copy X</strong> platvorm<br>&uuml;hendab su konto</div>
       <div class="step-arrow">&rarr;</div>
-      <div class="step-box">SONIC kaupleb <strong>kullaga</strong><br>p&auml;evasiseselt</div>
+      <div class="step-box">SONIC kaupleb<br><strong>kullaga</strong> p&auml;evasiseselt</div>
       <div class="step-arrow">&rarr;</div>
       <div class="step-box">Kasum ilmub<br><strong>sinu kontole</strong></div>
     </div>
 
-    <p class="subtitle">T&auml;iesti automaatne. Registreerimine koos KYC ja sissemaksega ~15 min.<br>Copy X &mdash; maailma lihtsaim copy trading platvorm. <a href="https://thegrowthidentity.com/guide/" target="_blank" rel="noopener" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Vaata juhendit</a></p>
-    <p class="subtitle-sm">SONIC kauplejad on eksklusiivselt TAG Marketsis. Kusagil mujal neid ei leia.</p>
+    <p class="subtitle">T&auml;iesti automaatne. Kogu registreerimine koos KYC ja sissemaksega v&otilde;tab umbes 15 minutit. <a href="https://thegrowthidentity.com/guide/" target="_blank" rel="noopener" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Vaata juhendit</a></p>
+    <p class="subtitle-sm">SONIC kauplejad t&ouml;&ouml;tavad eksklusiivselt TAG Marketsis. Kusagil mujal neid ei leia.</p>
   </div>
 </div>
 
-<!-- SLIDE 5 — THE PROOF -->
-<div class="slide" data-slide="5">
+<!-- SLIDE 6 — PROOF -->
+<div class="slide" data-slide="6">
   <div class="slide-content">
-    <p class="dim" style="font-size: 14px; font-weight: 400; margin-bottom: 4px;">Reaalsed tulemused &mdash; 15 kuud</p>
+    <p class="dim" style="font-size: 14px; font-weight: 400; margin-bottom: 4px;">Reaalsed tulemused viimase 15 kuu jooksul</p>
 
     <div class="chart-container">
       <div class="chart-bar-wrap">
@@ -823,19 +901,19 @@ a { cursor: pointer; }
       </div>
     </div>
 
-    <p class="gold" style="font-size: clamp(17px, 2.2vw, 26px); font-weight: 700; margin: 8px 0 12px;">Keskmine: ~1.25% kuus</p>
+    <p class="gold" style="font-size: clamp(17px, 2.2vw, 26px); font-weight: 700; margin: 8px 0 12px;">Keskmine tulemus: umbes 1.25% kuus</p>
 
     <div class="proof-stats">
       <div class="proof-stat"><span>MyFXbook</span> kinnitatud</div>
-      <div class="proof-stat"><span>80%</span> v&otilde;idum&auml;&auml;r</div>
-      <div class="proof-stat"><span>365</span> tehingut</div>
+      <div class="proof-stat">V&otilde;idum&auml;&auml;r <span>80%</span></div>
+      <div class="proof-stat">Tehinguid <span>365</span></div>
       <div class="proof-stat">Max langus <span>0.86%</span></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 6 — AMPLIFIED ACCOUNTS EXPLAINED -->
-<div class="slide" data-slide="6">
+<!-- SLIDE 7 — AMPLIFIED ACCOUNTS -->
+<div class="slide" data-slide="7">
   <div class="slide-content">
     <h2 class="headline headline-md" style="margin-bottom: 20px;">Kuidas v&otilde;imendatud kontod t&ouml;&ouml;tavad?</h2>
 
@@ -844,7 +922,7 @@ a { cursor: pointer; }
         <div class="amp-step-num">1</div>
         <div class="amp-step-text">
           <strong>Sina paned sisse $1,000</strong>
-          <span class="dim">See on sinu raha. See l&auml;heb sinu kauplemiskontole.</span>
+          <span class="dim">See on sinu raha ja see l&auml;heb sinu kauplemiskontole.</span>
         </div>
       </div>
       <div class="amp-step-arrow">&darr;</div>
@@ -852,7 +930,7 @@ a { cursor: pointer; }
         <div class="amp-step-num">2</div>
         <div class="amp-step-text">
           <strong>75 likviidsuse pakkujat v&otilde;imendavad sinu kontot</strong>
-          <span class="dim">Pangad ja finantsasutused pakuvad likviidsust. Raha <em style="color:#e8d48b;">ei lahku kunagi nende kontolt</em> &mdash; nende risk on null. Sinu kauplemisjõud kasvab.</span>
+          <span class="dim">Pangad ja finantsasutused pakuvad likviidsust. Raha <em style="color:#e8d48b;">ei lahku kunagi nende kontolt</em>, nende risk on null. Sinu kauplemisjõud aga kasvab.</span>
         </div>
       </div>
       <div class="amp-step-arrow">&darr;</div>
@@ -860,25 +938,25 @@ a { cursor: pointer; }
         <div class="amp-step-num gold">24&times;</div>
         <div class="amp-step-text">
           <strong class="gold-light">Sinu konto on n&uuml;&uuml;d $24,000</strong>
-          <span class="dim">SONIC kaupleb selle summaga. Sama spread, sama turg, reaalne raha.</span>
+          <span class="dim">SONIC kaupleb selle summaga. Sama spread, sama turg, p&auml;ris raha.</span>
         </div>
       </div>
     </div>
 
     <div class="highlight-box">
-      <div class="math-line" style="margin: 0 0 4px;">SONIC teenib 1.25% &times; $24,000 = <span style="color:#fff; font-weight:900;">$300</span></div>
-      <div class="math-example">Sinu $1,000 pealt on see <span class="gold" style="font-weight:700;">~30% kuus</span></div>
+      <div class="math-line" style="margin: 0 0 4px;">SONIC teenib 1.25% kuus ehk $24,000 pealt = <span style="color:#fff; font-weight:900;">$300</span></div>
+      <div class="math-example">Sinu sissemakse oli $1,000, seega on see sulle <span class="gold" style="font-weight:700;">umbes 30% kuus</span></div>
     </div>
 
-    <p class="subtitle-sm" style="margin-top: 16px;">Sinu maksimaalne risk = sinu sissemakse. Sa ei saa kunagi v&otilde;lgnikuks.<br>See ei ole prop firm &mdash; &uuml;htegi katsumust pole vaja l&auml;bida.</p>
+    <p class="subtitle-sm" style="margin-top: 16px;">Sinu maksimaalne risk on ainult sinu sissemakse. V&otilde;lgnikuks sa minna ei saa. See ei ole prop firm, &uuml;htegi katsumust pole vaja l&auml;bida.</p>
   </div>
 </div>
 
-<!-- SLIDE 7 — PERFORMANCE FEE -->
-<div class="slide" data-slide="7">
+<!-- SLIDE 8 — PERFORMANCE FEE -->
+<div class="slide" data-slide="8">
   <div class="slide-content">
     <h2 class="headline headline-md" style="margin-bottom: 4px;">Performance fee: 30%</h2>
-    <p class="subtitle" style="margin-top: 6px;">SONIC v&otilde;tab tasu <em>ainult</em> kasumilt. Kui kasumit pole, on tasu null.</p>
+    <p class="subtitle" style="margin-top: 6px;">SONIC v&otilde;tab tasu ainult kasumilt. Kui kasumit pole, on tasu null.</p>
 
     <div class="fee-layout">
       <div class="fee-card featured">
@@ -894,20 +972,20 @@ a { cursor: pointer; }
       <div class="fee-card">
         <div class="fee-pct dim">25%</div>
         <div class="fee-label dim">Kogukonnale</div>
-        <div class="fee-desc">10 generatsiooni, igale 2.5%, iga n&auml;dal</div>
+        <div class="fee-desc">10 p&otilde;lvkonda, igale 2.5% iga n&auml;dal</div>
       </div>
     </div>
 
     <div class="highlight-box">
       <div class="math-example">N&auml;ide: SONIC teenib sinu $24,000 kontol $300 kasumit</div>
-      <div class="math-line" style="margin-top: 6px;">Sinule: <span style="color:#fff; font-weight:900;">$210</span> &nbsp;&middot;&nbsp; Kauplejatele: $15 &nbsp;&middot;&nbsp; Kogukonnale: $75</div>
-      <div class="math-example" style="margin-top: 4px;">Pole kasumit? <span style="color:#e8d48b;">Pole tasu.</span> Lihtne.</div>
+      <div class="math-line" style="margin-top: 6px;">Sinule: <span style="color:#fff; font-weight:900;">$210</span> &nbsp;/ Kauplejatele: $15 / Kogukonnale: $75</div>
+      <div class="math-example" style="margin-top: 4px;">Kasumit pole? <span style="color:#e8d48b;">Tasu ka mitte.</span></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 8 — RISK MANAGEMENT -->
-<div class="slide" data-slide="8">
+<!-- SLIDE 9 — RISK MANAGEMENT -->
+<div class="slide" data-slide="9">
   <div class="slide-content">
     <h2 class="headline headline-md" style="margin-bottom: 4px;">Riskijuhtimine</h2>
     <p class="subtitle" style="margin-top: 6px;">SONIC kaupleb konservatiivselt. Numbrid r&auml;&auml;givad enda eest.</p>
@@ -915,25 +993,25 @@ a { cursor: pointer; }
     <div class="risk-grid">
       <div class="risk-card">
         <div class="risk-value">0.86%</div>
-        <div class="risk-label">Maksimaalne langus<br>14 kuu jooksul</div>
+        <div class="risk-label">Maksimaalne langus 14 kuu jooksul</div>
       </div>
       <div class="risk-card">
         <div class="risk-value">P&auml;evasisene</div>
-        <div class="risk-label">K&otilde;ik tehingud suletakse<br>sama p&auml;eva jooksul</div>
+        <div class="risk-label">K&otilde;ik tehingud suletakse sama p&auml;eva jooksul</div>
       </div>
       <div class="risk-card">
-        <div class="risk-value">59&times;</div>
-        <div class="risk-label">Nii palju j&auml;rjest peaks<br>kaotama 10% kaotuseks</div>
+        <div class="risk-value">59 korda</div>
+        <div class="risk-label">Nii mitu korda peaks j&auml;rjest kaotama 10% kaotuseks</div>
       </div>
     </div>
 
-    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 19px);">&Uuml;leturul ei j&auml;&auml; positsioone avatuks &mdash; &uuml;ht&uuml;&uuml;s ega n&auml;dalavahetuse riski pole.</p>
-    <p class="subtitle-sm">Kauplemisel on alati riskid. Aga SONIC keskendub j&auml;rjepidevusele, mitte suurele v&otilde;idule.</p>
+    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 19px);">&Ouml;&ouml;seks ega n&auml;dalavahetuseks ei j&auml;&auml; positsioone avatuks, seega &uuml;&ouml;riski ja n&auml;dalavahetuse riski pole.</p>
+    <p class="subtitle-sm">Kauplemisel on alati riskid, aga SONIC keskendub j&auml;rjepidevusele.</p>
   </div>
 </div>
 
-<!-- SLIDE 9 — TAG MARKETS TRUST -->
-<div class="slide" data-slide="9">
+<!-- SLIDE 10 — TAG MARKETS TRUST -->
+<div class="slide" data-slide="10">
   <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80')"></div>
   <div class="slide-overlay"></div>
   <div class="slide-content">
@@ -947,7 +1025,7 @@ a { cursor: pointer; }
       </div>
       <div class="stat-card">
         <div class="stat-number">$347B</div>
-        <div class="stat-label">maht jaanuaris 2026</div>
+        <div class="stat-label">kauplemismaht jaanuaris 2026</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" data-count="150">0</div>
@@ -955,23 +1033,23 @@ a { cursor: pointer; }
       </div>
       <div class="stat-card">
         <div class="stat-number">$250M</div>
-        <div class="stat-label">aasta tulu</div>
+        <div class="stat-label">aastane tulu</div>
       </div>
     </div>
 
-    <p class="subtitle" style="font-size: clamp(13px, 1.4vw, 16px); margin-top: 12px;">Asutajad investeerinud 8-kohalise summa &nbsp;|&nbsp; Nick ei v&otilde;tnud 1.5 aastat palka<br>4 aasta tegevuskulud reservis enne esimest dividendi &nbsp;|&nbsp; V&auml;ljamaksed kuni 24h, 0 tasud</p>
+    <p class="subtitle" style="font-size: clamp(13px, 1.4vw, 16px); margin-top: 12px;">Asutajad investeerinud 8-kohalise summa isiklikult. Nick ei v&otilde;tnud 1.5 aastat palka. 4 aasta tegevuskulud reservis enne esimest dividendi. V&auml;ljamaksed kuni 24h, 0 tasud.</p>
 
     <div class="trust-row">
-      <div class="trust-badge">&#10003; Reguleeritud Mauritiusel</div>
-      <div class="trust-badge">&#10003; Eraldatud kontod</div>
+      <div class="trust-badge">&#10003; <a href="https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr" target="_blank" rel="noopener" style="color: rgba(232,228,220,0.5); text-decoration: underline; text-underline-offset: 3px;">FSC Mauritius litsents GB21026474</a></div>
+      <div class="trust-badge">&#10003; Eraldatud kliendikontod</div>
       <div class="trust-badge">&#10003; Igan&auml;dalased auditid</div>
       <div class="trust-badge">&#10003; A-Book</div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 10 — LIVE PROOF -->
-<div class="slide" data-slide="10">
+<!-- SLIDE 11 — LIVE PROOF -->
+<div class="slide" data-slide="11">
   <div class="slide-content">
     <h2 class="headline headline-md" style="margin-bottom: 4px;">Vaata ise</h2>
 
@@ -981,21 +1059,21 @@ a { cursor: pointer; }
       </video>
     </div>
 
-    <p class="subtitle" style="margin-top: 12px;">Reaalne MetaTrader 5 konto. Reaalne raha. Reaalajas.</p>
+    <p class="subtitle" style="margin-top: 12px;">P&auml;ris MetaTrader 5 konto, p&auml;ris raha, reaalajas.</p>
 
     <div class="proof-stats" style="margin-top: 12px;">
       <div class="proof-stat">Konto <span>#50498232</span></div>
-      <div class="proof-stat">Saldo: <span>$129,360</span></div>
-      <div class="proof-stat">Kogukasum: <span>$24,736</span></div>
+      <div class="proof-stat">Saldo <span>$129,360</span></div>
+      <div class="proof-stat">Kogukasum <span>$24,736</span></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 11 — REFERRAL -->
-<div class="slide" data-slide="11">
+<!-- SLIDE 12 — REFERRAL -->
+<div class="slide" data-slide="12">
   <div class="slide-content">
     <h2 class="headline headline-md" style="margin-bottom: 4px;">Soovitusprogramm</h2>
-    <p class="subtitle" style="margin-top: 4px;">25% kasumist jagatakse kogukonnale. 10 generatsiooni, iga n&auml;dal.</p>
+    <p class="subtitle" style="margin-top: 4px;">25% kasumist jagatakse kogukonnale, 10 p&otilde;lvkonda, iga n&auml;dal.</p>
 
     <div class="ref-visual">
       <div class="ref-row">
@@ -1005,54 +1083,54 @@ a { cursor: pointer; }
         </div>
       </div>
       <div class="ref-row">
-        <div class="ref-gen">Gen 2</div>
+        <div class="ref-gen">2. p&otilde;lvkond</div>
         <div class="ref-bar">
           <div class="ref-fill ref-dim rw100">2.5%</div>
         </div>
       </div>
       <div class="ref-row">
-        <div class="ref-gen">Gen 3&ndash;10</div>
+        <div class="ref-gen">3.&ndash;10. p&otilde;lvk.</div>
         <div class="ref-bar">
-          <div class="ref-fill ref-dim rw80">2.5% igast generatsioonist</div>
+          <div class="ref-fill ref-dim rw80">2.5% igast p&otilde;lvkonnast</div>
         </div>
       </div>
     </div>
 
-    <p class="subtitle" style="margin-top: 20px; font-size: clamp(13px, 1.5vw, 17px);">2.5% arvutatakse <em style="color:#e8d48b;">v&otilde;imendatud konto suuruselt</em>, mitte sissemakselt.<br>$1,000 sissemakse = $24,000 konto &rarr; tulu arvutatakse $24K pealt.</p>
+    <p class="subtitle" style="margin-top: 20px; font-size: clamp(13px, 1.5vw, 17px);">T&auml;htis: 2.5% arvutatakse <em style="color:#e8d48b;">v&otilde;imendatud konto suuruselt</em>, mitte tavalise sissemakse pealt. Ehk $1,000 sissemakse korral arvutatakse tulu $24,000 pealt.</p>
 
-    <p class="subtitle-sm">+ CPA igalt sissemakselt &nbsp;|&nbsp; + kuni $8.50 laenutasu iga tehingu kohta</p>
+    <p class="subtitle-sm">Lisaks: CPA iga sissemakse pealt ja kuni $8.50 tehingutasu</p>
   </div>
 </div>
 
-<!-- SLIDE 12 — COMING SOON -->
-<div class="slide" data-slide="12">
+<!-- SLIDE 13 — COMING SOON -->
+<div class="slide" data-slide="13">
   <div class="slide-content">
     <h2 class="headline headline-md gold" style="margin-bottom: 4px;">Tulemas</h2>
-    <p class="subtitle" style="margin-top: 4px;">TAG ehitab &ouml;kos&uuml;steemi. Mitu tuluvoogu &uuml;hest kohast.</p>
+    <p class="subtitle" style="margin-top: 4px;">TAG ehitab tervet &ouml;kos&uuml;steemi. Mitu tuluvoogu &uuml;hest kohast.</p>
 
     <div class="future-grid">
       <div class="future-card">
         <div class="future-title">Bit One</div>
-        <div class="future-desc">Kr&uuml;ptob&ouml;rs ilma KYC-ta. Kuni $20K v&auml;ljav&otilde;tt p&auml;evas. Copy trading ka kr&uuml;ptos.</div>
+        <div class="future-desc">Kr&uuml;ptob&ouml;rs ilma KYC-ta. Kuni $20,000 v&auml;ljav&otilde;tmine p&auml;evas. Copy trading tuleb ka kr&uuml;ptosse.</div>
       </div>
       <div class="future-card">
         <div class="future-title">Deebetkaart</div>
-        <div class="future-desc">Pangakonto + deebetkaart + detsentraliseeritud rahakott. K&otilde;ik &uuml;hes kohas.</div>
+        <div class="future-desc">Pangakonto, deebetkaart ja detsentraliseeritud rahakott. K&otilde;ik &uuml;hes kohas.</div>
       </div>
       <div class="future-card">
         <div class="future-title">Rohkem strateegiaid</div>
-        <div class="future-desc">Copy X platvorm lubab uusi kauplejaid lisada. Rankings, j&auml;lgimine, l&auml;bipaistvus.</div>
+        <div class="future-desc">Copy X platvorm lubab uusi kauplejaid lisada. Rankings, j&auml;lgimine ja l&auml;bipaistvus.</div>
       </div>
     </div>
 
-    <p class="subtitle-sm">K&otilde;ik erainvesteeringutega rahastatud. &Uuml;htegi v&auml;lisinvestorit.</p>
+    <p class="subtitle-sm">K&otilde;ik rahastatud erainvesteeringutega, v&auml;lisinvestoreid pole.</p>
   </div>
 </div>
 
-<!-- SLIDE 13 — HOW TO START -->
-<div class="slide" data-slide="13">
+<!-- SLIDE 14 — HOW TO START -->
+<div class="slide" data-slide="14">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 0;">3 sammu</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 0;">3 sammu alustamiseks</h2>
 
     <div class="num-steps">
       <div class="num-step">
@@ -1064,39 +1142,39 @@ a { cursor: pointer; }
       <div class="num-step">
         <div class="num-circle">2</div>
         <div class="num-step-title">Sissemakse</div>
-        <div class="num-step-desc">Alates $10 &mdash; kr&uuml;pto, &uuml;lekanne v&otilde;i kaart</div>
+        <div class="num-step-desc">Alates $10, kr&uuml;pto, &uuml;lekanne v&otilde;i kaart</div>
       </div>
       <div class="step-connector"></div>
       <div class="num-step">
         <div class="num-circle">3</div>
         <div class="num-step-title">&Uuml;hendu Copy X-is</div>
-        <div class="num-step-desc">Vali SONIC AI. Valmis. 2 minutit.</div>
+        <div class="num-step-desc">Vali SONIC AI ja ongi k&otilde;ik</div>
       </div>
     </div>
 
-    <p class="subtitle-sm" style="margin-top: 20px;">Kogu protsess v&otilde;tab ~15 minutit. <a href="https://thegrowthidentity.com/guide/" target="_blank" rel="noopener" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Samm-sammuline juhend siin</a></p>
+    <p class="subtitle-sm" style="margin-top: 20px;">Kogu protsess v&otilde;tab umbes 15 minutit. <a href="https://thegrowthidentity.com/guide/" target="_blank" rel="noopener" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Samm-sammuline juhend siin</a></p>
   </div>
 </div>
 
-<!-- SLIDE 14 — RISK DISCLAIMER -->
-<div class="slide" data-slide="14">
+<!-- SLIDE 15 — DISCLAIMER -->
+<div class="slide" data-slide="15">
   <div class="slide-content">
     <p class="muted" style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px;">Oluline teave</p>
     <div class="disclaimer-text">
-      Forexi kauplemine h&otilde;lmab riski. Varasemad tulemused ei garanteeri tulevasi. V&otilde;imendatud kontod suurendavad nii kasumit kui ka v&otilde;imalikku kaotust. Investeeri ainult summa, mida saad lubada kaotada. See esitlus on informatiivsetel eesm&auml;rkidel ega ole investeerimisn&otilde;uanne.
+      Forexi kauplemine sisaldab riske. Varasemad tulemused ei garanteeri tulevasi tulemusi. V&otilde;imendatud kontod suurendavad nii kasumit kui ka v&otilde;imalikku kaotust. Investeeri ainult summa, mida saad endale lubada kaotada. See esitlus on informatiivsel eesm&auml;rgil ja ei ole investeerimisn&otilde;uanne.
     </div>
-    <p class="disclaimer-text" style="margin-top: 24px; color: rgba(232,228,220,0.55); font-weight: 400;">Tee alati oma uurimist&ouml;&ouml;.</p>
+    <p class="disclaimer-text" style="margin-top: 24px; color: rgba(232,228,220,0.55); font-weight: 400;">Tee alati ise oma uurimist&ouml;&ouml;.</p>
   </div>
 </div>
 
-<!-- SLIDE 15 — CLOSING -->
-<div class="slide" data-slide="15">
+<!-- SLIDE 16 — CLOSING -->
+<div class="slide" data-slide="16">
   <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80')"></div>
   <div class="slide-overlay"></div>
   <div class="slide-content">
     <h1 class="headline headline-xl gold">Kuld ei maga.</h1>
     <p class="subtitle" style="font-size: clamp(18px, 2.5vw, 30px); color: rgba(232,228,220,0.7);">Aga sinu raha v&otilde;iks t&ouml;&ouml;tada.</p>
-    <p class="subtitle-sm" style="margin-top: 60px;">TAG Markets &times; SONIC AI &times; Copy X</p>
+    <p class="subtitle-sm" style="margin-top: 60px;">TAG Markets / SONIC AI / Copy X</p>
   </div>
 </div>
 
@@ -1110,6 +1188,39 @@ a { cursor: pointer; }
   var current = 0;
   var animating = false;
 
+  // Timer
+  var timerDisplay = document.getElementById('timerDisplay');
+  var timerBar = document.getElementById('timerBar');
+  var timerTotal = 300; // 5 minutes
+  var timerLeft = timerTotal;
+  var timerInterval = null;
+
+  function updateTimer() {
+    var m = Math.floor(timerLeft / 60);
+    var s = timerLeft % 60;
+    timerDisplay.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    var pct = ((timerTotal - timerLeft) / timerTotal) * 100;
+    timerBar.style.width = pct + '%';
+
+    if (timerLeft <= 0) {
+      clearInterval(timerInterval);
+      timerDisplay.style.color = '#c9a84c';
+      timerBar.style.width = '100%';
+    }
+    timerLeft--;
+  }
+
+  timerInterval = setInterval(updateTimer, 1000);
+  updateTimer();
+
+  function updateCounter() {
+    if (current === 0) {
+      counter.textContent = '';
+    } else {
+      counter.textContent = current + ' / ' + (total - 1);
+    }
+  }
+
   function goTo(n) {
     if (n < 0 || n >= total || n === current || animating) return;
     animating = true;
@@ -1117,8 +1228,12 @@ a { cursor: pointer; }
     current = n;
     slides[current].classList.add('active');
     progress.style.width = ((current / (total - 1)) * 100) + '%';
-    counter.textContent = (current + 1) + ' / ' + total;
+    updateCounter();
     runAnimations(current);
+    if (current > 0 && timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
     setTimeout(function() { animating = false; }, 500);
   }
 
@@ -1164,7 +1279,6 @@ a { cursor: pointer; }
     }
   });
 
-  // Click navigation - skip links and video
   document.addEventListener('click', function(e) {
     if (e.target.closest('a')) return;
     if (e.target.closest('.video-frame')) return;
@@ -1194,7 +1308,7 @@ a { cursor: pointer; }
   }
 
   progress.style.width = '0%';
-  counter.textContent = '1 / ' + total;
+  updateCounter();
 })();
 </script>
 </body>
