@@ -294,55 +294,60 @@ body {
 .slide.active .chart-bar { height: var(--bar-h); }
 .slide.active .chart-bar-value { opacity: 1; }
 
-/* Amplifier visual (Slide 6) */
-.amplifier {
+/* Amplifier explainer (Slide 6) */
+.amp-explainer {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.amp-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+}
+
+.amp-step-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(201,168,76,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(20px, 4vw, 60px);
-  margin: 40px 0;
-  flex-wrap: wrap;
-}
-
-.amp-box {
-  text-align: center;
-}
-
-.amp-amount {
+  font-size: 20px;
   font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  color: #c9a84c;
+  flex-shrink: 0;
 }
 
-.amp-small {
-  font-size: clamp(28px, 4vw, 48px);
+.amp-step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+}
+
+.amp-step-text strong {
+  font-size: clamp(15px, 1.8vw, 19px);
+  font-weight: 700;
   color: #e8e4dc;
 }
 
-.amp-big {
-  font-size: clamp(44px, 7vw, 84px);
-  color: #e8d48b;
+.amp-step-text .dim {
+  font-size: clamp(13px, 1.4vw, 15px);
+  line-height: 1.6;
 }
 
-.amp-multiply {
-  font-size: clamp(28px, 4vw, 52px);
-  font-weight: 900;
-  color: #c9a84c;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-}
-
-.slide.active .amp-multiply {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.amp-label {
-  font-size: 14px;
-  color: rgba(232,228,220,0.5);
-  margin-top: 8px;
-  font-weight: 400;
+.amp-step-arrow {
+  text-align: center;
+  font-size: 20px;
+  color: rgba(201,168,76,0.4);
+  margin: 6px 0;
 }
 
 /* Distribution (Slide 7) */
@@ -573,7 +578,8 @@ body {
   .step-arrow { transform: rotate(90deg); margin: 4px 0; }
   .step-box { max-width: 100%; }
 
-  .amplifier { flex-direction: column; gap: 16px; }
+  .amp-step { padding: 14px 16px; gap: 14px; }
+  .amp-step-num { width: 40px; height: 40px; font-size: 17px; }
 
   .num-steps { flex-direction: column; align-items: center; gap: 32px; }
   .step-connector { width: 2px; height: 32px; margin: 0; }
@@ -750,27 +756,43 @@ body {
   </div>
 </div>
 
-<!-- SLIDE 6 — THE MAGIC -->
+<!-- SLIDE 6 — HOW AMPLIFIED ACCOUNTS WORK -->
 <div class="slide" data-slide="6">
   <div class="slide-content">
-    <h2 class="headline headline-sm" style="margin-bottom: 8px;">Aga siin l&auml;heb huvitavaks.</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 32px;">Kuidas v&otilde;imendatud kontod t&ouml;&ouml;tavad?</h2>
 
-    <div class="amplifier">
-      <div class="amp-box">
-        <div class="amp-amount amp-small">$1,000</div>
-        <div class="amp-label">Sinu sissemakse</div>
+    <div class="amp-explainer">
+      <div class="amp-step">
+        <div class="amp-step-num">1</div>
+        <div class="amp-step-text">
+          <strong>Sina paned sisse $1,000</strong>
+          <span class="dim">See on sinu raha. See l&auml;heb sinu kauplemiskontole.</span>
+        </div>
       </div>
-      <div class="amp-multiply">&times;24</div>
-      <div class="amp-box">
-        <div class="amp-amount amp-big">$24,000</div>
-        <div class="amp-label">Sinu kauplemiskonto</div>
+      <div class="amp-step-arrow">&darr;</div>
+      <div class="amp-step">
+        <div class="amp-step-num">2</div>
+        <div class="amp-step-text">
+          <strong>75 likviidsuse pakkujat lisavad oma raha</strong>
+          <span class="dim">Nad laenavad lisaraha, aga see <em style="color:#e8d48b;">ei lahku kunagi nende kontolt</em>. Nende riskid on null.</span>
+        </div>
+      </div>
+      <div class="amp-step-arrow">&darr;</div>
+      <div class="amp-step">
+        <div class="amp-step-num gold">24&times;</div>
+        <div class="amp-step-text">
+          <strong class="gold-light">Sinu konto on n&uuml;&uuml;d $24,000</strong>
+          <span class="dim">SONIC AI kaupleb selle summaga. Kasum on suurem, sest konto on suurem.</span>
+        </div>
       </div>
     </div>
 
-    <div class="math-line">1.25% kuukasum &times; 24x v&otilde;imendus = ~30% kuus</div>
-    <div class="math-example">$1,000 sissemakse &rarr; ~$300 kuus kasumit</div>
+    <div style="margin-top: 36px; padding: 24px 32px; background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.15); border-radius: 14px; max-width: 640px; margin-left: auto; margin-right: auto;">
+      <div class="math-line" style="margin: 0 0 8px;">SONIC teenib 1.25% kuus &times; $24,000 = <span style="color:#fff; font-weight:900;">$300</span></div>
+      <div class="math-example">Sinu sissemakse oli $1,000 &rarr; see on <span class="gold" style="font-weight:700;">~30% kuus</span></div>
+    </div>
 
-    <p class="subtitle-sm" style="margin-top: 40px;">75 likviidsuse pakkujat &nbsp;|&nbsp; Riskid piiratud sinu sissemaksega</p>
+    <p class="subtitle-sm" style="margin-top: 28px;">&#128274; Sinu maksimaalne risk = sinu sissemakse. Sa ei saa kunagi v&otilde;lgnikuks.</p>
   </div>
 </div>
 
@@ -813,12 +835,12 @@ body {
 
     <div class="stat-cards">
       <div class="stat-card">
-        <div class="stat-number" data-count="600000">0</div>
-        <div class="stat-label">klienti</div>
+        <div class="stat-number" data-count="700000">0</div>
+        <div class="stat-label">registreeritud klienti</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">$300B+</div>
-        <div class="stat-label">kuumaht</div>
+        <div class="stat-number">$347B</div>
+        <div class="stat-label">maht jaanuaris 2026</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" data-count="150">0</div>
@@ -826,7 +848,7 @@ body {
       </div>
     </div>
 
-    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 18px);">TAG Markets &mdash; A-Book maakler &nbsp;|&nbsp; Litsentseeritud ja reguleeritud Mauritiusel<br>V&auml;ljamaksed 1h &nbsp;|&nbsp; 0 tasud</p>
+    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 18px);">TAG Markets &mdash; A-Book maakler &nbsp;|&nbsp; Reguleeritud Mauritiusel &nbsp;|&nbsp; Asutajad investeerinud 8-kohalise summa<br>V&auml;ljamaksed 1h &nbsp;|&nbsp; 4 aasta tegevuskulud reservis</p>
 
     <div class="trust-row">
       <div class="trust-badge">&#10003; Reguleeritud</div>
