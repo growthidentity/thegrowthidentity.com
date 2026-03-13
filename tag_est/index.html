@@ -229,7 +229,7 @@ h2{font-size:clamp(1.4rem,5vw,2rem)}
 <body>
 
 <div id="progress"></div>
-<div id="counter"><span class="current">1</span> / 17</div>
+<div id="counter"><span class="current">1</span> / 18</div>
 
 <!-- ============================================ -->
 <!-- SLIDE 1 — HERO -->
@@ -678,9 +678,29 @@ h2{font-size:clamp(1.4rem,5vw,2rem)}
 </div>
 
 <!-- ============================================ -->
-<!-- SLIDE 13 — INFLUENCER PROGRAM -->
+<!-- SLIDE 13 — LIVE MT5 PROOF -->
 <!-- ============================================ -->
 <div class="slide" data-index="12">
+  <div class="slide-inner" style="text-align:center;max-width:1000px">
+    <h3>REAALAJAS TÕESTUS</h3>
+    <h2>MetaTrader 5 — Reaalne kauplemiskonto</h2>
+    <p style="font-size:.95rem;color:var(--text2);margin-bottom:24px">Reaalajas salvestus MetaTrader 5 rakendusest — kauplemisajalugu ja konto hetkeseis</p>
+    <div style="position:relative;max-width:340px;margin:0 auto;border-radius:32px;overflow:hidden;box-shadow:0 20px 80px rgba(212,175,55,.2),0 0 0 3px rgba(212,175,55,.3);background:#000">
+      <video src="mt5-live.mp4" style="width:100%;display:block;border-radius:32px" controls playsinline preload="metadata"></video>
+    </div>
+    <p style="font-size:.8rem;color:var(--text3);margin-top:16px">Salvestatud 13. märts 2026 — iPhone 17 Pro Max</p>
+    <div style="display:flex;gap:16px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+      <div class="glass" style="padding:12px 24px;border-radius:50px"><span style="color:var(--green);font-weight:700">✓</span> Reaalne konto</div>
+      <div class="glass" style="padding:12px 24px;border-radius:50px"><span style="color:var(--green);font-weight:700">✓</span> Reaalne raha</div>
+      <div class="glass" style="padding:12px 24px;border-radius:50px"><span style="color:var(--green);font-weight:700">✓</span> Kontrollitav igal ajal</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SLIDE 14 — INFLUENCER PROGRAM -->
+<!-- ============================================ -->
+<div class="slide" data-index="13">
   <div class="slide-inner" style="text-align:center">
     <h3>TEENIMISE VÕIMALUSED</h3>
     <h2>Teenimise võimalused</h2>
@@ -722,9 +742,9 @@ h2{font-size:clamp(1.4rem,5vw,2rem)}
 </div>
 
 <!-- ============================================ -->
-<!-- SLIDE 14 — COMPENSATION TABLE -->
+<!-- SLIDE 15 — COMPENSATION TABLE -->
 <!-- ============================================ -->
-<div class="slide" data-index="13">
+<div class="slide" data-index="14">
   <div class="slide-inner">
     <h3 style="text-align:center">HÜVITISED</h3>
     <h2 style="text-align:center">Mõjutaja programm — Hüvitised</h2>
@@ -783,9 +803,9 @@ h2{font-size:clamp(1.4rem,5vw,2rem)}
 </div>
 
 <!-- ============================================ -->
-<!-- SLIDE 15 — HOW TO START -->
+<!-- SLIDE 16 — HOW TO START -->
 <!-- ============================================ -->
-<div class="slide" data-index="14">
+<div class="slide" data-index="15">
   <div class="slide-inner" style="text-align:center">
     <h3>ALUSTAMINE</h3>
     <h2>Kuidas alustada?</h2>
@@ -821,9 +841,9 @@ h2{font-size:clamp(1.4rem,5vw,2rem)}
 </div>
 
 <!-- ============================================ -->
-<!-- SLIDE 16 — RISK DISCLAIMER -->
+<!-- SLIDE 17 — RISK DISCLAIMER -->
 <!-- ============================================ -->
-<div class="slide" data-index="15">
+<div class="slide" data-index="16">
   <div class="slide-inner" style="text-align:center">
     <h3>TÄHTIS</h3>
     <h2>Riskide vastutuse välistamine</h2>
@@ -837,9 +857,9 @@ h2{font-size:clamp(1.4rem,5vw,2rem)}
 </div>
 
 <!-- ============================================ -->
-<!-- SLIDE 17 — CLOSING -->
+<!-- SLIDE 18 — CLOSING -->
 <!-- ============================================ -->
-<div class="slide" data-index="16">
+<div class="slide" data-index="17">
   <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80')"></div>
   <div class="particles" id="particles2"></div>
   <div class="slide-inner" style="text-align:center">
@@ -885,7 +905,7 @@ h2{font-size:clamp(1.4rem,5vw,2rem)}
 
   // Click
   document.addEventListener('click', function(e){
-    if(e.target.closest('a,button,input,select,textarea')) return;
+    if(e.target.closest('a,button,input,select,textarea,video')) return;
     const x = e.clientX / window.innerWidth;
     if(x > 0.5) next(); else prev();
   });
