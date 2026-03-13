@@ -28,6 +28,8 @@ body {
 .dim { color: rgba(232,228,220,0.6); }
 .white { color: #fff; }
 
+a { cursor: pointer; }
+
 #progress {
   position: fixed;
   top: 0; left: 0;
@@ -55,11 +57,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 40px;
+  padding: 48px 40px;
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none;
   z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .slide.active {
@@ -69,7 +73,7 @@ body {
 }
 
 .slide-bg {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background-size: cover;
@@ -78,7 +82,7 @@ body {
 }
 
 .slide-overlay {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.78);
@@ -90,6 +94,7 @@ body {
   width: 100%;
   text-align: center;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .headline {
@@ -98,34 +103,34 @@ body {
   line-height: 1.1;
 }
 
-.headline-xl { font-size: clamp(42px, 7vw, 96px); }
-.headline-lg { font-size: clamp(36px, 5.5vw, 76px); }
-.headline-md { font-size: clamp(28px, 4vw, 56px); }
+.headline-xl { font-size: clamp(40px, 7vw, 96px); }
+.headline-lg { font-size: clamp(34px, 5.5vw, 72px); }
+.headline-md { font-size: clamp(26px, 3.5vw, 50px); }
 .headline-sm { font-size: clamp(22px, 3vw, 40px); }
 
 .subtitle {
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: clamp(15px, 1.8vw, 22px);
   font-weight: 300;
   line-height: 1.7;
   color: rgba(232,228,220,0.7);
-  margin-top: 20px;
-}
-
-.subtitle-sm {
-  font-size: clamp(13px, 1.4vw, 17px);
-  font-weight: 300;
-  color: rgba(232,228,220,0.4);
   margin-top: 16px;
 }
 
+.subtitle-sm {
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 300;
+  color: rgba(232,228,220,0.4);
+  margin-top: 12px;
+}
+
 /* Volume bars */
-.volume-bars { margin: 40px 0 24px; }
+.volume-bars { margin: 32px 0 20px; }
 
 .volume-bar-row {
   display: flex;
   align-items: center;
-  margin-bottom: 14px;
-  gap: 16px;
+  margin-bottom: 12px;
+  gap: 14px;
 }
 
 .volume-label {
@@ -139,7 +144,7 @@ body {
 
 .volume-track {
   flex: 1;
-  height: 36px;
+  height: 34px;
   background: rgba(255,255,255,0.03);
   border-radius: 8px;
   overflow: hidden;
@@ -170,7 +175,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0;
-  margin: 40px 0 24px;
+  margin: 28px 0 20px;
   flex-wrap: wrap;
 }
 
@@ -178,17 +183,17 @@ body {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(201,168,76,0.2);
   border-radius: 14px;
-  padding: 20px 24px;
-  font-size: clamp(13px, 1.5vw, 16px);
+  padding: 18px 22px;
+  font-size: clamp(13px, 1.4vw, 15px);
   font-weight: 400;
-  max-width: 220px;
+  max-width: 210px;
   line-height: 1.5;
 }
 
 .step-arrow {
-  font-size: 24px;
+  font-size: 22px;
   color: #c9a84c;
-  margin: 0 10px;
+  margin: 0 8px;
   flex-shrink: 0;
 }
 
@@ -198,8 +203,8 @@ body {
   align-items: flex-end;
   justify-content: center;
   gap: clamp(3px, 0.8vw, 10px);
-  height: 200px;
-  margin: 28px 0 16px;
+  height: 180px;
+  margin: 24px 0 12px;
   padding: 0 8px;
 }
 
@@ -224,9 +229,9 @@ body {
 
 .chart-bar-value {
   position: absolute;
-  top: -22px; left: 50%;
+  top: -20px; left: 50%;
   transform: translateX(-50%);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: #e8d48b;
   white-space: nowrap;
@@ -237,7 +242,7 @@ body {
 .chart-bar-label {
   font-size: clamp(9px, 1vw, 11px);
   color: rgba(232,228,220,0.35);
-  margin-top: 8px;
+  margin-top: 6px;
   font-weight: 400;
 }
 
@@ -246,7 +251,7 @@ body {
 
 /* Amplifier explainer */
 .amp-explainer {
-  max-width: 620px;
+  max-width: 600px;
   margin: 0 auto;
   text-align: left;
 }
@@ -254,21 +259,21 @@ body {
 .amp-step {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
-  padding: 16px 20px;
+  gap: 16px;
+  padding: 14px 18px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
 .amp-step-num {
-  width: 48px; height: 48px;
+  width: 44px; height: 44px;
   border-radius: 50%;
   border: 2px solid rgba(201,168,76,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
   color: #c9a84c;
   flex-shrink: 0;
@@ -277,36 +282,36 @@ body {
 .amp-step-text {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding-top: 4px;
+  gap: 2px;
+  padding-top: 2px;
 }
 
 .amp-step-text strong {
-  font-size: clamp(15px, 1.8vw, 19px);
+  font-size: clamp(14px, 1.6vw, 17px);
   font-weight: 700;
   color: #e8e4dc;
 }
 
 .amp-step-text .dim {
-  font-size: clamp(13px, 1.4vw, 15px);
-  line-height: 1.6;
+  font-size: clamp(12px, 1.3vw, 14px);
+  line-height: 1.5;
 }
 
 .amp-step-arrow {
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   color: rgba(201,168,76,0.4);
-  margin: 6px 0;
+  margin: 4px 0;
 }
 
 /* Highlight box */
 .highlight-box {
-  padding: 24px 32px;
+  padding: 20px 28px;
   background: rgba(201,168,76,0.06);
   border: 1px solid rgba(201,168,76,0.15);
-  border-radius: 14px;
-  max-width: 640px;
-  margin: 32px auto 0;
+  border-radius: 12px;
+  max-width: 620px;
+  margin: 24px auto 0;
 }
 
 /* Performance fee / distribution */
@@ -314,20 +319,20 @@ body {
   display: flex;
   align-items: stretch;
   justify-content: center;
-  gap: 32px;
-  margin: 36px 0 24px;
+  gap: 20px;
+  margin: 28px 0 20px;
   flex-wrap: wrap;
 }
 
 .fee-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 28px 32px;
+  border-radius: 14px;
+  padding: 24px 28px;
   text-align: center;
   flex: 1;
-  min-width: 200px;
-  max-width: 320px;
+  min-width: 180px;
+  max-width: 300px;
 }
 
 .fee-card.featured {
@@ -336,81 +341,82 @@ body {
 }
 
 .fee-pct {
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(32px, 4.5vw, 50px);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .fee-label {
-  font-size: clamp(14px, 1.5vw, 17px);
-  margin-top: 8px;
+  font-size: clamp(13px, 1.4vw, 16px);
+  margin-top: 6px;
   font-weight: 400;
 }
 
 .fee-desc {
-  font-size: clamp(12px, 1.2vw, 14px);
+  font-size: clamp(11px, 1.1vw, 13px);
   color: rgba(232,228,220,0.4);
-  margin-top: 8px;
-  line-height: 1.5;
+  margin-top: 6px;
+  line-height: 1.4;
 }
 
 /* Risk stats */
 .risk-grid {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin: 40px 0;
+  gap: 20px;
+  margin: 32px 0;
   flex-wrap: wrap;
 }
 
 .risk-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 28px 32px;
+  border-radius: 14px;
+  padding: 24px 28px;
   text-align: center;
   flex: 1;
-  min-width: 180px;
-  max-width: 260px;
+  min-width: 170px;
+  max-width: 250px;
 }
 
 .risk-value {
-  font-size: clamp(24px, 3.5vw, 38px);
+  font-size: clamp(22px, 3vw, 34px);
   font-weight: 900;
   color: #e8d48b;
   line-height: 1.1;
 }
 
 .risk-label {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(232,228,220,0.5);
-  margin-top: 8px;
+  margin-top: 6px;
   font-weight: 400;
+  line-height: 1.4;
 }
 
 /* Stat cards */
 .stat-cards {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin: 36px 0;
+  gap: 16px;
+  margin: 28px 0;
   flex-wrap: wrap;
 }
 
 .stat-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 28px 36px;
+  border-radius: 14px;
+  padding: 22px 28px;
   text-align: center;
-  min-width: 180px;
+  min-width: 160px;
   flex: 1;
-  max-width: 260px;
+  max-width: 240px;
 }
 
 .stat-number {
-  font-size: clamp(26px, 3.5vw, 40px);
+  font-size: clamp(24px, 3vw, 36px);
   font-weight: 900;
   color: #e8d48b;
   letter-spacing: -0.02em;
@@ -418,26 +424,26 @@ body {
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(232,228,220,0.5);
-  margin-top: 8px;
+  margin-top: 6px;
   font-weight: 400;
 }
 
 /* Video frame */
 .video-frame {
-  width: min(100%, 380px);
-  margin: 24px auto;
+  width: min(100%, 340px);
+  margin: 20px auto;
   background: #111;
-  border-radius: 24px;
-  padding: 12px;
+  border-radius: 20px;
+  padding: 10px;
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
 .video-frame video {
   width: 100%;
-  border-radius: 14px;
+  border-radius: 12px;
   display: block;
 }
 
@@ -447,48 +453,48 @@ body {
   align-items: flex-start;
   justify-content: center;
   gap: 0;
-  margin: 44px 0 28px;
+  margin: 36px 0 24px;
   flex-wrap: wrap;
 }
 
 .num-step {
   text-align: center;
   flex: 1;
-  max-width: 260px;
-  min-width: 180px;
-  padding: 0 16px;
+  max-width: 240px;
+  min-width: 170px;
+  padding: 0 14px;
 }
 
 .num-circle {
-  width: 60px; height: 60px;
+  width: 56px; height: 56px;
   border-radius: 50%;
   border: 2px solid #c9a84c;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 900;
   color: #c9a84c;
-  margin: 0 auto 16px;
+  margin: 0 auto 14px;
 }
 
 .num-step-title {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .num-step-desc {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(232,228,220,0.5);
   font-weight: 300;
 }
 
 .step-connector {
-  width: 60px;
+  width: 50px;
   height: 2px;
   background: rgba(201,168,76,0.3);
-  margin-top: 30px;
+  margin-top: 28px;
   flex-shrink: 0;
 }
 
@@ -496,27 +502,27 @@ body {
 .trust-row {
   display: flex;
   justify-content: center;
-  gap: 28px;
-  margin-top: 20px;
+  gap: 24px;
+  margin-top: 16px;
   flex-wrap: wrap;
 }
 
 .trust-badge {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   color: rgba(232,228,220,0.5);
 }
 
 /* Math */
 .math-line {
-  font-size: clamp(16px, 2.2vw, 24px);
+  font-size: clamp(15px, 2vw, 22px);
   font-weight: 600;
-  margin: 8px 0;
+  margin: 6px 0;
   color: #e8d48b;
 }
 
 .math-example {
-  font-size: clamp(14px, 1.6vw, 19px);
+  font-size: clamp(13px, 1.5vw, 17px);
   font-weight: 400;
   color: rgba(232,228,220,0.7);
 }
@@ -525,13 +531,13 @@ body {
 .proof-stats {
   display: flex;
   justify-content: center;
-  gap: clamp(12px, 3vw, 40px);
+  gap: clamp(12px, 3vw, 36px);
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .proof-stat {
-  font-size: clamp(12px, 1.3vw, 15px);
+  font-size: clamp(12px, 1.3vw, 14px);
   color: rgba(232,228,220,0.5);
   font-weight: 400;
 }
@@ -552,16 +558,16 @@ body {
 
 /* Referral visual */
 .ref-visual {
-  max-width: 700px;
-  margin: 32px auto 0;
+  max-width: 660px;
+  margin: 24px auto 0;
   text-align: left;
 }
 
 .ref-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 0;
+  gap: 14px;
+  padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
@@ -576,10 +582,10 @@ body {
 
 .ref-bar {
   flex: 1;
-  height: 28px;
+  height: 32px;
   background: rgba(255,255,255,0.03);
   border-radius: 6px;
-  overflow: hidden;
+  position: relative;
 }
 
 .ref-fill {
@@ -590,6 +596,7 @@ body {
   padding-left: 12px;
   font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
   width: 0;
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -604,36 +611,31 @@ body {
 .future-grid {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin: 36px 0;
+  gap: 20px;
+  margin: 28px 0;
   flex-wrap: wrap;
 }
 
 .future-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 28px 32px;
+  border-radius: 14px;
+  padding: 24px 28px;
   text-align: center;
   flex: 1;
-  min-width: 200px;
-  max-width: 280px;
-}
-
-.future-icon {
-  font-size: 32px;
-  margin-bottom: 12px;
+  min-width: 190px;
+  max-width: 270px;
 }
 
 .future-title {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: #e8d48b;
   margin-bottom: 6px;
 }
 
 .future-desc {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(232,228,220,0.5);
   font-weight: 300;
   line-height: 1.5;
@@ -641,32 +643,39 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .slide { padding: 40px 24px; }
+  .slide { padding: 36px 20px; }
 
-  .steps-flow { flex-direction: column; gap: 12px; }
-  .step-arrow { transform: rotate(90deg); margin: 4px 0; }
+  .steps-flow { flex-direction: column; gap: 10px; }
+  .step-arrow { transform: rotate(90deg); margin: 2px 0; }
   .step-box { max-width: 100%; }
 
-  .amp-step { padding: 14px 16px; gap: 14px; }
-  .amp-step-num { width: 40px; height: 40px; font-size: 17px; }
+  .amp-step { padding: 12px 14px; gap: 12px; }
+  .amp-step-num { width: 38px; height: 38px; font-size: 16px; }
 
-  .num-steps { flex-direction: column; align-items: center; gap: 28px; }
-  .step-connector { width: 2px; height: 28px; margin: 0; }
+  .num-steps { flex-direction: column; align-items: center; gap: 24px; }
+  .step-connector { width: 2px; height: 24px; margin: 0; }
 
   .stat-cards, .fee-layout, .risk-grid, .future-grid { flex-direction: column; align-items: center; }
-  .stat-card, .fee-card, .risk-card, .future-card { width: 100%; max-width: 320px; }
+  .stat-card, .fee-card, .risk-card, .future-card { width: 100%; max-width: 300px; }
 
-  .chart-container { height: 150px; }
+  .chart-container { height: 140px; }
   .volume-label { width: 60px; font-size: 12px; }
   .ref-gen { width: 80px; font-size: 12px; }
-  .highlight-box { padding: 20px 20px; }
+  .highlight-box { padding: 16px 18px; }
+
+  .fee-layout { gap: 12px; }
+  .fee-card { padding: 20px 24px; }
+  .stat-cards { gap: 12px; }
+  .stat-card { padding: 18px 24px; }
 }
 
 @media (max-width: 480px) {
-  .slide { padding: 32px 16px; }
-  .chart-container { height: 120px; gap: 2px; }
-  .chart-bar-value { font-size: 9px; top: -18px; }
+  .slide { padding: 28px 14px; }
+  .chart-container { height: 110px; gap: 2px; }
+  .chart-bar-value { font-size: 9px; top: -16px; }
   .chart-bar-label { font-size: 8px; }
+  .amp-step-text strong { font-size: 14px; }
+  .amp-step-text .dim { font-size: 12px; }
 }
 </style>
 </head>
@@ -689,8 +698,8 @@ body {
 <!-- SLIDE 2 — THE OPPORTUNITY -->
 <div class="slide" data-slide="2">
   <div class="slide-content">
-    <div class="headline headline-xl gold" style="margin-bottom: 8px;">$9.6 triljonit</div>
-    <p class="subtitle" style="margin-top: 8px;">Nii palju raha liigub forexi turul. Iga. P&auml;ev.</p>
+    <div class="headline headline-xl gold" style="margin-bottom: 4px;">$9.6 triljonit</div>
+    <p class="subtitle" style="margin-top: 6px;">Nii palju raha liigub forexi turul. Iga. P&auml;ev.</p>
 
     <div class="volume-bars">
       <div class="volume-bar-row">
@@ -713,25 +722,25 @@ body {
       </div>
     </div>
 
-    <p class="subtitle" style="margin-top: 12px;">See on maailma suurim turg. Ja sina saad sellest osa.</p>
+    <p class="subtitle" style="margin-top: 8px;">See on maailma suurim turg. Ja sina saad sellest osa.</p>
   </div>
 </div>
 
 <!-- SLIDE 3 — THE PROBLEM -->
 <div class="slide" data-slide="3">
   <div class="slide-content">
-    <h2 class="headline headline-lg" style="margin-bottom: 32px;">Probleem?</h2>
+    <h2 class="headline headline-lg" style="margin-bottom: 28px;">Probleem?</h2>
     <p class="subtitle" style="font-size: clamp(18px, 2.4vw, 28px); color: rgba(232,228,220,0.65);">Kauplemine on raske.<br>95% inimestest kaotavad raha.</p>
-    <p class="subtitle" style="margin-top: 28px;">Vaja on aastaid kogemust, pidevat j&auml;lgimist<br>ja tugevaid n&auml;rve.</p>
-    <p class="subtitle" style="margin-top: 48px; color: #e8d48b; font-weight: 400;">Aga mis siis, kui keegi teine teeks seda sinu eest?</p>
+    <p class="subtitle" style="margin-top: 24px;">Vaja on aastaid kogemust, pidevat j&auml;lgimist<br>ja tugevaid n&auml;rve.</p>
+    <p class="subtitle" style="margin-top: 40px; color: #e8d48b; font-weight: 400;">Aga mis siis, kui keegi teine teeks seda sinu eest?</p>
   </div>
 </div>
 
 <!-- SLIDE 4 — SONIC AI -->
 <div class="slide" data-slide="4">
   <div class="slide-content">
-    <h2 class="headline headline-lg gold" style="margin-bottom: 8px;"><a href="https://www.myfxbook.com/members/SonicExperts/sonic-ai/11968359" target="_blank" style="color: #c9a84c; text-decoration: none; border-bottom: 2px solid rgba(201,168,76,0.3);">SONIC AI</a></h2>
-    <p class="subtitle">3 professionaalset kullakauplejat Saksamaalt. Koos alates 2011.</p>
+    <h2 class="headline headline-lg gold" style="margin-bottom: 4px;"><a href="https://www.myfxbook.com/members/SonicExperts/sonic-ai/11968359" target="_blank" rel="noopener" style="color: #c9a84c; text-decoration: none; border-bottom: 2px solid rgba(201,168,76,0.3);">SONIC AI</a></h2>
+    <p class="subtitle" style="margin-top: 8px;">3 professionaalset kullakauplejat Saksamaalt. Koos alates 2011.</p>
 
     <div class="steps-flow">
       <div class="step-box"><strong>Copy X</strong><br>platvorm &uuml;hendab su konto</div>
@@ -741,7 +750,7 @@ body {
       <div class="step-box">Kasum ilmub<br><strong>sinu kontole</strong></div>
     </div>
 
-    <p class="subtitle">T&auml;iesti automaatne. Registreerimine koos KYC ja sissemaksega ~15 min.<br>Copy X &mdash; maailma lihtsaim copy trading platvorm. <a href="https://thegrowthidentity.com/guide/" target="_blank" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Vaata juhendit</a></p>
+    <p class="subtitle">T&auml;iesti automaatne. Registreerimine koos KYC ja sissemaksega ~15 min.<br>Copy X &mdash; maailma lihtsaim copy trading platvorm. <a href="https://thegrowthidentity.com/guide/" target="_blank" rel="noopener" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Vaata juhendit</a></p>
     <p class="subtitle-sm">SONIC kauplejad on eksklusiivselt TAG Marketsis. Kusagil mujal neid ei leia.</p>
   </div>
 </div>
@@ -749,7 +758,7 @@ body {
 <!-- SLIDE 5 — THE PROOF -->
 <div class="slide" data-slide="5">
   <div class="slide-content">
-    <p class="dim" style="font-size: 15px; font-weight: 400; margin-bottom: 8px;">Reaalsed tulemused &mdash; 15 kuud</p>
+    <p class="dim" style="font-size: 14px; font-weight: 400; margin-bottom: 4px;">Reaalsed tulemused &mdash; 15 kuud</p>
 
     <div class="chart-container">
       <div class="chart-bar-wrap">
@@ -814,7 +823,7 @@ body {
       </div>
     </div>
 
-    <p class="gold" style="font-size: clamp(18px, 2.5vw, 28px); font-weight: 700; margin: 12px 0 16px;">Keskmine: ~1.25% kuus</p>
+    <p class="gold" style="font-size: clamp(17px, 2.2vw, 26px); font-weight: 700; margin: 8px 0 12px;">Keskmine: ~1.25% kuus</p>
 
     <div class="proof-stats">
       <div class="proof-stat"><span>MyFXbook</span> kinnitatud</div>
@@ -828,7 +837,7 @@ body {
 <!-- SLIDE 6 — AMPLIFIED ACCOUNTS EXPLAINED -->
 <div class="slide" data-slide="6">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 28px;">Kuidas v&otilde;imendatud kontod t&ouml;&ouml;tavad?</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 20px;">Kuidas v&otilde;imendatud kontod t&ouml;&ouml;tavad?</h2>
 
     <div class="amp-explainer">
       <div class="amp-step">
@@ -857,19 +866,19 @@ body {
     </div>
 
     <div class="highlight-box">
-      <div class="math-line" style="margin: 0 0 8px;">SONIC teenib 1.25% &times; $24,000 = <span style="color:#fff; font-weight:900;">$300</span></div>
+      <div class="math-line" style="margin: 0 0 4px;">SONIC teenib 1.25% &times; $24,000 = <span style="color:#fff; font-weight:900;">$300</span></div>
       <div class="math-example">Sinu $1,000 pealt on see <span class="gold" style="font-weight:700;">~30% kuus</span></div>
     </div>
 
-    <p class="subtitle-sm" style="margin-top: 24px;">Sinu maksimaalne risk = sinu sissemakse. Sa ei saa kunagi v&otilde;lgnikuks.<br>See ei ole prop firm &mdash; &uuml;htegi katsumust ega v&auml;ljakutset pole vaja l&auml;bida.</p>
+    <p class="subtitle-sm" style="margin-top: 16px;">Sinu maksimaalne risk = sinu sissemakse. Sa ei saa kunagi v&otilde;lgnikuks.<br>See ei ole prop firm &mdash; &uuml;htegi katsumust pole vaja l&auml;bida.</p>
   </div>
 </div>
 
 <!-- SLIDE 7 — PERFORMANCE FEE -->
 <div class="slide" data-slide="7">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 8px;">Performance fee: 30%</h2>
-    <p class="subtitle" style="margin-top: 8px;">SONIC v&otilde;tab tasu <em>ainult</em> kasumilt. Kui kasumit pole, on tasu null.</p>
+    <h2 class="headline headline-md" style="margin-bottom: 4px;">Performance fee: 30%</h2>
+    <p class="subtitle" style="margin-top: 6px;">SONIC v&otilde;tab tasu <em>ainult</em> kasumilt. Kui kasumit pole, on tasu null.</p>
 
     <div class="fee-layout">
       <div class="fee-card featured">
@@ -880,18 +889,18 @@ body {
       <div class="fee-card">
         <div class="fee-pct dim">5%</div>
         <div class="fee-label dim">Kauplejatele</div>
-        <div class="fee-desc">SONIC meeskond saab oma osa t&ouml;&ouml; eest</div>
+        <div class="fee-desc">SONIC meeskond saab oma osa</div>
       </div>
       <div class="fee-card">
         <div class="fee-pct dim">25%</div>
         <div class="fee-label dim">Kogukonnale</div>
-        <div class="fee-desc">Jagatakse 10 generatsiooni vahel, igale 2.5%<br>&mdash; iga n&auml;dal</div>
+        <div class="fee-desc">10 generatsiooni, igale 2.5%, iga n&auml;dal</div>
       </div>
     </div>
 
-    <div class="highlight-box" style="margin-top: 24px;">
+    <div class="highlight-box">
       <div class="math-example">N&auml;ide: SONIC teenib sinu $24,000 kontol $300 kasumit</div>
-      <div class="math-line" style="margin-top: 8px;">Sinule: <span style="color:#fff; font-weight:900;">$210</span> &nbsp;&middot;&nbsp; Kauplejatele: $15 &nbsp;&middot;&nbsp; Kogukonnale: $75</div>
+      <div class="math-line" style="margin-top: 6px;">Sinule: <span style="color:#fff; font-weight:900;">$210</span> &nbsp;&middot;&nbsp; Kauplejatele: $15 &nbsp;&middot;&nbsp; Kogukonnale: $75</div>
       <div class="math-example" style="margin-top: 4px;">Pole kasumit? <span style="color:#e8d48b;">Pole tasu.</span> Lihtne.</div>
     </div>
   </div>
@@ -900,8 +909,8 @@ body {
 <!-- SLIDE 8 — RISK MANAGEMENT -->
 <div class="slide" data-slide="8">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 8px;">Riskijuhtimine</h2>
-    <p class="subtitle" style="margin-top: 8px;">SONIC kaupleb konservatiivselt. Numbrid r&auml;&auml;givad enda eest.</p>
+    <h2 class="headline headline-md" style="margin-bottom: 4px;">Riskijuhtimine</h2>
+    <p class="subtitle" style="margin-top: 6px;">SONIC kaupleb konservatiivselt. Numbrid r&auml;&auml;givad enda eest.</p>
 
     <div class="risk-grid">
       <div class="risk-card">
@@ -918,7 +927,7 @@ body {
       </div>
     </div>
 
-    <p class="subtitle" style="font-size: clamp(15px, 1.8vw, 20px);">&Uuml;leturul ei j&auml;&auml; positsioone avatuks &mdash; &uuml;ht&uuml;&uuml;s ega n&auml;dalavahetuse riski pole.</p>
+    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 19px);">&Uuml;leturul ei j&auml;&auml; positsioone avatuks &mdash; &uuml;ht&uuml;&uuml;s ega n&auml;dalavahetuse riski pole.</p>
     <p class="subtitle-sm">Kauplemisel on alati riskid. Aga SONIC keskendub j&auml;rjepidevusele, mitte suurele v&otilde;idule.</p>
   </div>
 </div>
@@ -928,8 +937,8 @@ body {
   <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80')"></div>
   <div class="slide-overlay"></div>
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 8px;">TAG Markets</h2>
-    <p class="subtitle" style="margin-top: 4px;">Maailma kiireim kasvav maakler. A-Book mudel.</p>
+    <h2 class="headline headline-md" style="margin-bottom: 4px;">TAG Markets</h2>
+    <p class="subtitle" style="margin-top: 4px; font-size: clamp(14px, 1.6vw, 20px);">Maailma kiireim kasvav maakler. A-Book mudel.</p>
 
     <div class="stat-cards">
       <div class="stat-card">
@@ -950,7 +959,7 @@ body {
       </div>
     </div>
 
-    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 18px);">Asutajad investeerinud 8-kohalise summa &nbsp;|&nbsp; Nick ei v&otilde;tnud 1.5 aastat palka<br>4 aasta tegevuskulud reservis enne esimest dividendi &nbsp;|&nbsp; V&auml;ljamaksed kuni 24h, 0 tasud</p>
+    <p class="subtitle" style="font-size: clamp(13px, 1.4vw, 16px); margin-top: 12px;">Asutajad investeerinud 8-kohalise summa &nbsp;|&nbsp; Nick ei v&otilde;tnud 1.5 aastat palka<br>4 aasta tegevuskulud reservis enne esimest dividendi &nbsp;|&nbsp; V&auml;ljamaksed kuni 24h, 0 tasud</p>
 
     <div class="trust-row">
       <div class="trust-badge">&#10003; Reguleeritud Mauritiusel</div>
@@ -964,7 +973,7 @@ body {
 <!-- SLIDE 10 — LIVE PROOF -->
 <div class="slide" data-slide="10">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 8px;">Vaata ise</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 4px;">Vaata ise</h2>
 
     <div class="video-frame">
       <video controls playsinline preload="metadata" id="liveVideo">
@@ -972,9 +981,9 @@ body {
       </video>
     </div>
 
-    <p class="subtitle" style="margin-top: 16px;">Reaalne MetaTrader 5 konto. Reaalne raha. Reaalajas.</p>
+    <p class="subtitle" style="margin-top: 12px;">Reaalne MetaTrader 5 konto. Reaalne raha. Reaalajas.</p>
 
-    <div class="proof-stats" style="margin-top: 16px;">
+    <div class="proof-stats" style="margin-top: 12px;">
       <div class="proof-stat">Konto <span>#50498232</span></div>
       <div class="proof-stat">Saldo: <span>$129,360</span></div>
       <div class="proof-stat">Kogukasum: <span>$24,736</span></div>
@@ -985,7 +994,7 @@ body {
 <!-- SLIDE 11 — REFERRAL -->
 <div class="slide" data-slide="11">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 8px;">Soovitusprogramm</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 4px;">Soovitusprogramm</h2>
     <p class="subtitle" style="margin-top: 4px;">25% kasumist jagatakse kogukonnale. 10 generatsiooni, iga n&auml;dal.</p>
 
     <div class="ref-visual">
@@ -1009,7 +1018,7 @@ body {
       </div>
     </div>
 
-    <p class="subtitle" style="margin-top: 24px; font-size: clamp(14px, 1.6vw, 18px);">2.5% arvutatakse <em style="color:#e8d48b;">v&otilde;imendatud konto suuruselt</em>, mitte sissemakselt.<br>$1,000 sissemakse = $24,000 konto &rarr; tulu arvutatakse $24K pealt.</p>
+    <p class="subtitle" style="margin-top: 20px; font-size: clamp(13px, 1.5vw, 17px);">2.5% arvutatakse <em style="color:#e8d48b;">v&otilde;imendatud konto suuruselt</em>, mitte sissemakselt.<br>$1,000 sissemakse = $24,000 konto &rarr; tulu arvutatakse $24K pealt.</p>
 
     <p class="subtitle-sm">+ CPA igalt sissemakselt &nbsp;|&nbsp; + kuni $8.50 laenutasu iga tehingu kohta</p>
   </div>
@@ -1018,7 +1027,7 @@ body {
 <!-- SLIDE 12 — COMING SOON -->
 <div class="slide" data-slide="12">
   <div class="slide-content">
-    <h2 class="headline headline-md gold" style="margin-bottom: 8px;">Tulemas</h2>
+    <h2 class="headline headline-md gold" style="margin-bottom: 4px;">Tulemas</h2>
     <p class="subtitle" style="margin-top: 4px;">TAG ehitab &ouml;kos&uuml;steemi. Mitu tuluvoogu &uuml;hest kohast.</p>
 
     <div class="future-grid">
@@ -1065,7 +1074,7 @@ body {
       </div>
     </div>
 
-    <p class="subtitle-sm" style="margin-top: 24px;">Kogu protsess v&otilde;tab ~15 minutit. <a href="https://thegrowthidentity.com/guide/" target="_blank" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Samm-sammuline juhend siin</a></p>
+    <p class="subtitle-sm" style="margin-top: 20px;">Kogu protsess v&otilde;tab ~15 minutit. <a href="https://thegrowthidentity.com/guide/" target="_blank" rel="noopener" style="color: #e8d48b; text-decoration: underline; text-underline-offset: 3px;">Samm-sammuline juhend siin</a></p>
   </div>
 </div>
 
@@ -1155,7 +1164,9 @@ body {
     }
   });
 
+  // Click navigation - skip links and video
   document.addEventListener('click', function(e) {
+    if (e.target.closest('a')) return;
     if (e.target.closest('.video-frame')) return;
     if (e.clientX > window.innerWidth / 2) next();
     else prev();
@@ -1170,6 +1181,7 @@ body {
 
   document.addEventListener('touchend', function(e) {
     if (e.target.closest('.video-frame')) return;
+    if (e.target.closest('a')) return;
     var dx = e.changedTouches[0].clientX - touchStartX;
     var dy = e.changedTouches[0].clientY - touchStartY;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
