@@ -26,23 +26,20 @@ body {
 .gold-light { color: #e8d48b; }
 .muted { color: rgba(232,228,220,0.4); }
 .dim { color: rgba(232,228,220,0.6); }
+.white { color: #fff; }
 
-/* Progress bar */
 #progress {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   height: 2px;
   background: linear-gradient(90deg, #c9a84c, #e8d48b);
   z-index: 1000;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Slide counter */
 #counter {
   position: fixed;
-  bottom: 24px;
-  right: 32px;
+  bottom: 24px; right: 32px;
   font-size: 13px;
   font-weight: 400;
   color: rgba(232,228,220,0.2);
@@ -50,12 +47,10 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* Slides */
 .slide {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw; height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,8 +71,7 @@ body {
 .slide-bg {
   position: absolute;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   background-size: cover;
   background-position: center;
   z-index: -2;
@@ -86,8 +80,7 @@ body {
 .slide-overlay {
   position: absolute;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.78);
   z-index: -1;
 }
@@ -99,28 +92,16 @@ body {
   z-index: 2;
 }
 
-/* Typography */
 .headline {
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
-.headline-xl {
-  font-size: clamp(42px, 7vw, 96px);
-}
-
-.headline-lg {
-  font-size: clamp(36px, 5.5vw, 76px);
-}
-
-.headline-md {
-  font-size: clamp(28px, 4vw, 56px);
-}
-
-.headline-sm {
-  font-size: clamp(22px, 3vw, 40px);
-}
+.headline-xl { font-size: clamp(42px, 7vw, 96px); }
+.headline-lg { font-size: clamp(36px, 5.5vw, 76px); }
+.headline-md { font-size: clamp(28px, 4vw, 56px); }
+.headline-sm { font-size: clamp(22px, 3vw, 40px); }
 
 .subtitle {
   font-size: clamp(16px, 2vw, 24px);
@@ -137,22 +118,7 @@ body {
   margin-top: 16px;
 }
 
-/* Cards */
-.card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 32px;
-}
-
-.card-sm {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-
-/* Volume bars (Slide 2) */
+/* Volume bars */
 .volume-bars { margin: 40px 0 24px; }
 
 .volume-bar-row {
@@ -177,7 +143,6 @@ body {
   background: rgba(255,255,255,0.03);
   border-radius: 8px;
   overflow: hidden;
-  position: relative;
 }
 
 .volume-fill {
@@ -190,36 +155,22 @@ body {
   padding-left: 14px;
 }
 
-.volume-fill.gold-bar {
-  background: linear-gradient(90deg, #c9a84c, #e8d48b);
-}
-
-.volume-fill.gray-bar {
-  background: rgba(255,255,255,0.12);
-}
-
-.volume-amount {
-  font-size: 13px;
-  font-weight: 700;
-  color: #0a0a0a;
-  white-space: nowrap;
-}
-
-.volume-fill.gray-bar .volume-amount {
-  color: rgba(232,228,220,0.5);
-}
+.volume-fill.gold-bar { background: linear-gradient(90deg, #c9a84c, #e8d48b); }
+.volume-fill.gray-bar { background: rgba(255,255,255,0.12); }
+.volume-amount { font-size: 13px; font-weight: 700; color: #0a0a0a; white-space: nowrap; }
+.volume-fill.gray-bar .volume-amount { color: rgba(232,228,220,0.5); }
 
 .slide.active .volume-fill.w96 { width: 96%; }
 .slide.active .volume-fill.w4 { width: 8%; }
 .slide.active .volume-fill.w2 { width: 5%; }
 
-/* Steps flow (Slide 4) */
+/* Steps flow */
 .steps-flow {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
-  margin: 48px 0 32px;
+  margin: 40px 0 24px;
   flex-wrap: wrap;
 }
 
@@ -227,28 +178,28 @@ body {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(201,168,76,0.2);
   border-radius: 14px;
-  padding: 24px 28px;
+  padding: 20px 24px;
   font-size: clamp(13px, 1.5vw, 16px);
   font-weight: 400;
-  max-width: 240px;
+  max-width: 220px;
   line-height: 1.5;
 }
 
 .step-arrow {
   font-size: 24px;
   color: #c9a84c;
-  margin: 0 12px;
+  margin: 0 10px;
   flex-shrink: 0;
 }
 
-/* Bar Chart (Slide 5) */
+/* Bar Chart */
 .chart-container {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   gap: clamp(3px, 0.8vw, 10px);
-  height: 220px;
-  margin: 32px 0 20px;
+  height: 200px;
+  margin: 28px 0 16px;
   padding: 0 8px;
 }
 
@@ -273,8 +224,7 @@ body {
 
 .chart-bar-value {
   position: absolute;
-  top: -22px;
-  left: 50%;
+  top: -22px; left: 50%;
   transform: translateX(-50%);
   font-size: 11px;
   font-weight: 600;
@@ -294,9 +244,9 @@ body {
 .slide.active .chart-bar { height: var(--bar-h); }
 .slide.active .chart-bar-value { opacity: 1; }
 
-/* Amplifier explainer (Slide 6) */
+/* Amplifier explainer */
 .amp-explainer {
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
   text-align: left;
 }
@@ -312,8 +262,7 @@ body {
 }
 
 .amp-step-num {
-  width: 48px;
-  height: 48px;
+  width: 48px; height: 48px;
   border-radius: 50%;
   border: 2px solid rgba(201,168,76,0.4);
   display: flex;
@@ -350,64 +299,64 @@ body {
   margin: 6px 0;
 }
 
-/* Distribution (Slide 7) */
-.dist-bars { margin: 40px 0; }
+/* Highlight box */
+.highlight-box {
+  padding: 24px 32px;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 14px;
+  max-width: 640px;
+  margin: 32px auto 0;
+}
 
-.dist-row {
+/* Performance fee / distribution */
+.fee-layout {
   display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  gap: 16px;
+  align-items: stretch;
+  justify-content: center;
+  gap: 32px;
+  margin: 36px 0 24px;
+  flex-wrap: wrap;
 }
 
-.dist-label {
-  width: 140px;
-  text-align: right;
-  font-size: 15px;
-  font-weight: 400;
-  flex-shrink: 0;
-}
-
-.dist-track {
+.fee-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 28px 32px;
+  text-align: center;
   flex: 1;
-  height: 44px;
-  background: rgba(255,255,255,0.02);
-  border-radius: 8px;
-  overflow: hidden;
+  min-width: 200px;
+  max-width: 320px;
 }
 
-.dist-fill {
-  height: 100%;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  padding-left: 16px;
-  width: 0;
-  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+.fee-card.featured {
+  border-color: rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.04);
 }
 
-.dist-fill.dist-gold {
-  background: linear-gradient(90deg, #c9a84c, #e8d48b);
+.fee-pct {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.dist-fill.dist-dim {
-  background: rgba(255,255,255,0.08);
+.fee-label {
+  font-size: clamp(14px, 1.5vw, 17px);
+  margin-top: 8px;
+  font-weight: 400;
 }
 
-.dist-pct {
-  font-size: 15px;
-  font-weight: 700;
+.fee-desc {
+  font-size: clamp(12px, 1.2vw, 14px);
+  color: rgba(232,228,220,0.4);
+  margin-top: 8px;
+  line-height: 1.5;
 }
 
-.dist-fill.dist-gold .dist-pct { color: #0a0a0a; }
-.dist-fill.dist-dim .dist-pct { color: rgba(232,228,220,0.5); }
-
-.slide.active .dist-fill.w70 { width: 70%; }
-.slide.active .dist-fill.w25 { width: 25%; }
-.slide.active .dist-fill.w5 { width: 8%; }
-
-/* Stat cards (Slide 8) */
-.stat-cards {
+/* Risk stats */
+.risk-grid {
   display: flex;
   justify-content: center;
   gap: 24px;
@@ -415,19 +364,53 @@ body {
   flex-wrap: wrap;
 }
 
+.risk-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 28px 32px;
+  text-align: center;
+  flex: 1;
+  min-width: 180px;
+  max-width: 260px;
+}
+
+.risk-value {
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 900;
+  color: #e8d48b;
+  line-height: 1.1;
+}
+
+.risk-label {
+  font-size: 14px;
+  color: rgba(232,228,220,0.5);
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+/* Stat cards */
+.stat-cards {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 36px 0;
+  flex-wrap: wrap;
+}
+
 .stat-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 16px;
-  padding: 32px 40px;
+  padding: 28px 36px;
   text-align: center;
-  min-width: 200px;
+  min-width: 180px;
   flex: 1;
-  max-width: 280px;
+  max-width: 260px;
 }
 
 .stat-number {
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(26px, 3.5vw, 40px);
   font-weight: 900;
   color: #e8d48b;
   letter-spacing: -0.02em;
@@ -435,13 +418,13 @@ body {
 }
 
 .stat-label {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(232,228,220,0.5);
   margin-top: 8px;
   font-weight: 400;
 }
 
-/* Video frame (Slide 9) */
+/* Video frame */
 .video-frame {
   width: min(100%, 380px);
   margin: 24px auto;
@@ -458,15 +441,14 @@ body {
   display: block;
 }
 
-/* Numbered steps (Slide 10) */
+/* Numbered steps */
 .num-steps {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: 0;
-  margin: 48px 0 32px;
+  margin: 44px 0 28px;
   flex-wrap: wrap;
-  position: relative;
 }
 
 .num-step {
@@ -475,25 +457,23 @@ body {
   max-width: 260px;
   min-width: 180px;
   padding: 0 16px;
-  position: relative;
 }
 
 .num-circle {
-  width: 64px;
-  height: 64px;
+  width: 60px; height: 60px;
   border-radius: 50%;
   border: 2px solid #c9a84c;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 900;
   color: #c9a84c;
-  margin: 0 auto 20px;
+  margin: 0 auto 16px;
 }
 
 .num-step-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   margin-bottom: 6px;
 }
@@ -508,7 +488,7 @@ body {
   width: 60px;
   height: 2px;
   background: rgba(201,168,76,0.3);
-  margin-top: 32px;
+  margin-top: 30px;
   flex-shrink: 0;
 }
 
@@ -516,8 +496,8 @@ body {
 .trust-row {
   display: flex;
   justify-content: center;
-  gap: 32px;
-  margin-top: 24px;
+  gap: 28px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
@@ -527,11 +507,11 @@ body {
   color: rgba(232,228,220,0.5);
 }
 
-/* Math highlight */
+/* Math */
 .math-line {
   font-size: clamp(16px, 2.2vw, 24px);
   font-weight: 600;
-  margin: 12px 0;
+  margin: 8px 0;
   color: #e8d48b;
 }
 
@@ -541,16 +521,7 @@ body {
   color: rgba(232,228,220,0.7);
 }
 
-/* Disclaimer */
-.disclaimer-text {
-  font-size: clamp(13px, 1.3vw, 16px);
-  color: rgba(232,228,220,0.4);
-  line-height: 1.9;
-  max-width: 700px;
-  margin: 20px auto 0;
-}
-
-/* Proof stats line */
+/* Proof stats */
 .proof-stats {
   display: flex;
   justify-content: center;
@@ -570,6 +541,104 @@ body {
   font-weight: 600;
 }
 
+/* Disclaimer */
+.disclaimer-text {
+  font-size: clamp(13px, 1.3vw, 16px);
+  color: rgba(232,228,220,0.4);
+  line-height: 1.9;
+  max-width: 700px;
+  margin: 20px auto 0;
+}
+
+/* Referral visual */
+.ref-visual {
+  max-width: 700px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+
+.ref-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.ref-gen {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(232,228,220,0.4);
+  width: 100px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.ref-bar {
+  flex: 1;
+  height: 28px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.ref-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  width: 0;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ref-fill.ref-gold { background: linear-gradient(90deg, #c9a84c, #e8d48b); color: #0a0a0a; }
+.ref-fill.ref-dim { background: rgba(255,255,255,0.08); color: rgba(232,228,220,0.5); }
+
+.slide.active .ref-fill.rw100 { width: 100%; }
+.slide.active .ref-fill.rw80 { width: 80%; }
+
+/* Future products */
+.future-grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 36px 0;
+  flex-wrap: wrap;
+}
+
+.future-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 28px 32px;
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+}
+
+.future-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.future-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #e8d48b;
+  margin-bottom: 6px;
+}
+
+.future-desc {
+  font-size: 14px;
+  color: rgba(232,228,220,0.5);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .slide { padding: 40px 24px; }
@@ -581,22 +650,21 @@ body {
   .amp-step { padding: 14px 16px; gap: 14px; }
   .amp-step-num { width: 40px; height: 40px; font-size: 17px; }
 
-  .num-steps { flex-direction: column; align-items: center; gap: 32px; }
-  .step-connector { width: 2px; height: 32px; margin: 0; }
+  .num-steps { flex-direction: column; align-items: center; gap: 28px; }
+  .step-connector { width: 2px; height: 28px; margin: 0; }
 
-  .stat-cards { flex-direction: column; align-items: center; }
-  .stat-card { width: 100%; max-width: 320px; }
+  .stat-cards, .fee-layout, .risk-grid, .future-grid { flex-direction: column; align-items: center; }
+  .stat-card, .fee-card, .risk-card, .future-card { width: 100%; max-width: 320px; }
 
-  .chart-container { height: 160px; }
-
+  .chart-container { height: 150px; }
   .volume-label { width: 60px; font-size: 12px; }
-
-  .dist-label { width: 100px; font-size: 13px; }
+  .ref-gen { width: 80px; font-size: 12px; }
+  .highlight-box { padding: 20px 20px; }
 }
 
 @media (max-width: 480px) {
   .slide { padding: 32px 16px; }
-  .chart-container { height: 130px; gap: 2px; }
+  .chart-container { height: 120px; gap: 2px; }
   .chart-bar-value { font-size: 9px; top: -18px; }
   .chart-bar-label { font-size: 8px; }
 }
@@ -605,7 +673,7 @@ body {
 <body>
 
 <div id="progress" style="width: 0%"></div>
-<div id="counter">1 / 12</div>
+<div id="counter">1 / 15</div>
 
 <!-- SLIDE 1 — HOOK -->
 <div class="slide active" data-slide="1">
@@ -659,21 +727,22 @@ body {
   </div>
 </div>
 
-<!-- SLIDE 4 — THE SOLUTION -->
+<!-- SLIDE 4 — SONIC AI -->
 <div class="slide" data-slide="4">
   <div class="slide-content">
     <h2 class="headline headline-lg gold" style="margin-bottom: 8px;">SONIC AI</h2>
-    <p class="subtitle">3 professionaalset kullakauplejat. Koos alates 2011.</p>
+    <p class="subtitle">3 professionaalset kullakauplejat Saksamaalt. Koos alates 2011.</p>
 
     <div class="steps-flow">
-      <div class="step-box">Sina &uuml;hendad konto</div>
+      <div class="step-box"><strong>Copy X</strong><br>platvorm &uuml;hendab su konto</div>
       <div class="step-arrow">&rarr;</div>
-      <div class="step-box">SONIC kaupleb kullaga</div>
+      <div class="step-box">SONIC kaupleb <strong>kullaga</strong><br>p&auml;evasiseselt</div>
       <div class="step-arrow">&rarr;</div>
-      <div class="step-box">Sina teenid kasumit</div>
+      <div class="step-box">Kasum ilmub<br><strong>sinu kontole</strong></div>
     </div>
 
-    <p class="subtitle">T&auml;iesti automaatne. Sa ei pea midagi tegema.</p>
+    <p class="subtitle">T&auml;iesti automaatne. &Uuml;hendamine v&otilde;tab 2 minutit.<br>Copy X &mdash; maailma lihtsaim copy trading platvorm.</p>
+    <p class="subtitle-sm">SONIC kauplejad on eksklusiivselt TAG Marketsis. Kusagil mujal neid ei leia.</p>
   </div>
 </div>
 
@@ -745,21 +814,21 @@ body {
       </div>
     </div>
 
-    <p class="gold" style="font-size: clamp(18px, 2.5vw, 28px); font-weight: 700; margin: 16px 0 20px;">Keskmine: ~1.25% kuus</p>
+    <p class="gold" style="font-size: clamp(18px, 2.5vw, 28px); font-weight: 700; margin: 12px 0 16px;">Keskmine: ~1.25% kuus</p>
 
     <div class="proof-stats">
       <div class="proof-stat"><span>MyFXbook</span> kinnitatud</div>
       <div class="proof-stat"><span>80%</span> v&otilde;idum&auml;&auml;r</div>
       <div class="proof-stat"><span>365</span> tehingut</div>
-      <div class="proof-stat">Max langus <span>0.26%</span></div>
+      <div class="proof-stat">Max langus <span>0.86%</span></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 6 — HOW AMPLIFIED ACCOUNTS WORK -->
+<!-- SLIDE 6 — AMPLIFIED ACCOUNTS EXPLAINED -->
 <div class="slide" data-slide="6">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 32px;">Kuidas v&otilde;imendatud kontod t&ouml;&ouml;tavad?</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 28px;">Kuidas v&otilde;imendatud kontod t&ouml;&ouml;tavad?</h2>
 
     <div class="amp-explainer">
       <div class="amp-step">
@@ -773,8 +842,8 @@ body {
       <div class="amp-step">
         <div class="amp-step-num">2</div>
         <div class="amp-step-text">
-          <strong>75 likviidsuse pakkujat lisavad oma raha</strong>
-          <span class="dim">Nad laenavad lisaraha, aga see <em style="color:#e8d48b;">ei lahku kunagi nende kontolt</em>. Nende riskid on null.</span>
+          <strong>75 likviidsuse pakkujat lisavad kapitali</strong>
+          <span class="dim">Pangad ja finantsasutused laenavad lisaraha. See raha <em style="color:#e8d48b;">ei lahku kunagi nende kontolt</em> &mdash; nende risk on null.</span>
         </div>
       </div>
       <div class="amp-step-arrow">&darr;</div>
@@ -782,56 +851,85 @@ body {
         <div class="amp-step-num gold">24&times;</div>
         <div class="amp-step-text">
           <strong class="gold-light">Sinu konto on n&uuml;&uuml;d $24,000</strong>
-          <span class="dim">SONIC AI kaupleb selle summaga. Kasum on suurem, sest konto on suurem.</span>
+          <span class="dim">SONIC kaupleb selle summaga. Sama spread, sama turg, reaalne raha.</span>
         </div>
       </div>
     </div>
 
-    <div style="margin-top: 36px; padding: 24px 32px; background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.15); border-radius: 14px; max-width: 640px; margin-left: auto; margin-right: auto;">
-      <div class="math-line" style="margin: 0 0 8px;">SONIC teenib 1.25% kuus &times; $24,000 = <span style="color:#fff; font-weight:900;">$300</span></div>
-      <div class="math-example">Sinu sissemakse oli $1,000 &rarr; see on <span class="gold" style="font-weight:700;">~30% kuus</span></div>
+    <div class="highlight-box">
+      <div class="math-line" style="margin: 0 0 8px;">SONIC teenib 1.25% &times; $24,000 = <span style="color:#fff; font-weight:900;">$300</span></div>
+      <div class="math-example">Sinu $1,000 pealt on see <span class="gold" style="font-weight:700;">~30% kuus</span></div>
     </div>
 
-    <p class="subtitle-sm" style="margin-top: 28px;">&#128274; Sinu maksimaalne risk = sinu sissemakse. Sa ei saa kunagi v&otilde;lgnikuks.</p>
+    <p class="subtitle-sm" style="margin-top: 24px;">Sinu maksimaalne risk = sinu sissemakse. Sa ei saa kunagi v&otilde;lgnikuks.<br>See ei ole prop firm &mdash; &uuml;htegi katsumust ega v&auml;ljakutset pole vaja l&auml;bida.</p>
   </div>
 </div>
 
-<!-- SLIDE 7 — WHERE THE MONEY GOES -->
+<!-- SLIDE 7 — PERFORMANCE FEE -->
 <div class="slide" data-slide="7">
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 8px;">Kuhu kasum l&auml;heb?</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 8px;">Performance fee: 30%</h2>
+    <p class="subtitle" style="margin-top: 8px;">SONIC v&otilde;tab tasu <em>ainult</em> kasumilt. Kui kasumit pole, on tasu null.</p>
 
-    <div class="dist-bars">
-      <div class="dist-row">
-        <div class="dist-label gold" style="font-weight: 700;">SINULE</div>
-        <div class="dist-track">
-          <div class="dist-fill dist-gold w70"><span class="dist-pct">70%</span></div>
-        </div>
+    <div class="fee-layout">
+      <div class="fee-card featured">
+        <div class="fee-pct gold">70%</div>
+        <div class="fee-label" style="color: #e8d48b; font-weight: 600;">Sinule</div>
+        <div class="fee-desc">Suurem osa kasumist j&auml;&auml;b sulle</div>
       </div>
-      <div class="dist-row">
-        <div class="dist-label dim">Kauplejatele</div>
-        <div class="dist-track">
-          <div class="dist-fill dist-dim w5"><span class="dist-pct">5%</span></div>
-        </div>
+      <div class="fee-card">
+        <div class="fee-pct dim">5%</div>
+        <div class="fee-label dim">Kauplejatele</div>
+        <div class="fee-desc">SONIC meeskond saab oma osa t&ouml;&ouml; eest</div>
       </div>
-      <div class="dist-row">
-        <div class="dist-label dim">Soovitusprogramm</div>
-        <div class="dist-track">
-          <div class="dist-fill dist-dim w25"><span class="dist-pct">25%</span></div>
-        </div>
+      <div class="fee-card">
+        <div class="fee-pct dim">25%</div>
+        <div class="fee-label dim">Kogukonnale</div>
+        <div class="fee-desc">Jagatakse 10 generatsiooni vahel, igale 2.5%<br>&mdash; iga n&auml;dal</div>
       </div>
     </div>
 
-    <p class="subtitle">Sa hoiad l&otilde;viosa. Kauplejad saavad oma osa. K&otilde;ik v&otilde;idavad.</p>
+    <div class="highlight-box" style="margin-top: 24px;">
+      <div class="math-example">N&auml;ide: SONIC teenib sinu $24,000 kontol $300 kasumit</div>
+      <div class="math-line" style="margin-top: 8px;">Sinule: <span style="color:#fff; font-weight:900;">$210</span> &nbsp;&middot;&nbsp; Kauplejatele: $15 &nbsp;&middot;&nbsp; Kogukonnale: $75</div>
+      <div class="math-example" style="margin-top: 4px;">Pole kasumit? <span style="color:#e8d48b;">Pole tasu.</span> Lihtne.</div>
+    </div>
   </div>
 </div>
 
-<!-- SLIDE 8 — TRUST -->
+<!-- SLIDE 8 — RISK MANAGEMENT -->
 <div class="slide" data-slide="8">
+  <div class="slide-content">
+    <h2 class="headline headline-md" style="margin-bottom: 8px;">Riskijuhtimine</h2>
+    <p class="subtitle" style="margin-top: 8px;">SONIC kaupleb konservatiivselt. Numbrid r&auml;&auml;givad enda eest.</p>
+
+    <div class="risk-grid">
+      <div class="risk-card">
+        <div class="risk-value">0.86%</div>
+        <div class="risk-label">Maksimaalne langus<br>14 kuu jooksul</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-value">P&auml;evasisene</div>
+        <div class="risk-label">K&otilde;ik tehingud suletakse<br>sama p&auml;eva jooksul</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-value">59&times;</div>
+        <div class="risk-label">Nii palju j&auml;rjest peaks<br>kaotama 10% kaotuseks</div>
+      </div>
+    </div>
+
+    <p class="subtitle" style="font-size: clamp(15px, 1.8vw, 20px);">&Uuml;leturul ei j&auml;&auml; positsioone avatuks &mdash; &uuml;ht&uuml;&uuml;s ega n&auml;dalavahetuse riski pole.</p>
+    <p class="subtitle-sm">Kauplemisel on alati riskid. Aga SONIC keskendub j&auml;rjepidevusele, mitte suurele v&otilde;idule.</p>
+  </div>
+</div>
+
+<!-- SLIDE 9 — TAG MARKETS TRUST -->
+<div class="slide" data-slide="9">
   <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80')"></div>
   <div class="slide-overlay"></div>
   <div class="slide-content">
-    <h2 class="headline headline-md" style="margin-bottom: 8px;">Kes selle taga on?</h2>
+    <h2 class="headline headline-md" style="margin-bottom: 8px;">TAG Markets</h2>
+    <p class="subtitle" style="margin-top: 4px;">Maailma kiireim kasvav maakler. A-Book mudel.</p>
 
     <div class="stat-cards">
       <div class="stat-card">
@@ -846,20 +944,25 @@ body {
         <div class="stat-number" data-count="150">0</div>
         <div class="stat-label">riiki</div>
       </div>
+      <div class="stat-card">
+        <div class="stat-number">$250M</div>
+        <div class="stat-label">aasta tulu</div>
+      </div>
     </div>
 
-    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 18px);">TAG Markets &mdash; A-Book maakler &nbsp;|&nbsp; Reguleeritud Mauritiusel &nbsp;|&nbsp; Asutajad investeerinud 8-kohalise summa<br>V&auml;ljamaksed 1h &nbsp;|&nbsp; 4 aasta tegevuskulud reservis</p>
+    <p class="subtitle" style="font-size: clamp(14px, 1.6vw, 18px);">Asutajad investeerinud 8-kohalise summa &nbsp;|&nbsp; Nick ei v&otilde;tnud 1.5 aastat palka<br>4 aasta tegevuskulud reservis enne esimest dividendi &nbsp;|&nbsp; V&auml;ljamaksed 1h, 0 tasud</p>
 
     <div class="trust-row">
-      <div class="trust-badge">&#10003; Reguleeritud</div>
+      <div class="trust-badge">&#10003; Reguleeritud Mauritiusel</div>
       <div class="trust-badge">&#10003; Eraldatud kontod</div>
-      <div class="trust-badge">&#10003; Auditeeritud</div>
+      <div class="trust-badge">&#10003; Igan&auml;dalased auditid</div>
+      <div class="trust-badge">&#10003; A-Book</div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 9 — LIVE PROOF -->
-<div class="slide" data-slide="9">
+<!-- SLIDE 10 — LIVE PROOF -->
+<div class="slide" data-slide="10">
   <div class="slide-content">
     <h2 class="headline headline-md" style="margin-bottom: 8px;">Vaata ise</h2>
 
@@ -869,7 +972,7 @@ body {
       </video>
     </div>
 
-    <p class="subtitle" style="margin-top: 16px;">Reaalne kauplemiskonto. Reaalne raha. Reaalajas.</p>
+    <p class="subtitle" style="margin-top: 16px;">Reaalne MetaTrader 5 konto. Reaalne raha. Reaalajas.</p>
 
     <div class="proof-stats" style="margin-top: 16px;">
       <div class="proof-stat">Konto <span>#50498232</span></div>
@@ -879,8 +982,66 @@ body {
   </div>
 </div>
 
-<!-- SLIDE 10 — HOW TO START -->
-<div class="slide" data-slide="10">
+<!-- SLIDE 11 — REFERRAL -->
+<div class="slide" data-slide="11">
+  <div class="slide-content">
+    <h2 class="headline headline-md" style="margin-bottom: 8px;">Soovitusprogramm</h2>
+    <p class="subtitle" style="margin-top: 4px;">25% kasumist jagatakse kogukonnale. 10 generatsiooni, iga n&auml;dal.</p>
+
+    <div class="ref-visual">
+      <div class="ref-row">
+        <div class="ref-gen" style="color: #e8d48b; font-weight: 700;">Sinu otsesed</div>
+        <div class="ref-bar">
+          <div class="ref-fill ref-gold rw100">2.5% igalt kontolt</div>
+        </div>
+      </div>
+      <div class="ref-row">
+        <div class="ref-gen">Gen 2</div>
+        <div class="ref-bar">
+          <div class="ref-fill ref-dim rw100">2.5%</div>
+        </div>
+      </div>
+      <div class="ref-row">
+        <div class="ref-gen">Gen 3&ndash;10</div>
+        <div class="ref-bar">
+          <div class="ref-fill ref-dim rw80">2.5% igast generatsioonist</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="subtitle" style="margin-top: 24px; font-size: clamp(14px, 1.6vw, 18px);">2.5% arvutatakse <em style="color:#e8d48b;">v&otilde;imendatud konto suuruselt</em>, mitte sissemakselt.<br>$1,000 sissemakse = $24,000 konto &rarr; tulu arvutatakse $24K pealt.</p>
+
+    <p class="subtitle-sm">+ CPA igalt sissemakselt &nbsp;|&nbsp; + kuni $8.50 laenutasu iga tehingu kohta</p>
+  </div>
+</div>
+
+<!-- SLIDE 12 — COMING SOON -->
+<div class="slide" data-slide="12">
+  <div class="slide-content">
+    <h2 class="headline headline-md gold" style="margin-bottom: 8px;">Tulemas</h2>
+    <p class="subtitle" style="margin-top: 4px;">TAG ehitab &ouml;kos&uuml;steemi. Mitu tuluvoogu &uuml;hest kohast.</p>
+
+    <div class="future-grid">
+      <div class="future-card">
+        <div class="future-title">Bit One</div>
+        <div class="future-desc">Kr&uuml;ptob&ouml;rs ilma KYC-ta. Kuni $20K v&auml;ljav&otilde;tt p&auml;evas. Copy trading ka kr&uuml;ptos.</div>
+      </div>
+      <div class="future-card">
+        <div class="future-title">Deebetkaart</div>
+        <div class="future-desc">Pangakonto + deebetkaart + detsentraliseeritud rahakott. K&otilde;ik &uuml;hes kohas.</div>
+      </div>
+      <div class="future-card">
+        <div class="future-title">Rohkem strateegiaid</div>
+        <div class="future-desc">Copy X platvorm lubab uusi kauplejaid lisada. Rankings, j&auml;lgimine, l&auml;bipaistvus.</div>
+      </div>
+    </div>
+
+    <p class="subtitle-sm">K&otilde;ik erainvesteeringutega rahastatud. &Uuml;htegi v&auml;lisinvestorit.</p>
+  </div>
+</div>
+
+<!-- SLIDE 13 — HOW TO START -->
+<div class="slide" data-slide="13">
   <div class="slide-content">
     <h2 class="headline headline-md" style="margin-bottom: 0;">3 sammu</h2>
 
@@ -894,37 +1055,39 @@ body {
       <div class="num-step">
         <div class="num-circle">2</div>
         <div class="num-step-title">Sissemakse</div>
-        <div class="num-step-desc">Alates $10</div>
+        <div class="num-step-desc">Alates $10 &mdash; kr&uuml;pto, &uuml;lekanne v&otilde;i kaart</div>
       </div>
       <div class="step-connector"></div>
       <div class="num-step">
         <div class="num-circle">3</div>
-        <div class="num-step-title">&Uuml;hendu SONIC AI-ga</div>
-        <div class="num-step-desc">K&otilde;ik. N&uuml;&uuml;d teenid.</div>
+        <div class="num-step-title">&Uuml;hendu Copy X-is</div>
+        <div class="num-step-desc">Vali SONIC AI. Valmis. 2 minutit.</div>
       </div>
     </div>
+
+    <p class="subtitle-sm" style="margin-top: 24px;">Cappuccino hinnaga saad proovida, kas see t&ouml;&ouml;tab. Iga p&auml;ev n&auml;ed, mis toimub.</p>
   </div>
 </div>
 
-<!-- SLIDE 11 — RISK DISCLAIMER -->
-<div class="slide" data-slide="11">
+<!-- SLIDE 14 — RISK DISCLAIMER -->
+<div class="slide" data-slide="14">
   <div class="slide-content">
     <p class="muted" style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px;">Oluline teave</p>
     <div class="disclaimer-text">
-      Forexi kauplemine h&otilde;lmab riski. Varasemad tulemused ei garanteeri tulevasi. Investeeri ainult summa, mida saad lubada kaotada. See esitlus on informatiivsetel eesm&auml;rkidel ega ole investeerimisn&otilde;uanne.
+      Forexi kauplemine h&otilde;lmab riski. Varasemad tulemused ei garanteeri tulevasi. V&otilde;imendatud kontod suurendavad nii kasumit kui ka v&otilde;imalikku kaotust. Investeeri ainult summa, mida saad lubada kaotada. See esitlus on informatiivsetel eesm&auml;rkidel ega ole investeerimisn&otilde;uanne.
     </div>
     <p class="disclaimer-text" style="margin-top: 24px; color: rgba(232,228,220,0.55); font-weight: 400;">Tee alati oma uurimist&ouml;&ouml;.</p>
   </div>
 </div>
 
-<!-- SLIDE 12 — CLOSING -->
-<div class="slide" data-slide="12">
+<!-- SLIDE 15 — CLOSING -->
+<div class="slide" data-slide="15">
   <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80')"></div>
   <div class="slide-overlay"></div>
   <div class="slide-content">
     <h1 class="headline headline-xl gold">Kuld ei maga.</h1>
     <p class="subtitle" style="font-size: clamp(18px, 2.5vw, 30px); color: rgba(232,228,220,0.7);">Aga sinu raha v&otilde;iks t&ouml;&ouml;tada.</p>
-    <p class="subtitle-sm" style="margin-top: 60px;">TAG Markets &times; SONIC AI</p>
+    <p class="subtitle-sm" style="margin-top: 60px;">TAG Markets &times; SONIC AI &times; Copy X</p>
   </div>
 </div>
 
@@ -953,7 +1116,6 @@ body {
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
 
-  // Count-up animation
   function animateCountUp(el) {
     var target = parseInt(el.getAttribute('data-count'));
     if (!target) return;
@@ -981,36 +1143,25 @@ body {
     });
   }
 
-  // Keyboard navigation
   document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      next();
+      e.preventDefault(); next();
     } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
-      e.preventDefault();
-      prev();
+      e.preventDefault(); prev();
     } else if (e.key === 'Home') {
-      e.preventDefault();
-      goTo(0);
+      e.preventDefault(); goTo(0);
     } else if (e.key === 'End') {
-      e.preventDefault();
-      goTo(total - 1);
+      e.preventDefault(); goTo(total - 1);
     }
   });
 
-  // Click navigation - but not on video
   document.addEventListener('click', function(e) {
     if (e.target.closest('.video-frame')) return;
-    if (e.clientX > window.innerWidth / 2) {
-      next();
-    } else {
-      prev();
-    }
+    if (e.clientX > window.innerWidth / 2) next();
+    else prev();
   });
 
-  // Touch swipe
-  var touchStartX = 0;
-  var touchStartY = 0;
+  var touchStartX = 0, touchStartY = 0;
   document.addEventListener('touchstart', function(e) {
     if (e.target.closest('.video-frame')) return;
     touchStartX = e.touches[0].clientX;
@@ -1022,19 +1173,14 @@ body {
     var dx = e.changedTouches[0].clientX - touchStartX;
     var dy = e.changedTouches[0].clientY - touchStartY;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
-      if (dx < 0) next();
-      else prev();
+      if (dx < 0) next(); else prev();
     }
   }, { passive: true });
 
-  // Prevent video click from propagating
   if (video) {
-    video.addEventListener('click', function(e) {
-      e.stopPropagation();
-    });
+    video.addEventListener('click', function(e) { e.stopPropagation(); });
   }
 
-  // Initialize
   progress.style.width = '0%';
   counter.textContent = '1 / ' + total;
 })();
