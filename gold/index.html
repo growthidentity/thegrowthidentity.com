@@ -26,9 +26,9 @@ body{font-family:'Inter','Helvetica Neue',system-ui,sans-serif;background:#000;c
 .bg{position:absolute;inset:0;background-size:cover;background-position:center}
 .bg::after{content:'';position:absolute;inset:0;z-index:0;
   background:linear-gradient(135deg,rgba(10,10,15,.72),rgba(10,10,15,.45),rgba(10,10,15,.72))}
-#s5 .bg::after{display:none}
+#s3 .bg::after{display:none}
 #s11 .bg::after{display:none}
-#s5 .bg,#s12 .bg{display:none}
+#s3 .bg,#s12 .bg{display:none}
 #skipBtn:hover{border-color:var(--gold)!important;color:var(--gold)!important}
 .vid.bounce{animation:none}
 .vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;z-index:1}
@@ -253,54 +253,51 @@ div[style*="width:44px"] .ic,div[style*="width:48px"] .ic,div[style*="width:52px
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 3 — THE MARKET $9.6T
+     SLIDE 3 — SONIC AI HOW IT WORKS
      ═══════════════════════════════════════════════ -->
 <div class="S" id="s3">
-  <div class="bg" style="background-image:url(images/pano_03_hall.jpg)"></div>
+  <video class="vid" muted playsinline style="opacity:.55">
+    <source src="images/pano_05_gallery_video.mp4" type="video/mp4">
+  </video>
+  <div class="bg" style="background-image:url(images/pano_05_gallery.jpg);background-position:center top"></div>
+  <!-- Softer gradient fade: transparent top to dark bottom -->
+  <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.5) 30%, rgba(10,10,15,0.85) 60%, rgba(10,10,15,0.95) 100%)"></div>
   <div class="ct">
     <div class="au d1">
-      <div class="h1 wh">The world's largest market</div>
-      <div class="sub">Daily trading volume comparison</div>
+      <div class="h1 gold">SONIC AI</div>
+      <div class="sub">3 professional gold traders from Germany &nbsp;|&nbsp; Together since 2011</div>
       <div class="gl"></div>
     </div>
-    <div class="row" style="margin-top:20px">
-      <div class="col au d2" style="flex:1.4;justify-content:center;gap:16px">
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">FOREX</span>
-            <span class="h2 gold" style="font-size:36px">$9.6 TRILLION</span>
-          </div>
-          <div class="hbar gold" style="width:100%">48x larger</div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">CRYPTO</span>
-            <span style="font-size:20px;color:var(--w);font-weight:700">$300 billion</span>
-          </div>
-          <div class="hbar dim" style="width:18%">&nbsp;</div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">STOCKS</span>
-            <span style="font-size:20px;color:var(--w);font-weight:700">$200 billion</span>
-          </div>
-          <div class="hbar dim" style="width:12%">&nbsp;</div>
-        </div>
+    <div style="flex:1"></div>
+    <div class="g3 au d2" style="gap:40px;flex:0 0 auto">
+      <div class="card gold-top center" style="padding:36px 28px">
+        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
+          box-shadow:0 6px 24px rgba(212,175,55,.3)">1</div>
+        <div class="h3 gold" style="margin-bottom:10px">COPY X</div>
+        <p style="font-size:18px;color:var(--g);line-height:1.5">Connect your TAG Markets<br>account to the automated<br>trading platform</p>
       </div>
-      <div class="col center as d3" style="flex:0.6;gap:20px">
-        <div class="card gold-top center" style="width:100%">
-          <div class="big">48x</div>
-          <div class="lbl" style="margin-top:10px">Forex vs stocks</div>
-        </div>
-        <div class="card gold-top center" style="width:100%">
-          <div class="big">32x</div>
-          <div class="lbl" style="margin-top:10px">Forex vs crypto</div>
-        </div>
-        <div class="card gold-top center" style="width:100%">
-          <div class="big">24/5</div>
-          <div class="lbl" style="margin-top:10px">Market open</div>
-        </div>
+      <div class="card gold-top center" style="padding:36px 28px;position:relative">
+        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
+        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
+          box-shadow:0 6px 24px rgba(212,175,55,.3)">2</div>
+        <div class="h3 gold" style="margin-bottom:10px">SONIC TRADES</div>
+        <p style="font-size:18px;color:var(--g);line-height:1.5">AI trades gold<br>intraday — automatically,<br>without your intervention</p>
       </div>
+      <div class="card gold-top center" style="padding:36px 28px;position:relative">
+        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
+        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
+          box-shadow:0 6px 24px rgba(212,175,55,.3)">3</div>
+        <div class="h3 gold" style="margin-bottom:10px">PROFIT TO ACCOUNT</div>
+        <p style="font-size:18px;color:var(--g);line-height:1.5">Profit appears directly in your<br>TAG Markets account —<br>automatically every day</p>
+      </div>
+    </div>
+    <div class="au d5" style="display:flex;gap:24px;justify-content:center;margin-top:24px;align-items:center">
+      <span class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg> Fully automated</span>
+      <a href="https://thegrowthidentity.com/guide/" target="_blank" class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px;text-decoration:none;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ~15 min setup &#8599;</a>
+      <span class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Exclusively on TAG Markets</span>
     </div>
   </div>
 </div>
@@ -390,51 +387,54 @@ div[style*="width:44px"] .ic,div[style*="width:48px"] .ic,div[style*="width:52px
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 5 — SONIC AI HOW IT WORKS
+     SLIDE 5 — THE MARKET $9.6T
      ═══════════════════════════════════════════════ -->
 <div class="S" id="s5">
-  <video class="vid" muted playsinline style="opacity:.55">
-    <source src="images/pano_05_gallery_video.mp4" type="video/mp4">
-  </video>
-  <div class="bg" style="background-image:url(images/pano_05_gallery.jpg);background-position:center top"></div>
-  <!-- Softer gradient fade: transparent top to dark bottom -->
-  <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.5) 30%, rgba(10,10,15,0.85) 60%, rgba(10,10,15,0.95) 100%)"></div>
+  <div class="bg" style="background-image:url(images/pano_03_hall.jpg)"></div>
   <div class="ct">
     <div class="au d1">
-      <div class="h1 gold">SONIC AI</div>
-      <div class="sub">3 professional gold traders from Germany &nbsp;|&nbsp; Together since 2011</div>
+      <div class="h1 wh">The world's largest market</div>
+      <div class="sub">Daily trading volume comparison</div>
       <div class="gl"></div>
     </div>
-    <div style="flex:1"></div>
-    <div class="g3 au d2" style="gap:40px;flex:0 0 auto">
-      <div class="card gold-top center" style="padding:36px 28px">
-        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
-          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
-          box-shadow:0 6px 24px rgba(212,175,55,.3)">1</div>
-        <div class="h3 gold" style="margin-bottom:10px">COPY X</div>
-        <p style="font-size:18px;color:var(--g);line-height:1.5">Connect your TAG Markets<br>account to the automated<br>trading platform</p>
+    <div class="row" style="margin-top:20px">
+      <div class="col au d2" style="flex:1.4;justify-content:center;gap:16px">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">FOREX</span>
+            <span class="h2 gold" style="font-size:36px">$9.6 TRILLION</span>
+          </div>
+          <div class="hbar gold" style="width:100%">48x larger</div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">CRYPTO</span>
+            <span style="font-size:20px;color:var(--w);font-weight:700">$300 billion</span>
+          </div>
+          <div class="hbar dim" style="width:18%">&nbsp;</div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">STOCKS</span>
+            <span style="font-size:20px;color:var(--w);font-weight:700">$200 billion</span>
+          </div>
+          <div class="hbar dim" style="width:12%">&nbsp;</div>
+        </div>
       </div>
-      <div class="card gold-top center" style="padding:36px 28px;position:relative">
-        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
-        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
-          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
-          box-shadow:0 6px 24px rgba(212,175,55,.3)">2</div>
-        <div class="h3 gold" style="margin-bottom:10px">SONIC TRADES</div>
-        <p style="font-size:18px;color:var(--g);line-height:1.5">AI trades gold<br>intraday — automatically,<br>without your intervention</p>
+      <div class="col center as d3" style="flex:0.6;gap:20px">
+        <div class="card gold-top center" style="width:100%">
+          <div class="big">48x</div>
+          <div class="lbl" style="margin-top:10px">Forex vs stocks</div>
+        </div>
+        <div class="card gold-top center" style="width:100%">
+          <div class="big">32x</div>
+          <div class="lbl" style="margin-top:10px">Forex vs crypto</div>
+        </div>
+        <div class="card gold-top center" style="width:100%">
+          <div class="big">24/5</div>
+          <div class="lbl" style="margin-top:10px">Market open</div>
+        </div>
       </div>
-      <div class="card gold-top center" style="padding:36px 28px;position:relative">
-        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
-        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
-          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
-          box-shadow:0 6px 24px rgba(212,175,55,.3)">3</div>
-        <div class="h3 gold" style="margin-bottom:10px">PROFIT TO ACCOUNT</div>
-        <p style="font-size:18px;color:var(--g);line-height:1.5">Profit appears directly in your<br>TAG Markets account —<br>automatically every day</p>
-      </div>
-    </div>
-    <div class="au d5" style="display:flex;gap:24px;justify-content:center;margin-top:24px;align-items:center">
-      <span class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg> Fully automated</span>
-      <a href="https://thegrowthidentity.com/guide/" target="_blank" class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px;text-decoration:none;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ~15 min setup &#8599;</a>
-      <span class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Exclusively on TAG Markets</span>
     </div>
   </div>
 </div>
