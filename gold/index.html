@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080, initial-scale=1">
+<title>TAG Markets x SONIC AI — Vambola Tullus</title>
+<style>
+:root {
+  --bg:#0a0a0a; --card:rgba(255,255,255,0.03); --card2:rgba(255,255,255,0.05);
+  --border:rgba(255,255,255,0.06); --border-hover:rgba(201,168,76,0.3);
+  --gold:#c9a84c; --gold2:#e8d48b; --gold3:#a08839;
+  --gold-glow:rgba(201,168,76,0.15);
+  --w:#e8e4dc; --g:rgba(232,228,220,0.7); --dim:rgba(232,228,220,0.4); --red:#FF4444; --green:#00CC66;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter','Helvetica Neue',system-ui,sans-serif;background:#000;color:var(--w);overflow:hidden}
+
+/* ── SLIDES ── */
+.S{width:1920px;height:1080px;position:fixed;top:50%;left:50%;background:var(--bg);
+  overflow:hidden;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+.S.on{opacity:1;visibility:visible}
+.S::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--gold);z-index:20;box-shadow:0 0 12px var(--gold-glow)}
+
+/* BG layers */
+.bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.bg::after{content:'';position:absolute;inset:0;z-index:0;
+  background:linear-gradient(135deg,rgba(10,10,15,.72),rgba(10,10,15,.45),rgba(10,10,15,.72))}
+#s5 .bg::after{display:none}
+#s11 .bg::after{display:none}
+#s5 .bg,#s12 .bg{display:none}
+#skipBtn:hover{border-color:var(--gold)!important;color:var(--gold)!important}
+.vid.bounce{animation:none}
+.vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;z-index:1}
+.ct{position:relative;z-index:5;width:100%;height:100%;padding:70px 90px;display:flex;flex-direction:column}
+
+/* ── TYPO ── */
+.h1{font-size:62px;font-weight:800;line-height:1.1;letter-spacing:-1px}
+.h2{font-size:42px;font-weight:700;line-height:1.2}
+.h3{font-size:30px;font-weight:700}
+.sub{font-size:22px;color:var(--g);margin-top:8px}
+.gold{color:var(--gold)}.wh{color:var(--w)}.red{color:var(--red)}
+.gl{width:180px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);box-shadow:0 0 8px var(--gold-glow);margin:16px 0 0}
+
+/* ── GRID ── */
+.row{display:flex;gap:28px;flex:1;align-items:stretch}
+.col{flex:1;display:flex;flex-direction:column;justify-content:center}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
+.center{text-align:center;align-items:center}
+
+/* ── CARDS (clean minimal style) ── */
+.card{background:var(--card);
+  border:1px solid var(--border);border-radius:16px;padding:32px 28px;
+  transition:border-color .3s ease,transform .3s ease}
+.card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.card.gold-top{border-top:2px solid var(--gold)}
+.card.gold-left{border-left:3px solid var(--gold);border-top:1px solid var(--border)}
+.card h3{font-size:22px;color:var(--w);margin-bottom:8px}
+.card p{font-size:16px;color:var(--g);line-height:1.5}
+.card .icon{font-size:40px;margin-bottom:16px;display:block}
+.card .big{font-size:48px;font-weight:900;color:var(--gold);line-height:1}
+.card .big.wh{color:var(--w)}
+
+/* ── ICONS ── */
+.ic{width:36px;height:36px;display:block;margin-bottom:12px;flex-shrink:0;color:var(--gold)}
+.ic-sm{width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:4px;flex-shrink:0;color:var(--gold)}
+.card .ic{width:40px;height:40px}
+
+div[style*="width:44px"] .ic,div[style*="width:48px"] .ic,div[style*="width:52px"] .ic{width:100%;height:100%;margin:0}
+
+
+.card .lbl{font-size:13px;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-top:8px}
+
+/* ── PILL TAGS ── */
+.pill{display:inline-block;background:var(--gold-glow);color:var(--gold2);
+  border:1px solid rgba(201,168,76,.15);
+  padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;margin:4px}
+
+/* ── BARS ── */
+.hbar{height:52px;border-radius:10px;display:flex;align-items:center;padding:0 20px;
+  font-size:20px;font-weight:700;margin-bottom:12px;transition:width 1.2s cubic-bezier(.25,.46,.45,.94)}
+.hbar.gold{background:linear-gradient(90deg,var(--gold3),var(--gold));color:var(--bg)}
+.hbar.dim{background:linear-gradient(90deg,#222240,#333355);color:var(--g)}
+
+/* Chart bars */
+.chart{display:flex;align-items:flex-end;gap:4px;height:100%;max-height:100%;padding:10px 0 24px}
+.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.chart-bar{width:100%;border-radius:4px 4px 0 0;transition:height 1s cubic-bezier(.25,.46,.45,.94);
+  background:linear-gradient(to top,var(--gold3),var(--gold))}
+.chart-bar.hi{background:linear-gradient(to top,var(--gold),var(--gold2));box-shadow:0 0 16px rgba(212,175,55,.25)}
+.chart-val{font-size:12px;color:var(--w);font-weight:700;margin-bottom:4px;white-space:nowrap}
+.chart-lbl{font-size:10px;color:var(--dim);margin-top:6px;white-space:nowrap}
+
+/* ── STAT ROW ── */
+.srow{display:flex;justify-content:space-between;align-items:center;padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.04)}
+.srow:last-child{border:none}
+.srow .k{font-size:14px;color:var(--dim);text-transform:uppercase;letter-spacing:2px}
+.srow .v{font-size:34px;font-weight:800;color:var(--gold)}
+.srow .v.gr{color:var(--green)}
+
+/* ── PYRAMID ── */
+.pyr-bar{height:26px;border-radius:6px;display:flex;align-items:center;padding:0 10px;
+  font-size:12px;font-weight:700;margin-bottom:3px}
+
+/* ── ANIM ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(212,175,55,.15)}50%{box-shadow:0 0 50px rgba(212,175,55,.35)}}
+@keyframes particle{0%{opacity:0;transform:translateY(60px)}20%{opacity:.5}80%{opacity:.2}100%{opacity:0;transform:translateY(-700px)}}
+@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+
+.S.on .au{animation:fadeUp .6s ease both}
+.S.on .al{animation:fadeLeft .6s ease both}
+.S.on .ar{animation:fadeRight .6s ease both}
+.S.on .as{animation:scaleIn .5s ease both}
+.d1{animation-delay:.1s!important;opacity:0}.d2{animation-delay:.2s!important;opacity:0}
+.d3{animation-delay:.35s!important;opacity:0}.d4{animation-delay:.5s!important;opacity:0}
+.d5{animation-delay:.65s!important;opacity:0}.d6{animation-delay:.8s!important;opacity:0}
+
+/* Particles */
+.particles{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.dot{position:absolute;width:4px;height:4px;background:var(--gold);border-radius:50%;
+  opacity:0;animation:particle 6s infinite}
+
+/* ── NAV ── */
+.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:99;
+  background:rgba(10,10,15,.7);backdrop-filter:blur(10px);padding:8px 16px;border-radius:30px;
+  border:1px solid rgba(212,175,55,.1)}
+.nav-d{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.12);cursor:pointer;transition:.3s}
+.nav-d.on{background:var(--gold);width:28px;border-radius:4px}
+.sc{position:fixed;bottom:28px;right:36px;font-size:13px;color:var(--dim);z-index:99;letter-spacing:2px;font-weight:600}
+.pbar{position:fixed;top:0;left:0;height:4px;z-index:200;
+  background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold2));transition:width .4s}
+
+/* ── DISCLAIMER ── */
+.disc{position:absolute;bottom:30px;left:80px;right:80px;font-size:11px;color:var(--dim);
+  text-align:center;line-height:1.5;opacity:.6}
+
+/* ── WATERMARK NUMBER ── */
+.wm{position:absolute;font-size:320px;font-weight:900;opacity:.04;line-height:1;z-index:1;pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="pbar" id="pbar"></div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 0 — COUNTDOWN TIMER
+     ═══════════════════════════════════════════════ -->
+<div class="S on" id="s0">
+  <video class="vid pp-fwd" autoplay muted playsinline data-pair="s0" style="opacity:.4">
+    <source src="images/timer_bg_video.mp4" type="video/mp4">
+  </video>
+  <video class="vid pp-rev" muted playsinline data-pair="s0" style="opacity:0">
+    <source src="images/timer_bg_video_rev.mp4" type="video/mp4">
+  </video>
+  <div class="ct" style="justify-content:center;align-items:center;text-align:center">
+    <div class="au d1" style="margin-bottom:32px">
+      <div style="font-size:16px;color:var(--dim);text-transform:uppercase;letter-spacing:4px;margin-bottom:16px">Starting soon</div>
+      <div class="gl" style="margin:0 auto"></div>
+    </div>
+    <div class="au d2">
+      <div id="timer" style="font-size:180px;font-weight:200;color:var(--w);letter-spacing:0.05em;font-variant-numeric:tabular-nums;line-height:1">5:00</div>
+    </div>
+    <div class="au d3" style="margin-top:40px">
+      <div style="font-size:18px;color:var(--dim)">TAG MARKETS &nbsp;x&nbsp; SONIC AI</div>
+    </div>
+    <div class="au d4" style="margin-top:48px">
+      <button id="skipBtn" onclick="go(1)" style="background:none;border:1px solid var(--border);color:var(--dim);padding:12px 32px;border-radius:100px;font-size:16px;cursor:pointer;font-family:inherit;transition:all .3s ease">Start presentation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 1 — HERO
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s1">
+  <video id="vaultVid" class="vid" muted playsinline style="opacity:0;z-index:3;transition:opacity 0.5s ease">
+    <source src="images/pano_01_vault_video.mp4" type="video/mp4">
+  </video>
+  <div class="bg" id="vaultBg" style="background-image:url(images/pano_01_vault.jpg);display:block !important"></div>
+  <div class="particles" id="p1"></div>
+  <div class="ct" style="justify-content:flex-end;padding-bottom:100px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between">
+      <div style="max-width:1100px">
+        <div class="au d1" style="margin-bottom:16px">
+          <span class="pill">TAG MARKETS</span><span class="pill">SONIC AI</span><span class="pill">COPY X</span>
+        </div>
+        <div class="h1 gold au d2" style="font-size:72px">Gold makes money.</div>
+        <div class="h1 wh au d3" style="font-size:54px;font-weight:400;margin-top:4px">Even while you sleep.</div>
+        <div class="gl au d3" style="width:350px"></div>
+        <div class="au d4" style="margin-top:28px">
+          <span style="font-size:28px;font-weight:700">VAMBOLA TULLUS</span>
+          <div style="font-size:17px;color:var(--g);margin-top:4px">Entrepreneur &nbsp;|&nbsp; Community Builder &nbsp;|&nbsp; Co-founder, The Growth Identity</div>
+        </div>
+        <div class="au d5" style="margin-top:24px;font-size:16px;color:var(--dim);font-style:italic;max-width:650px">
+          "Today I'm part of a team where over 200 people build their financial freedom together."
+        </div>
+      </div>
+      <div class="as d4" style="flex-shrink:0;margin-left:40px">
+        <img src="images/vambola.jpg" alt="Vambola" onerror="this.style.display='none'"
+          style="width:260px;height:260px;border-radius:16px;border:3px solid var(--gold);object-fit:cover;
+          box-shadow:0 20px 60px rgba(0,0,0,.5)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 2 — THE PROBLEM
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s2">
+  <div class="bg" style="background-image:url(images/pano_02_corridor.jpg)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 red" style="font-size:58px">95% of traders lose money.</div>
+      <div class="gl"></div>
+    </div>
+    <div class="g4 au d2" style="margin-top:auto;gap:20px">
+      <div class="card gold-left">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M3 3v18h18"/><path d="M21 7l-7 7-4-4-7 7"/></svg></div>
+        <h3>Emotional decisions</h3>
+        <p>Fear and greed drive trades, not analysis</p>
+      </div>
+      <div class="card gold-left">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h3>Poor risk management</h3>
+        <p>Oversized positions, missing stop-losses</p>
+      </div>
+      <div class="card gold-left">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>
+        <h3>Overtrading</h3>
+        <p>Constant buying and selling eats profits</p>
+      </div>
+      <div class="card gold-left">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Bad timing</h3>
+        <p>Buying tops, selling bottoms</p>
+      </div>
+    </div>
+    <div class="au d4" style="margin-top:28px;text-align:center">
+      <div style="font-size:20px;color:var(--g);font-style:italic;letter-spacing:0.5px">Only 1 out of 20 traders makes a profit</div>
+    </div>
+    <div class="au d5" style="margin-top:auto">
+      <div class="h3 gold">What if you didn't have to trade yourself?</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 3 — THE MARKET $9.6T
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s3">
+  <div class="bg" style="background-image:url(images/pano_03_hall.jpg)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 wh">The world's largest market</div>
+      <div class="sub">Daily trading volume comparison</div>
+      <div class="gl"></div>
+    </div>
+    <div class="row" style="margin-top:20px">
+      <div class="col au d2" style="flex:1.4;justify-content:center;gap:16px">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">FOREX</span>
+            <span class="h2 gold" style="font-size:36px">$9.6 TRILLION</span>
+          </div>
+          <div class="hbar gold" style="width:100%">48x larger</div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">CRYPTO</span>
+            <span style="font-size:20px;color:var(--w);font-weight:700">$300 billion</span>
+          </div>
+          <div class="hbar dim" style="width:18%">&nbsp;</div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:16px;color:var(--g);letter-spacing:2px;font-weight:600">STOCKS</span>
+            <span style="font-size:20px;color:var(--w);font-weight:700">$200 billion</span>
+          </div>
+          <div class="hbar dim" style="width:12%">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col center as d3" style="flex:0.6;gap:20px">
+        <div class="card gold-top center" style="width:100%">
+          <div class="big">48x</div>
+          <div class="lbl" style="margin-top:10px">Forex vs stocks</div>
+        </div>
+        <div class="card gold-top center" style="width:100%">
+          <div class="big">32x</div>
+          <div class="lbl" style="margin-top:10px">Forex vs crypto</div>
+        </div>
+        <div class="card gold-top center" style="width:100%">
+          <div class="big">24/5</div>
+          <div class="lbl" style="margin-top:10px">Market open</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 4 — TAG MARKETS TRUST
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s4">
+  <div class="bg" style="background-image:url(images/pano_04_throne.jpg)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 gold">TAG MARKETS</div>
+      <div class="sub">Trusted and regulated broker</div>
+      <div class="gl"></div>
+    </div>
+    <div class="g4 au d2" style="margin-top:28px;flex:0 0 auto">
+      <div class="card gold-top center" style="padding:28px 20px">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="big">$347B</div>
+        <div class="lbl">Trading volume<br>January 2026</div>
+      </div>
+      <div class="card gold-top center" style="padding:28px 20px">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M3 3v18h18"/><path d="M7 17l4-8 4 4 6-8"/></svg></div>
+        <div class="big">$250M</div>
+        <div class="lbl">Annual revenue</div>
+      </div>
+      <div class="card gold-top center" style="padding:28px 20px">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="big" style="font-size:38px">A-BOOK</div>
+        <div class="lbl">Transparent model</div>
+      </div>
+      <div class="card gold-top center" style="padding:28px 20px">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="big" style="font-size:34px">24h / $0</div>
+        <div class="lbl">Withdrawals<br>zero fees</div>
+      </div>
+    </div>
+    <div class="g2 au d3" style="margin-top:20px;flex:1">
+      <div class="card gold-left" style="display:flex;flex-direction:column;gap:20px;justify-content:center">
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:44px;height:44px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/></svg></div>
+          <div>
+            <h3>FSC Mauritius license</h3>
+            <p><a href="https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr" target="_blank" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;cursor:pointer">License: GB21026474 &#8599;</a></p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:44px;height:44px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <div>
+            <h3>Segregated client accounts</h3>
+            <p>Your money is always protected and segregated</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:44px;height:44px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg></div>
+          <div>
+            <h3>Weekly audits</h3>
+            <p>Continuous oversight and transparency</p>
+          </div>
+        </div>
+      </div>
+      <div class="card gold-left" style="display:flex;flex-direction:column;gap:20px;justify-content:center">
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:44px;height:44px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+          <div>
+            <h3>8-figure personal investment</h3>
+            <p>Founders have skin in the game</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:44px;height:44px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div>
+            <h3>CEO Nick: 1.5 years without salary</h3>
+            <p>Fully committed to the company</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:44px;height:44px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><line x1="2" y1="10" x2="5" y2="10"/><line x1="19" y1="10" x2="22" y2="10"/></svg></div>
+          <div>
+            <h3>4 years of cash reserves</h3>
+            <p>Before any dividend distribution</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 5 — SONIC AI HOW IT WORKS
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s5">
+  <video class="vid" muted playsinline style="opacity:.55">
+    <source src="images/pano_05_gallery_video.mp4" type="video/mp4">
+  </video>
+  <div class="bg" style="background-image:url(images/pano_05_gallery.jpg);background-position:center top"></div>
+  <!-- Softer gradient fade: transparent top to dark bottom -->
+  <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.5) 30%, rgba(10,10,15,0.85) 60%, rgba(10,10,15,0.95) 100%)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 gold">SONIC AI</div>
+      <div class="sub">3 professional gold traders from Germany &nbsp;|&nbsp; Together since 2011</div>
+      <div class="gl"></div>
+    </div>
+    <div style="flex:1"></div>
+    <div class="g3 au d2" style="gap:40px;flex:0 0 auto">
+      <div class="card gold-top center" style="padding:36px 28px">
+        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
+          box-shadow:0 6px 24px rgba(212,175,55,.3)">1</div>
+        <div class="h3 gold" style="margin-bottom:10px">COPY X</div>
+        <p style="font-size:18px;color:var(--g);line-height:1.5">Connect your TAG Markets<br>account to the automated<br>trading platform</p>
+      </div>
+      <div class="card gold-top center" style="padding:36px 28px;position:relative">
+        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
+        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
+          box-shadow:0 6px 24px rgba(212,175,55,.3)">2</div>
+        <div class="h3 gold" style="margin-bottom:10px">SONIC TRADES</div>
+        <p style="font-size:18px;color:var(--g);line-height:1.5">AI trades gold<br>intraday — automatically,<br>without your intervention</p>
+      </div>
+      <div class="card gold-top center" style="padding:36px 28px;position:relative">
+        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
+        <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:36px;font-weight:900;color:var(--bg);margin:0 auto 16px;
+          box-shadow:0 6px 24px rgba(212,175,55,.3)">3</div>
+        <div class="h3 gold" style="margin-bottom:10px">PROFIT TO ACCOUNT</div>
+        <p style="font-size:18px;color:var(--g);line-height:1.5">Profit appears directly in your<br>TAG Markets account —<br>automatically every day</p>
+      </div>
+    </div>
+    <div class="au d5" style="display:flex;gap:24px;justify-content:center;margin-top:24px;align-items:center">
+      <span class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg> Fully automated</span>
+      <a href="https://thegrowthidentity.com/guide/" target="_blank" class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px;text-decoration:none;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ~15 min setup &#8599;</a>
+      <span class="pill" style="display:flex;align-items:center;gap:6px;padding:8px 18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Exclusively on TAG Markets</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 6 — 24X AMPLIFICATION
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s6">
+  <div class="bg" style="background-image:url(images/pano_06_core.jpg)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 gold">24x Amplification</div>
+      <div class="sub">How $1,000 becomes $24,000 trading power</div>
+      <div class="gl"></div>
+    </div>
+    <div class="row au d2" style="margin-top:20px">
+      <div class="card center" style="flex:1;display:flex;flex-direction:column;justify-content:center;
+        border:1px solid rgba(212,175,55,.15);background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(16,16,30,.9),rgba(212,175,55,.03))">
+        <div style="font-size:14px;color:var(--g);text-transform:uppercase;letter-spacing:3px">Your deposit</div>
+        <div style="font-size:80px;font-weight:900;color:var(--w);margin:12px 0">$1,000</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;padding:0 16px">
+        <div style="font-size:48px;font-weight:900;color:var(--gold)">24x</div>
+        <div style="font-size:36px;color:var(--gold);opacity:.5;letter-spacing:6px">&#10095;&#10095;&#10095;</div>
+      </div>
+      <div class="card center" style="flex:1;display:flex;flex-direction:column;justify-content:center;
+        border:1px solid rgba(212,175,55,.3);background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(16,16,30,.85),rgba(212,175,55,.08));animation:pulse 3s infinite">
+        <div style="font-size:14px;color:var(--gold);text-transform:uppercase;letter-spacing:3px">Trading power</div>
+        <div style="font-size:80px;font-weight:900;color:var(--gold);margin:12px 0">$24,000</div>
+      </div>
+    </div>
+    <div class="g4 au d4" style="margin-top:20px">
+      <div class="card gold-left" >
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></div>
+        <h3>75 liquidity providers</h3>
+        <p>Banks and financial institutions</p>
+      </div>
+      <div class="card gold-left" >
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Their risk: ZERO</h3>
+        <p>Funds never leave their accounts</p>
+      </div>
+      <div class="card gold-left" >
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <h3>Your max loss</h3>
+        <p>Only your initial deposit</p>
+      </div>
+      <div class="card gold-left" >
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3>Not a prop firm</h3>
+        <p>You cannot go into debt</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 7 — PERFORMANCE 15 MONTHS
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s7">
+  <div class="bg" style="background-image:url(images/pano_07_command.jpg)"></div>
+  <div class="ct" style="padding:50px 80px 60px">
+    <div class="au d1" style="display:flex;justify-content:space-between;align-items:center;flex:0 0 auto">
+      <div>
+        <div class="h1 wh" style="font-size:42px">Real performance — 15 months</div>
+        <div style="font-size:18px;color:var(--gold);margin-top:4px">MyFxBook verified &nbsp;|&nbsp; $1,000 initial capital</div>
+      </div>
+      <a href="https://www.myfxbook.com/members/SonicExperts/sonic-ai/11968359" target="_blank" class="pill" style="font-size:14px;padding:6px 16px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic-sm"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> MyFxBook verified &#8599;</a>
+    </div>
+    <div class="row au d2" style="margin-top:4px;gap:16px;flex:1">
+      <div style="flex:1.8;position:relative">
+        <div id="perf" style="display:flex;align-items:flex-end;gap:3px;position:absolute;inset:0;padding:10px 0 24px"></div>
+      </div>
+      <div style="flex:0.55;display:flex;flex-direction:column;gap:10px">
+        <div class="card gold-top center" style="padding:20px 16px">
+          <div class="lbl">Total profit</div>
+          <div class="big" style="font-size:46px;margin:6px 0">$4,443</div>
+          <div style="font-size:11px;color:var(--dim)">after 30% performance fee</div>
+        </div>
+        <div class="card gold-top center" style="padding:16px">
+          <div class="lbl" style="font-size:11px">Win Rate</div>
+          <div class="big" style="color:var(--green);font-size:38px;margin-top:4px">80%</div>
+        </div>
+        <div class="card gold-top center" style="padding:16px">
+          <div class="lbl" style="font-size:11px">Trades</div>
+          <div class="big wh" style="font-size:38px;margin-top:4px">365</div>
+        </div>
+        <div class="card gold-top center" style="padding:16px">
+          <div class="lbl" style="font-size:11px">Max Drawdown</div>
+          <div class="big" style="font-size:38px;margin-top:4px">0.86%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 8 — RISK MANAGEMENT
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s8">
+  <div class="bg" style="background-image:url(images/pano_08_shield.jpg)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 wh">Risk management</div>
+      <div class="sub">Conservative approach that protects your capital</div>
+      <div class="gl"></div>
+    </div>
+    <div class="row au d2" style="margin-top:20px">
+      <div class="col center" style="flex:0.8">
+        <div style="background:rgba(212,175,55,.05);border:2px solid rgba(212,175,55,.2);border-radius:24px;padding:48px 40px">
+          <div style="font-size:130px;font-weight:900;color:var(--gold);line-height:1">0.86%</div>
+          <div style="font-size:22px;color:var(--g);margin-top:16px">Maximum drawdown<br>over 14 months</div>
+        </div>
+      </div>
+      <div class="col" style="flex:1;gap:16px">
+        <div class="card gold-left" style="display:flex;gap:20px;align-items:center">
+          <div style="width:48px;height:48px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
+          <div>
+            <h3>Intraday trading</h3>
+            <p>All positions closed same day — zero overnight risk</p>
+          </div>
+        </div>
+        <div class="card gold-left" style="display:flex;gap:20px;align-items:center">
+          <div style="width:48px;height:48px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div>
+          <div>
+            <h3>Zero overnight & weekend risk</h3>
+            <p>No positions held overnight or over weekends</p>
+          </div>
+        </div>
+        <div class="card gold-left" style="display:flex;gap:20px;align-items:center">
+          <div style="width:48px;height:48px;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <h3>59 consecutive losses</h3>
+            <p>Required to lose entire investment — statistically near impossible</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 9 — COMMUNITY EARNINGS
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s9">
+  <div class="bg" style="background-image:url(images/pano_09_stairs.jpg)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 gold">Community earnings</div>
+      <div class="sub">25% of all profits — 10 generations</div>
+      <div class="gl"></div>
+    </div>
+    <div class="row au d2" style="margin-top:20px">
+      <div class="col" style="flex:1;gap:16px">
+        <div class="h3 wh">Example: $300 profit</div>
+        <div class="card gold-top" style="padding:24px;flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <span style="color:var(--w);font-size:18px;font-weight:700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic-sm"><path d="M2 20h20L19 8l-5 6-2-8-2 8-5-6z"/></svg> YOU — 70%</span>
+              <span style="color:var(--gold);font-weight:900;font-size:28px">$210</span>
+            </div>
+            <div class="hbar gold" style="width:100%">Your profit</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <span style="color:var(--g);font-size:16px;font-weight:600">SONIC traders — 5%</span>
+              <span style="color:var(--w);font-weight:700;font-size:22px">$15</span>
+            </div>
+            <div class="hbar dim" style="width:20%">&nbsp;</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <span style="color:var(--g);font-size:16px;font-weight:600">Community — 25%</span>
+              <span style="color:var(--w);font-weight:700;font-size:22px">$75</span>
+            </div>
+            <div class="hbar dim" style="width:50%;background:linear-gradient(90deg,#44360e,#887020)">&nbsp;</div>
+          </div>
+        </div>
+        <div class="card gold-top center" style="padding:18px;flex:0">
+          <div style="font-size:20px;color:var(--gold);font-weight:700">No profit = no fee</div>
+        </div>
+      </div>
+      <div class="col" style="flex:1;gap:16px">
+        <div class="h3 wh">10 Generations</div>
+        <div style="font-size:16px;color:var(--g)">Each generation: 2.5% weekly share</div>
+        <div class="card gold-top" style="flex:1;padding:20px;display:flex;flex-direction:column;justify-content:center">
+          <div id="pyr" style="display:flex;flex-direction:column;gap:4px"></div>
+        </div>
+        <div class="g2" style="gap:12px;flex:0">
+          <div class="card gold-top center" style="padding:18px">
+            <div style="font-size:13px;color:var(--dim)">CPA BONUS</div>
+            <div style="font-size:22px;color:var(--gold);font-weight:800;margin-top:4px">Per deposit</div>
+          </div>
+          <div class="card gold-top center" style="padding:18px">
+            <div style="font-size:13px;color:var(--dim)">TRANSACTION BONUS</div>
+            <div style="font-size:22px;color:var(--gold);font-weight:800;margin-top:4px">Up to $8.50</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 10 — WHAT IS COMING
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s10">
+  <div class="bg" style="background-image:url(images/pano_10_observatory.jpg)"></div>
+  <div class="ct">
+    <div class="au d1">
+      <div class="h1 gold">Coming soon</div>
+      <div class="sub">Ecosystem growing — all privately funded</div>
+      <div class="gl"></div>
+    </div>
+    <div class="g3 au d2" style="margin-top:28px;flex:1">
+      <div class="card gold-top" style="display:flex;flex-direction:column;padding:36px 32px">
+        <div style="width:52px;height:52px;margin-bottom:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg></div>
+        <div class="h2 gold" style="font-size:36px">BIT ONE</div>
+        <div style="font-size:18px;color:var(--dim);margin-bottom:28px">Crypto exchange</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Built-in KYC</h3>
+          </div>
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Up to $20,000 daily withdrawal</h3>
+          </div>
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg> Copy trading coming to crypto</h3>
+          </div>
+        </div>
+        <div class="pill" style="margin-top:24px;align-self:flex-start;font-size:16px;padding:8px 20px">Coming soon</div>
+      </div>
+      <div class="card gold-top" style="display:flex;flex-direction:column;padding:36px 32px">
+        <div style="width:52px;height:52px;margin-bottom:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="h2 gold" style="font-size:36px">BIX KAART</div>
+        <div style="font-size:18px;color:var(--dim);margin-bottom:28px">Bank account + debit card</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ic-sm"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Decentralized wallet</h3>
+          </div>
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ic-sm"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg> KYC optional</h3>
+          </div>
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ic-sm"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> All-in-one solution</h3>
+          </div>
+        </div>
+        <div class="pill" style="margin-top:24px;align-self:flex-start;font-size:16px;padding:8px 20px">Coming soon</div>
+      </div>
+      <div class="card gold-top" style="display:flex;flex-direction:column;padding:36px 32px">
+        <div style="width:52px;height:52px;margin-bottom:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <div class="h2 gold" style="font-size:36px">NEW STRATEGIES</div>
+        <div style="font-size:18px;color:var(--dim);margin-bottom:28px">Copy X expanding</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ic-sm"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg> New traders being added</h3>
+          </div>
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ic-sm"><path d="M6 9H4.5a2.5 2.5 0 010-5H6M18 9h1.5a2.5 2.5 0 000-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg> Rankings and tracking</h3>
+          </div>
+          <div class="card gold-left" style="padding:16px 20px;background:rgba(212,175,55,.04)">
+            <h3 style="font-size:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="ic"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Full transparency</h3>
+          </div>
+        </div>
+        <div class="pill" style="margin-top:24px;align-self:flex-start;font-size:16px;padding:8px 20px">In development</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 11 — 3 STEPS TO START
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s11">
+  <div class="bg" style="background-image:url(images/pano_11_doorway.jpg);background-position:center top"></div>
+  <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.6) 25%, rgba(10,10,10,0.88) 55%, rgba(10,10,10,0.95) 100%)"></div>
+  <div class="ct" style="padding-bottom:50px">
+    <div class="au d1">
+      <div class="h1 wh">3 steps to get started</div>
+      <div class="sub gold">Entire process ~15 minutes</div>
+      <div class="gl"></div>
+    </div>
+    <div style="flex:1"></div>
+    <div class="g3 au d2" style="gap:40px;flex:0 0 auto">
+      <div class="card gold-top center" style="display:flex;flex-direction:column;justify-content:center;padding:40px 28px;background:rgba(10,10,10,0.6);backdrop-filter:blur(8px)">
+        <div style="width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:40px;font-weight:900;color:var(--bg);margin:0 auto 20px;
+          box-shadow:0 6px 24px rgba(201,168,76,.25)">1</div>
+        <div class="h2 gold" style="margin-bottom:10px;font-size:32px">REGISTER</div>
+        <p style="font-size:19px;color:var(--w);line-height:1.6">Create TAG Markets account<br><span style="color:var(--g)">KYC verification</span></p>
+      </div>
+      <div class="card gold-top center" style="display:flex;flex-direction:column;justify-content:center;padding:40px 28px;background:rgba(10,10,10,0.6);backdrop-filter:blur(8px);position:relative">
+        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
+        <div style="width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:40px;font-weight:900;color:var(--bg);margin:0 auto 20px;
+          box-shadow:0 6px 24px rgba(201,168,76,.25)">2</div>
+        <div class="h2 gold" style="margin-bottom:10px;font-size:32px">DEPOSIT</div>
+        <p style="font-size:19px;color:var(--w);line-height:1.6">From $10<br><span style="color:var(--g)">Crypto, transfer or card</span></p>
+      </div>
+      <div class="card gold-top center" style="display:flex;flex-direction:column;justify-content:center;padding:40px 28px;background:rgba(10,10,10,0.6);backdrop-filter:blur(8px);position:relative">
+        <div style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--gold);opacity:.4">&#10095;&#10095;</div>
+        <div style="width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;
+          justify-content:center;font-size:40px;font-weight:900;color:var(--bg);margin:0 auto 20px;
+          box-shadow:0 6px 24px rgba(201,168,76,.25)">3</div>
+        <div class="h2 gold" style="margin-bottom:10px;font-size:32px">CONNECT</div>
+        <p style="font-size:19px;color:var(--w);line-height:1.6">Select SONIC AI<br><span style="color:var(--g)">On Copy X platform</span></p>
+      </div>
+    </div>
+    <div class="au d5 center" style="margin-top:24px">
+      <div style="font-size:22px;color:var(--gold);font-weight:700">thegrowthidentity.com/guide/</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 12 — CLOSING
+     ═══════════════════════════════════════════════ -->
+<div class="S" id="s12">
+  <video class="vid" muted playsinline>
+    <source src="images/hero_gold_video.mp4" type="video/mp4">
+  </video>
+  <div class="bg" style="background-image:url(images/hero_gold.jpg)"></div>
+  <div class="particles" id="p12"></div>
+  <div class="ct" style="justify-content:center;align-items:center;text-align:center">
+    <div class="au d1">
+      <div class="h1 gold" style="font-size:76px">Gold never sleeps.</div>
+    </div>
+    <div class="au d2">
+      <div class="h1 wh" style="font-size:54px;font-weight:400">But your money could be working.</div>
+    </div>
+    <div class="gl au d3" style="width:300px;margin:28px auto"></div>
+    <div class="au d4">
+      <div style="font-size:28px;font-weight:700">VAMBOLA TULLUS</div>
+      <div style="font-size:22px;color:var(--gold);margin-top:8px">thegrowthidentity.com</div>
+    </div>
+    <div class="au d5" style="margin-top:32px;display:flex;gap:16px">
+      <span class="pill">TAG MARKETS</span><span class="pill">SONIC AI</span><span class="pill">COPY X</span>
+    </div>
+  </div>
+  <div class="disc">
+    Forex trading involves risks. Past results do not guarantee future results.
+    Leveraged accounts amplify both profits and potential losses.
+    Only invest amounts you can afford to lose.
+    This presentation is for informational purposes and is not investment advice.
+    Always do your own research.
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav" id="nav"></div>
+<div class="sc" id="sc">01 / 12</div>
+
+<script>
+(function(){
+  var T=12,C=0,busy=false;
+
+  // Scale
+  function fit(){
+    var s=Math.min(innerWidth/1920,innerHeight/1080);
+    document.querySelectorAll('.S').forEach(function(el){
+      el.style.transform='translate(-50%,-50%) scale('+s+')';
+    });
+  }
+  addEventListener('resize',fit);fit();
+
+  // Nav dots
+  var nav=document.getElementById('nav');
+  for(var i=0;i<=T;i++){
+    var d=document.createElement('div');
+    d.className='nav-d'+(i===0?' on':'');
+    d.dataset.i=i;
+    d.onclick=function(){go(+this.dataset.i)};
+    nav.appendChild(d);
+  }
+
+  window.go=go;
+  var vaultPlayed=false;
+  var vaultVid=document.getElementById('vaultVid');
+  var vaultBg=document.getElementById('vaultBg');
+
+  // When vault video ends, advance to slide 2
+  if(vaultVid){
+    vaultVid.addEventListener('ended',function(){
+      vaultBg.style.display='none';
+      go(2);
+    });
+  }
+
+  function go(n){
+    // Intercept: on slide 1, pressing forward triggers vault video first
+    if(C===1&&n===2&&!vaultPlayed&&vaultVid){
+      vaultPlayed=true;
+      vaultVid.style.opacity='0.7';
+      vaultVid.currentTime=0;
+      vaultVid.play().catch(function(){});
+      return; // don't advance yet — video 'ended' event will call go(2)
+    }
+    if(n<0||n>T||n===C||busy)return;busy=true;
+    var old=document.getElementById('s'+C);
+    var nw=document.getElementById('s'+n);
+    // Reset anims
+    nw.querySelectorAll('[class*="au"],[class*="al"],[class*="ar"],[class*="as"]').forEach(function(el){
+      el.style.animation='none';el.offsetHeight;el.style.animation='';
+    });
+    old.classList.remove('on');nw.classList.add('on');C=n;
+    // Nav
+    document.querySelectorAll('.nav-d').forEach(function(d,i){d.className='nav-d'+(i===n?' on':'')});
+    document.getElementById('sc').textContent=(n===0?'--':String(n).padStart(2,'0'))+' / '+T;
+    document.getElementById('pbar').style.width=(n/T*100)+'%';
+    if(n===7)animChart();
+    // Play/pause videos on slide change
+    document.querySelectorAll('.S video').forEach(function(v){v.pause()});
+    var activeVids=document.getElementById('s'+n).querySelectorAll('video');
+    activeVids.forEach(function(v){v.play().catch(function(){})});
+    setTimeout(function(){busy=false},500);
+  }
+
+  // Keys
+  document.onkeydown=function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(C+1)}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();go(C-1)}
+    else if(e.key==='Home'){e.preventDefault();go(1)}
+    else if(e.key==='End'){e.preventDefault();go(T)}
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  };
+
+  // Click sides
+  document.onclick=function(e){
+    if(e.target.closest('.nav')||e.target.closest('a'))return;
+    var x=e.clientX/innerWidth;
+    if(x>.7)go(C+1);else if(x<.3)go(C-1);
+  };
+
+  // Wheel
+  var wt;
+  document.onwheel=function(e){e.preventDefault();clearTimeout(wt);
+    wt=setTimeout(function(){go(C+(e.deltaY>0?1:-1))},80);
+  };
+  // Make wheel passive:false
+  document.addEventListener('wheel',function(e){e.preventDefault()},{passive:false});
+
+  // Touch
+  var tx;
+  document.ontouchstart=function(e){tx=e.touches[0].clientX};
+  document.ontouchend=function(e){var d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50)go(C+(d>0?1:-1))};
+
+  // ── Chart Slide 7 ──
+  var pd=[
+    {l:"Nov'24",v:269},{l:"Dec",v:281},{l:"Jan'25",v:295},{l:"Feb",v:298},
+    {l:"Mar",v:254},{l:"Apr",v:302},{l:"May",v:427},{l:"Jun",v:283},
+    {l:"Jul",v:346},{l:"Aug",v:386},{l:"Sep",v:391},{l:"Oct",v:278},
+    {l:"Nov",v:278},{l:"Dec",v:137},{l:"Jan'26",v:137}
+  ];
+  var cc=document.getElementById('perf'),mx=427,maxPx=500;
+  for(var j=0;j<pd.length;j++){
+    var d=pd[j];
+    var w=document.createElement('div');w.className='chart-col';
+    var px=Math.round(d.v/mx*maxPx);
+    w.innerHTML='<div class="chart-val">$'+d.v+'</div>'+
+      '<div class="chart-bar'+(d.v>=350?' hi':'')+'" style="height:0px" data-px="'+px+'"></div>'+
+      '<div class="chart-lbl">'+d.l+'</div>';
+    cc.appendChild(w);
+  }
+
+  function animChart(){
+    var bars=document.querySelectorAll('#perf .chart-bar');
+    for(var k=0;k<bars.length;k++){bars[k].style.height='0px';}
+    setTimeout(function(){
+      for(var k=0;k<bars.length;k++){
+        (function(bar,delay){
+          setTimeout(function(){bar.style.height=bar.getAttribute('data-px')+'px';},delay);
+        })(bars[k],k*80);
+      }
+    },150);
+  }
+
+  // Watch slide 7
+  var ob=new MutationObserver(function(m){
+    m.forEach(function(mu){if(mu.target.id==='s7'&&mu.target.classList.contains('on'))animChart()});
+  });
+  var s7=document.getElementById('s7');
+  if(s7)ob.observe(s7,{attributes:true,attributeFilter:['class']});
+
+  // ── Pyramid Slide 9 ──
+  var pyr=document.getElementById('pyr');
+  for(var i=0;i<10;i++){
+    var b=document.createElement('div');b.className='pyr-bar';
+    var w=100-i*4.5;
+    var br=Math.max(45,212-i*17);
+    b.style.width=w+'%';
+    b.style.background='rgb('+br+','+Math.floor(br*.82)+','+Math.floor(br*.26)+')';
+    b.style.color=i<3?'var(--bg)':'var(--w)';
+    b.textContent='Gen '+(i+1)+': 2.5%';
+    pyr.appendChild(b);
+  }
+
+  // ── Particles ──
+  function mkP(id,n){
+    var c=document.getElementById(id);if(!c)return;
+    for(var i=0;i<n;i++){
+      var p=document.createElement('div');p.className='dot';
+      p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';
+      var sz=(Math.random()*4+2)+'px';p.style.width=sz;p.style.height=sz;
+      p.style.animationDelay=Math.random()*6+'s';
+      p.style.animationDuration=(Math.random()*4+4)+'s';
+      c.appendChild(p);
+    }
+  }
+  mkP('p1',35);mkP('p12',35);
+
+  // Init
+  document.getElementById('pbar').style.width='0%';
+  document.getElementById('sc').textContent='-- / '+T;
+
+  // Ping-pong ONLY for timer slide (s0) — seamless loop
+  document.querySelectorAll('.pp-fwd').forEach(function(fwd){
+    var pair=fwd.getAttribute('data-pair');
+    var rev=fwd.parentElement.querySelector('.pp-rev[data-pair="'+pair+'"]');
+    if(!rev)return;
+    var baseOp=fwd.style.opacity||'0.4';
+    rev.style.opacity='0';
+    fwd.style.transition='opacity 0.15s';
+    rev.style.transition='opacity 0.15s';
+    fwd.addEventListener('ended',function(){
+      fwd.style.opacity='0';
+      rev.style.opacity=baseOp;
+      rev.currentTime=0;
+      rev.play().catch(function(){});
+    });
+    rev.addEventListener('ended',function(){
+      rev.style.opacity='0';
+      fwd.style.opacity=baseOp;
+      fwd.currentTime=0;
+      fwd.play().catch(function(){});
+    });
+  });
+
+  // 5-minute countdown timer
+  var timerEl=document.getElementById('timer');
+  var totalSec=5*60;
+  var timerInterval=setInterval(function(){
+    if(C!==0){return;} // only count when on timer slide
+    totalSec--;
+    if(totalSec<=0){
+      clearInterval(timerInterval);
+      go(1); // auto-advance to slide 1
+      return;
+    }
+    var m=Math.floor(totalSec/60);
+    var s=totalSec%60;
+    timerEl.textContent=m+':'+(s<10?'0':'')+s;
+  },1000);
+
+  // Ensure slide 1 video plays on load
+  var s0vids=document.getElementById('s0').querySelectorAll('video');
+  s0vids.forEach(function(v){
+    v.play().catch(function(){
+      document.addEventListener('click',function(){v.play()},{once:true});
+      document.addEventListener('keydown',function(){v.play()},{once:true});
+    });
+  });
+})();
+</script>
+</body>
+</html>
