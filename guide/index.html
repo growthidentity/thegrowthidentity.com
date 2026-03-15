@@ -11,18 +11,19 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#0a0e17;
---bg-card:#111827;
---bg-dark:#060b12;
---accent:#b8f847;
---accent-dim:#8bc634;
---gold:#d4a94b;
---text:#f1f5f9;
---text-dim:#94a3b8;
---text-muted:#64748b;
---border:#1e293b;
---green:#22c55e;
---red:#ef4444;
+--bg:#0a0a0a;
+--bg-card:rgba(255,255,255,0.03);
+--bg-dark:#050505;
+--accent:#c9a84c;
+--accent-dim:#a08839;
+--accent-light:#e8d48b;
+--gold:#c9a84c;
+--text:#e8e4dc;
+--text-dim:rgba(232,228,220,0.7);
+--text-muted:rgba(232,228,220,0.4);
+--border:rgba(255,255,255,0.06);
+--green:#00CC66;
+--red:#FF4444;
 }
 html{scroll-behavior:smooth}
 body{
@@ -35,7 +36,7 @@ line-height:1.6;
 /* Navigation */
 .nav{
 position:fixed;top:0;left:0;right:0;
-background:rgba(10,14,23,0.95);
+background:rgba(10,10,10,0.95);
 backdrop-filter:blur(10px);
 border-bottom:1px solid var(--border);
 z-index:100;
@@ -76,7 +77,7 @@ content:'';
 position:absolute;
 top:-50%;left:-50%;
 width:200%;height:200%;
-background:radial-gradient(circle at 50% 50%,rgba(184,248,71,0.03) 0%,transparent 50%);
+background:radial-gradient(circle at 50% 50%,rgba(201,168,76,0.06) 0%,transparent 50%);
 animation:heroGlow 8s ease-in-out infinite alternate;
 }
 @keyframes heroGlow{
@@ -174,7 +175,7 @@ background:rgba(255,255,255,0.02);
 .sidebar-item.active{
 color:var(--accent);
 border-left-color:var(--accent);
-background:rgba(184,248,71,0.05);
+background:rgba(201,168,76,0.08);
 }
 .sidebar-item.completed{
 color:var(--green);
@@ -226,8 +227,8 @@ background:linear-gradient(90deg,transparent,var(--accent),transparent);
 }
 .part-icon{
 width:64px;height:64px;
-background:rgba(184,248,71,0.1);
-border:1px solid rgba(184,248,71,0.2);
+background:rgba(201,168,76,0.1);
+border:1px solid rgba(201,168,76,0.2);
 border-radius:20px;
 display:flex;align-items:center;justify-content:center;
 font-size:1.5rem;
@@ -286,7 +287,8 @@ opacity:1;
 transform:translateY(0);
 }
 .step-card:hover{
-border-color:rgba(184,248,71,0.3);
+border-color:rgba(201,168,76,0.3);
+transform:translateY(-2px);
 }
 /* Timeline dot */
 .step-card::before{
@@ -305,7 +307,7 @@ z-index:1;
 .step-card.visible::before{
 background:var(--accent);
 border-color:var(--accent);
-box-shadow:0 0 12px rgba(184,248,71,0.4);
+box-shadow:0 0 12px rgba(201,168,76,0.4);
 }
 .step-header{
 display:flex;
@@ -337,8 +339,8 @@ color:var(--text);
 font-weight:700;
 }
 .step-note{
-background:rgba(184,248,71,0.08);
-border:1px solid rgba(184,248,71,0.2);
+background:rgba(201,168,76,0.08);
+border:1px solid rgba(201,168,76,0.2);
 border-radius:12px;
 padding:16px 20px;
 margin-bottom:24px;
@@ -418,7 +420,7 @@ z-index:99;
 }
 .progress-fill{
 height:100%;
-background:linear-gradient(90deg,var(--accent),var(--green));
+background:linear-gradient(90deg,var(--accent-dim),var(--accent),var(--accent-light));
 width:0%;
 transition:width 0.3s;
 }
@@ -477,7 +479,7 @@ opacity:0;
 transform:translateY(20px);
 transition:all 0.3s;
 z-index:50;
-box-shadow:0 4px 20px rgba(184,248,71,0.3);
+box-shadow:0 4px 20px rgba(201,168,76,0.3);
 }
 .back-to-top.show{
 opacity:1;
@@ -485,7 +487,7 @@ transform:translateY(0);
 }
 .back-to-top:hover{
 transform:translateY(-2px);
-box-shadow:0 6px 24px rgba(184,248,71,0.4);
+box-shadow:0 6px 24px rgba(201,168,76,0.4);
 }
 
 /* Mobile menu */
@@ -526,7 +528,7 @@ padding:10px 12px;border-radius:8px;
 text-decoration:none;color:var(--text-muted);
 font-size:0.85rem;font-weight:500;transition:all 0.2s;
 }
-.mobile-drawer .sidebar-item.active{color:var(--accent);background:rgba(184,248,71,0.05)}
+.mobile-drawer .sidebar-item.active{color:var(--accent);background:rgba(201,168,76,0.08)}
 .mobile-drawer .sidebar-item.completed{color:var(--green)}
 .mobile-drawer .sidebar-num{
 width:24px;height:24px;
@@ -1382,7 +1384,7 @@ After token verification, the <strong>HASH/GU-ID</strong> field appears. Enter <
 </div><!-- /timeline -->
 
 <!-- Success card -->
-<div class="step-card" id="done" style="border-color:var(--accent);background:linear-gradient(135deg,rgba(184,248,71,0.05),rgba(34,197,94,0.03));">
+<div class="step-card" id="done" style="border-color:var(--accent);background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.03));">
 <div style="text-align:center">
 <div style="font-size:4rem;margin-bottom:16px">&#127881;</div>
 <h2 style="font-size:2rem;font-weight:900;margin-bottom:12px">Congratulations! Everything is Set Up!</h2>
