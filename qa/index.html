@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Q&A — TAG Markets x SONIC AI</title>
+<style>
+:root {
+  --bg:#0a0a0a; --card:rgba(255,255,255,0.03); --card2:rgba(255,255,255,0.05);
+  --border:rgba(255,255,255,0.06); --border-hover:rgba(201,168,76,0.3);
+  --gold:#c9a84c; --gold2:#e8d48b; --gold3:#a08839;
+  --gold-glow:rgba(201,168,76,0.15);
+  --w:#e8e4dc; --g:rgba(232,228,220,0.7); --dim:rgba(232,228,220,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter','Helvetica Neue',system-ui,sans-serif;background:var(--bg);color:var(--w);
+  min-height:100vh;overflow-x:hidden}
+
+/* Top bar */
+.topbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);z-index:100;
+  box-shadow:0 0 12px var(--gold-glow)}
+
+/* Header */
+.header{max-width:1100px;margin:0 auto;padding:80px 32px 40px;text-align:center}
+.header h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-1px;line-height:1.1}
+.header .gold{color:var(--gold)}
+.header .sub{font-size:clamp(16px,2vw,20px);color:var(--g);margin-top:16px;line-height:1.5}
+.gl{width:180px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);
+  box-shadow:0 0 8px var(--gold-glow);margin:24px auto 0}
+
+/* Language toggle */
+.lang-toggle{display:flex;justify-content:center;gap:8px;margin:32px auto 0}
+.lang-btn{background:var(--card);border:1px solid var(--border);color:var(--dim);
+  padding:10px 24px;border-radius:100px;cursor:pointer;font-size:14px;font-weight:600;
+  letter-spacing:1px;transition:all .3s}
+.lang-btn.active{background:var(--gold-glow);border-color:var(--gold);color:var(--gold2)}
+.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Categories */
+.categories{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:900px;
+  margin:32px auto 0;padding:0 32px}
+.cat-btn{background:var(--card);border:1px solid var(--border);color:var(--dim);
+  padding:8px 18px;border-radius:100px;cursor:pointer;font-size:13px;font-weight:500;transition:all .3s}
+.cat-btn.active{background:var(--gold-glow);border-color:rgba(201,168,76,.3);color:var(--gold2)}
+.cat-btn:hover{border-color:rgba(201,168,76,.2);color:var(--g)}
+
+/* QA container */
+.qa-list{max-width:900px;margin:40px auto 80px;padding:0 32px}
+
+/* QA item */
+.qa{margin-bottom:16px;border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  background:var(--card);transition:border-color .3s}
+.qa:hover{border-color:var(--border-hover)}
+.qa-head{display:flex;align-items:flex-start;gap:16px;padding:24px 28px;cursor:pointer;
+  user-select:none;transition:background .2s}
+.qa-head:hover{background:rgba(255,255,255,0.015)}
+.qa-num{flex-shrink:0;width:40px;height:40px;background:var(--gold-glow);border:1px solid rgba(201,168,76,.15);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:var(--gold)}
+.qa-q{flex:1;font-size:17px;font-weight:600;line-height:1.4;color:var(--w)}
+.qa-arrow{flex-shrink:0;width:24px;height:24px;color:var(--dim);transition:transform .3s,color .3s;margin-top:2px}
+.qa.open .qa-arrow{transform:rotate(180deg);color:var(--gold)}
+
+.qa-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qa.open .qa-body{max-height:600px}
+.qa-answer{padding:0 28px 24px;padding-left:84px}
+.qa-answer p{font-size:16px;color:var(--g);line-height:1.7}
+.qa-answer .highlight{color:var(--gold);font-weight:600}
+.qa-answer .safety{color:#00CC66;font-weight:600}
+
+/* Category tags */
+.qa-tag{display:inline-block;background:var(--gold-glow);color:var(--gold2);
+  border:1px solid rgba(201,168,76,.1);padding:3px 10px;border-radius:100px;
+  font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+
+/* Video link */
+.qa-video{display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  color:var(--gold);font-size:13px;font-weight:600;text-decoration:none;
+  padding:6px 14px;border-radius:8px;background:rgba(201,168,76,.06);
+  border:1px solid rgba(201,168,76,.1);transition:all .3s}
+.qa-video:hover{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.25)}
+.qa-video svg{width:14px;height:14px}
+
+/* Footer */
+.footer{text-align:center;padding:40px 32px 60px;border-top:1px solid var(--border);
+  max-width:900px;margin:0 auto}
+.footer p{font-size:14px;color:var(--dim);line-height:1.6}
+.footer a{color:var(--gold);text-decoration:none}
+
+/* Responsive */
+@media(max-width:600px){
+  .qa-answer{padding-left:28px}
+  .qa-q{font-size:15px}
+  .qa-answer p{font-size:15px}
+}
+
+/* Animate in */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.qa{animation:fadeUp .5s ease both}
+.qa:nth-child(1){animation-delay:.05s}.qa:nth-child(2){animation-delay:.1s}
+.qa:nth-child(3){animation-delay:.15s}.qa:nth-child(4){animation-delay:.2s}
+.qa:nth-child(5){animation-delay:.25s}.qa:nth-child(6){animation-delay:.3s}
+.qa:nth-child(7){animation-delay:.35s}.qa:nth-child(8){animation-delay:.4s}
+.qa:nth-child(9){animation-delay:.45s}.qa:nth-child(10){animation-delay:.5s}
+.qa:nth-child(11){animation-delay:.55s}.qa:nth-child(12){animation-delay:.6s}
+.qa:nth-child(13){animation-delay:.65s}.qa:nth-child(14){animation-delay:.7s}
+.qa:nth-child(15){animation-delay:.75s}
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<div class="header">
+  <h1>Küsimused & Vastused<br><span class="gold">TAG Markets x SONIC AI</span></h1>
+  <div class="sub">Kõik küsimused, mis meie kogukond on esitanud — ausad vastused otse TAG Marketsi omanikult.</div>
+  <div class="gl"></div>
+</div>
+
+<div class="lang-toggle">
+  <div class="lang-btn active" onclick="setLang('et')">🇪🇪 Eesti</div>
+  <div class="lang-btn" onclick="setLang('en')">🇬🇧 English</div>
+</div>
+
+<div class="categories">
+  <div class="cat-btn active" data-cat="all" onclick="filterCat('all')">Kõik</div>
+  <div class="cat-btn" data-cat="regulation" onclick="filterCat('regulation')">Regulatsioon</div>
+  <div class="cat-btn" data-cat="safety" onclick="filterCat('safety')">Turvalisus</div>
+  <div class="cat-btn" data-cat="withdrawal" onclick="filterCat('withdrawal')">Väljamaksed</div>
+  <div class="cat-btn" data-cat="product" onclick="filterCat('product')">Toode</div>
+  <div class="cat-btn" data-cat="trust" onclick="filterCat('trust')">Usaldusväärsus</div>
+  <div class="cat-btn" data-cat="future" onclick="filterCat('future')">Tulevik</div>
+</div>
+
+<div class="qa-list" id="qaList">
+
+<!-- Q1 -->
+<div class="qa" data-cat="regulation">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q1</div>
+    <div class="qa-q">
+      <span class="et">AFM Holland ja FMA Austria on avaldanud hoiatused TAG Marketsi kohta. Mis on olukord?</span>
+      <span class="en" style="display:none">AFM Netherlands and FMA Austria have listed warnings against TAG Markets. What's the situation?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Regulatsioon</span>
+      <p class="et">Hollandiga on <span class="safety">juba lahendatud</span>. Me suhtlesime AFM-iga, selgitasime et TAG ise ei turunda otse Hollandis. Hetkel räägime FMA Austriaga. Kui regulaator avaldab hoiatuse, me <span class="highlight">lõpetame selles riigis turundamise</span> ja räägime otse regulaatoriga, et kõik on raamatu järgi.</p>
+      <p class="en" style="display:none">Netherlands is <span class="safety">already resolved</span>. We communicated with the AFM, told them TAG itself doesn't market directly in the Netherlands. Currently in talks with FMA Austria. When a regulator issues a warning, we <span class="highlight">stop marketing in that country</span> and talk directly with the regulator to show everything is by the book.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="qa" data-cat="regulation,safety">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q2</div>
+    <div class="qa-q">
+      <span class="et">TAG on Mauritiuse FSC litsentsiga. Mida see tähendab EL kodanikele? Kas on kaitse kui midagi juhtub?</span>
+      <span class="en" style="display:none">TAG is FSC Mauritius licensed. What does that mean for EU members? Is there protection if something goes wrong?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Regulatsioon</span>
+      <p class="et"><span class="safety">Jah, kaitse on olemas.</span> Kui TAG läheb pankrotti, saad läbi regulaatori oma raha tagasi nõuda. Regulaator kaebab omanikud kohtusse sinu raha pärast. <span class="highlight">Kliendi kapital on ka kindlustatud.</span></p>
+      <p class="en" style="display:none"><span class="safety">Yes, you have protection.</span> If TAG goes bankrupt or illiquid, you can claim your funds back through the regulator. They will sue the owners for your money. <span class="highlight">Client funds are also insured.</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="qa" data-cat="regulation">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q3</div>
+    <div class="qa-q">
+      <span class="et">Kas plaanite soetada EL litsentsi?</span>
+      <span class="en" style="display:none">Are you planning to get an EU license?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Regulatsioon</span>
+      <p class="et">Tegelikult me juba <span class="highlight">ostsime Küprose litsentsi</span>, aga otsustasime mitte kasutada. EL regulatsioonide all me ei saaks maksta partneritasusid ega pakkuda 12x/24x võimendust. See on meie põhitoode, seega me ei läinud seda teed.</p>
+      <p class="en" style="display:none">We actually already <span class="highlight">bought a Cyprus license</span> but decided not to use it. Under EU regulation we can't pay affiliate commissions or offer 12x/24x amplified accounts. That's our core product so we chose not to go that route.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="qa" data-cat="trust">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q4</div>
+    <div class="qa-q">
+      <span class="et">Mis juhtus Trustpiloti negatiivsete arvustustega?</span>
+      <span class="en" style="display:none">What happened with the Trustpilot negative reviews?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Usaldusväärsus</span>
+      <p class="et">Meil oli ühe tunni jooksul <span class="highlight">200 kuni 300 negatiivset arvustust</span>. Tõime üle partnerid teiselt maaklerilt, kes siis ründasid meid. Tegeleme Trustpilotiga, et need ükshaaval maha võtta, tõestades et tegemist pole päris klientidega.</p>
+      <p class="en" style="display:none">We had <span class="highlight">200 to 300 negative reviews</span> posted within one hour. We brought over affiliates from another broker who then attacked us. We're working with Trustpilot to remove them one by one, proving each review is from someone who isn't actually a client.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="qa" data-cat="withdrawal">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q5</div>
+    <div class="qa-q">
+      <span class="et">Millal saab raha välja kanda ja mis on reeglid?</span>
+      <span class="en" style="display:none">When can you withdraw and what are the rules?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Väljamaksed</span>
+      <p class="et"><span class="safety">Kasumit saad välja kanda igal ajal</span>, samal päeval. Esialgse deposiidi 12x/24x kontodel saad välja <span class="highlight">30 päeva pärast</span>. Tava ja zero kontodel esialgse kapitali igal ajal. Lisatingimusi ei ole.</p>
+      <p class="en" style="display:none"><span class="safety">Profits you can withdraw any time</span>, same day. Initial deposit on 12x/24x accounts after <span class="highlight">30 days</span>. Standard and zero accounts, initial capital any time. No hidden rules or extra conditions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q6 -->
+<div class="qa" data-cat="withdrawal,safety">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q6</div>
+    <div class="qa-q">
+      <span class="et">Millisel juhul TAG keeldub väljamaksest?</span>
+      <span class="en" style="display:none">Under what circumstances would TAG reject a withdrawal?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Väljamaksed</span>
+      <p class="et">Ainult siis kui klient kuritarvitab süsteemi — arbitraaž, manipulatsioon või tegevused mis lähevad meie tingimuste vastu manuaalse kauplemisega. <span class="safety">Kui kasutad kopeerimislahendust nagu SONIC, siis see sind ei puuduta.</span> Kopitreidid käivad alati reeglite järgi.</p>
+      <p class="en" style="display:none">Only if a client abuses the system through arbitrage, manipulation, or activities against our terms with manual trading. <span class="safety">If you use copy trading like SONIC, this doesn't apply to you.</span> Copy traders always trade within the rules.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q7 -->
+<div class="qa" data-cat="trust">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q7</div>
+    <div class="qa-q">
+      <span class="et">Kes tellis võltsarvustused ja kas saab parandada?</span>
+      <span class="en" style="display:none">Who ordered the fake Trustpilot reviews and can it be fixed?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Usaldusväärsus</span>
+      <p class="et">Googlest leiab teenuseid mis müüvad 300 kuni 1000 negatiivset arvustust <span class="highlight">5000 kuni 6000 dollari eest</span>. Me palusime Trustpilotil reitingu maha võtta kuna see on ebaõiglane. Esitame tõendeid et need pole päris kliendid ja need <span class="safety">võetakse ükshaaval maha</span>.</p>
+      <p class="en" style="display:none">You can Google services that sell 300 to 1000 negative reviews for <span class="highlight">$5,000 to $6,000</span>. We asked Trustpilot to take down the rating because it's unfair. We're providing proof that these aren't real clients and they're <span class="safety">removing them one by one</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q8 -->
+<div class="qa" data-cat="withdrawal">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q8</div>
+    <div class="qa-q">
+      <span class="et">Kas väljamakset saab teha pangakontole? Ühel kliendil lükati tagasi.</span>
+      <span class="en" style="display:none">Can withdrawals be made to a personal bank account? One client says his was declined.</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Väljamaksed</span>
+      <p class="et">Väljamakse meetod peab kattuma deposiidi meetodiga. <span class="highlight">Pangast sisse — pangale välja. Kryptost sisse — kryptole välja.</span> See on rahapesu tõkestamise nõue.</p>
+      <p class="en" style="display:none">Withdrawal method must match deposit method. <span class="highlight">Bank deposit means bank withdrawal. Crypto deposit means crypto withdrawal.</span> This is anti-money laundering compliance.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q9 -->
+<div class="qa" data-cat="regulation,safety">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q9</div>
+    <div class="qa-q">
+      <span class="et">Kui tihti Mauritiuse regulaator kontrollib TAG Marketsit?</span>
+      <span class="en" style="display:none">How often does the Mauritius regulator check TAG Markets?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Regulatsioon</span>
+      <p class="et"><span class="highlight">Iganädalaselt.</span> Meil on igal nädalal kõne. Nad kontrollivad meie kontosid, raamatupidamist, et kliendi kapital on segregeeritud ja et kõik klappib. <span class="safety">Peamine prioriteet on kliendi raha eraldatus ettevõtte ja partnerite rahast.</span></p>
+      <p class="en" style="display:none"><span class="highlight">Weekly.</span> We have a call every week. They check our accounts, bookkeeping, that client funds are segregated, and that everything balances. <span class="safety">Their top priority is client funds being separate from company and affiliate funds.</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- Q10 -->
+<div class="qa" data-cat="trust,product">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q10</div>
+    <div class="qa-q">
+      <span class="et">Miks ei ole TAG kodulehel likviidsuspakkujaid nagu Vantage'il? Kuidas on 2-aastasel maakleril 75 LP-d?</span>
+      <span class="en" style="display:none">Why aren't liquidity providers listed on TAG's website? How does a 2-year-old broker have 75 LPs?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Usaldusväärsus</span>
+      <p class="et">Vantage'il ja StarTraderil on palju rohkem kui 14–25, nad lihtsalt ei näita kõiki. Meil on palju sest me teeme palju <span class="highlight">A-book voogu</span>. Ma olen 11 aastat selles valdkonnas ja tunnen kõiki. Spetsiifiliselt AITECH kogukonnale on meil leping et <span class="safety">kõik on ainult A-book</span> — me oleme kliendi poolel, teenime tehingutelt mitte klientide kaotustest. Paneme mõned LP nimed kodulehele üles.</p>
+      <p class="en" style="display:none">Vantage and StarTrader have way more than 14–25 LPs, they just don't list them all. We have many because we do a lot of <span class="highlight">A-book flow</span>. I've been in the game 11 years and know basically everyone. For the AITECH community specifically we have a contract that <span class="safety">everything is A-booked only</span> — we're on the client's side, we make money from transactions not from clients losing.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q11 -->
+<div class="qa" data-cat="product,future">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q11</div>
+    <div class="qa-q">
+      <span class="et">Kui kaua on veel aega kuni SONIC AI on täis?</span>
+      <span class="en" style="display:none">How long until SONIC AI is full?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Toode</span>
+      <p class="et">Raske täpselt öelda. Sõltub likviidsusest, kauplemistulemustest ja kasvust. Praeguse kasvutempo juures <span class="highlight">umbes üks aasta</span>.</p>
+      <p class="en" style="display:none">Hard to answer exactly. Depends on liquidity, trading performance, and growth. At the current growth rate, <span class="highlight">approximately one year</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q12 -->
+<div class="qa" data-cat="product,future">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q12</div>
+    <div class="qa-q">
+      <span class="et">Kas tuleb sarnaseid strateegiaid nagu SONIC?</span>
+      <span class="en" style="display:none">Will there be similar strategies to SONIC?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Toode</span>
+      <p class="et">Ma loodan küll. Mul isiklikult on <span class="highlight">500 000 dollarit NEO.FX-is</span> ja mitu miljonit SONICus. NEO tasude struktuur on erinev — kaupleja võtab rohkem ja vähem läheb kogukonna puusse.</p>
+      <p class="en" style="display:none">I hope so. I personally have <span class="highlight">$500,000 in NEO.FX</span> and multiple seven figures in SONIC. NEO's fee structure is different — the trader takes more and less goes to the community tree.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q13 -->
+<div class="qa" data-cat="product">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q13</div>
+    <div class="qa-q">
+      <span class="et">Kuidas likviidsuspakkujad teenivad?</span>
+      <span class="en" style="display:none">How do liquidity providers make money?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Toode</span>
+      <p class="et">Me maksame neile <span class="highlight">fikseeritud dollari summa iga miljoni eest</span> võimendatud kapitalis, pluss väike protsent meie käibest olenevalt LP kokkuleppest.</p>
+      <p class="en" style="display:none">We pay them a <span class="highlight">fixed dollar amount per million</span> in amplified capital plus a small percentage of our turnover depending on the LP agreement.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q14 -->
+<div class="qa" data-cat="product">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q14</div>
+    <div class="qa-q">
+      <span class="et">Miks on spreadid nii kõrged 12x ja 24x kontodel?</span>
+      <span class="en" style="display:none">Why are spreads so high on 12x and 24x accounts?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Toode</span>
+      <p class="et">Ausalt öeldes nad ongi kallid. <span class="highlight">Spreadid on kõrged sest me peame likviidsuspakkujatele tagasi maksma</span> võimenduse eest. See on toote hind.</p>
+      <p class="en" style="display:none">Honestly they're expensive. <span class="highlight">The spreads are high because we need to pay back the liquidity providers</span> for the amplification. That's the cost of the product.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Q15 -->
+<div class="qa" data-cat="future">
+  <div class="qa-head" onclick="toggle(this)">
+    <div class="qa-num">Q15</div>
+    <div class="qa-q">
+      <span class="et">Mis on selle aasta visioon?</span>
+      <span class="en" style="display:none">What's your vision for this year?</span>
+    </div>
+    <svg class="qa-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="qa-body">
+    <div class="qa-answer">
+      <span class="qa-tag">Tulevik</span>
+      <p class="et">Käivitada <span class="highlight">BitOne täismahus</span> — kriptopörs, debitkaart, pangakontod. Kaardil pole limiite, juba testime. Eesmärk <span class="highlight">50 miljonit klienti aasta lõpuks</span>. Juba loome uusi tooteid aastaks 2027. TAG Markets + kriptopörs + debitkaart katab kõik finantsvaldkonnad.</p>
+      <p class="en" style="display:none">Launch <span class="highlight">BitOne at scale</span> — crypto exchange, debit card, bank accounts. The card has no limits, already testing it. Goal is <span class="highlight">50 million clients by year end</span>. Already building new products for 2027. TAG Markets + crypto exchange + debit card covers everything in finance.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>Vastused on antud TAG Marketsi kaasasutaja poolt live Zoom kõnes 16. märts 2026.<br>
+  <a href="/story/">Vaata täielikku esitlust &rarr;</a></p>
+</div>
+
+<script>
+var lang='et';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent.indexOf(l==='et'?'Eesti':'English')>-1)});
+  document.querySelectorAll('.et').forEach(function(e){e.style.display=l==='et'?'':'none'});
+  document.querySelectorAll('.en').forEach(function(e){e.style.display=l==='en'?'':'none'});
+}
+
+function toggle(head){
+  var qa=head.parentElement;
+  qa.classList.toggle('open');
+}
+
+function filterCat(cat){
+  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.toggle('active',b.dataset.cat===cat)});
+  document.querySelectorAll('.qa').forEach(function(q){
+    if(cat==='all'){q.style.display='';return;}
+    var cats=q.dataset.cat.split(',');
+    q.style.display=cats.indexOf(cat)>-1?'':'none';
+  });
+}
+
+// Open first question by default
+document.querySelector('.qa').classList.add('open');
+</script>
+
+</body>
+</html>
