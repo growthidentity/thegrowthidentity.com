@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hüppa&Hulla - Mängutuba Jüris | Lastepidu & Sünnipäev</title>
+    <meta name="description" content="Hüppa&Hulla on privaatne kahe korrusega mängutuba Jüris. Korralda unistuste sünnipäevapidu, perepidu või firmaüritus. Broneeri juba täna!">
+    <meta name="keywords" content="mängutuba, Jüri, lastepidu, sünnipäevapidu, mängukoht, laste sünnipäev, peokoht, Tallinn, Harjumaa">
+    <meta property="og:title" content="Hüppa&Hulla - Mängutuba Jüris">
+    <meta property="og:description" content="Jüri suurim privaatne kahe korrusega mängutuba. Sünnipäevapeod, pereüritused, firmaüritused. Broneeri!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/pro/hero.jpg">
+    <meta property="og:locale" content="et_EE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hüppa&Hulla - Mängutuba Jüris">
+    <meta name="twitter:description" content="Jüri suurim privaatne mängutuba. Sünnipäevapeod alates 180€!">
+    <meta name="twitter:image" content="images/pro/hero.jpg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#f7a8c4">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="girl">
+    <!-- Gender Choice Splash -->
+    <div class="splash-overlay" id="splashOverlay">
+        <div class="splash-content">
+            <img src="images/logo-ai.png" alt="Hüppa&Hulla" class="splash-logo">
+            <h2>Tere tulemast!</h2>
+            <p data-et="Vali oma seiklus!" data-ru="Выбери приключение!">Vali oma seiklus!</p>
+            <div class="splash-choices">
+                <button class="splash-btn splash-girl" id="chooseGirl">
+                    <img src="images/logo-ai.png" alt="Tüdruk" class="splash-btn-img">
+                    <span class="splash-btn-label">Tüdruk</span>
+                    <span class="splash-btn-sub">Printsessid & liblikad</span>
+                </button>
+                <button class="splash-btn splash-boy" id="chooseBoy">
+                    <img src="images/boys/logo-boy.png" alt="Poiss" class="splash-btn-img">
+                    <span class="splash-btn-label">Poiss</span>
+                    <span class="splash-btn-sub">Piraadid & raketid</span>
+                </button>
+            </div>
+            <button class="splash-skip" id="splashSkip" data-et="Jätka ilma valikuta" data-ru="Продолжить без выбора">Jätka ilma valikuta</button>
+        </div>
+        <img src="images/splash-choice.png" alt="" class="splash-bg">
+    </div>
+
+    <!-- Theme Toggle (always visible in corner) -->
+    <div class="theme-toggle" id="themeToggle">
+        <button class="theme-btn theme-btn-girl active" data-theme="girl" title="Tüdruk">
+            <img src="images/logo-ai.png" alt="" class="theme-btn-icon">
+        </button>
+        <button class="theme-btn theme-btn-boy" data-theme="boy" title="Poiss">
+            <img src="images/boys/logo-boy.png" alt="" class="theme-btn-icon">
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#avaleht" class="nav-logo">
+                <img src="images/logo-ai.png" alt="Hüppa&Hulla logo" class="logo-img">
+                <span class="nav-brand-text">Hüppa&Hulla</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menüü">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#avaleht" class="nav-link">Avaleht</a></li>
+                <li><a href="#meist" class="nav-link">Meist</a></li>
+                <li><a href="#mangutuba" class="nav-link">Mängutuba</a></li>
+                <li><a href="#hinnakiri" class="nav-link">Hinnakiri</a></li>
+                <li><a href="#galerii" class="nav-link">Galerii</a></li>
+                <li><a href="#kkk" class="nav-link">KKK</a></li>
+                <li><a href="#kontakt" class="nav-link nav-cta">Broneeri</a></li>
+                <li class="lang-switch">
+                    <button class="lang-btn active" data-lang="et">ET</button>
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="avaleht">
+        <div class="hero-bg-image" style="background-image: url('images/pro/hero.jpg')"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-logo-wrap">
+                <img src="images/logo-ai.png" alt="Hüppa&Hulla maskott" class="hero-mascot">
+            </div>
+            <h1 class="hero-title">Jüri suurim ja ägedaim mängutuba!</h1>
+            <p class="hero-subtitle">Privaatne kahe korrusega mänguparadiis Rae vallas — kogu ruum ainult teie päralt! Ronimiskeskus, beebituba, köök ja kaunis päikeseloojanguvaade ühe katuse all.</p>
+            <div class="hero-buttons">
+                <a href="#kontakt" class="btn btn-primary btn-lg">Broneeri pidu</a>
+                <a href="#mangutuba" class="btn btn-secondary btn-lg">Avasta mängutuba</a>
+            </div>
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <img src="images/icons/icon-star.png" alt="" class="ti">
+                    <span>100% soovitavad</span>
+                </div>
+                <div class="trust-item">
+                    <img src="images/icons/icon-family.png" alt="" class="ti">
+                    <span>500+ õnnelikku peret</span>
+                </div>
+                <div class="trust-item">
+                    <img src="images/icons/icon-house.png" alt="" class="ti">
+                    <span>2 korrust mänguala</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,80 1440,60 L1440,120 L0,120 Z" fill="#ffffff"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Social Proof Banner -->
+    <section class="social-proof-banner">
+        <div class="container">
+            <div class="proof-grid">
+                <div class="proof-item">
+                    <span class="proof-number" data-target="500">500+</span>
+                    <span class="proof-label">õnnelikku peret</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-number">100%</span>
+                    <span class="proof-label">soovitavad Facebookis</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-number">2</span>
+                    <span class="proof-label">korrust mänguala</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-number">Jüri #1</span>
+                    <span class="proof-label">suurim mängutuba</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unique Selling Points -->
+    <section class="usp-section">
+        <div class="container">
+            <div class="usp-grid">
+                <div class="usp-card">
+                    <div class="usp-icon"><img src="images/icons/icon-lock.png" alt="Privaatne" class="ti-lg"></div>
+                    <h3>100% Privaatne</h3>
+                    <p>Kogu mängutuba on ainult teie päralt — mitte ühtegi võõrast. Täielik privaatsus ja rahu.</p>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon"><img src="images/icons/icon-confetti.png" alt="Jüri suurim" class="ti-lg"></div>
+                    <h3>Jüri suurim</h3>
+                    <p>Kahe korrusega avar mänguparadiis — piirkonna suurim ja mitmekülgseim mängutuba!</p>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon"><img src="images/icons/icon-sunset.png" alt="Päikeseloojang" class="ti-lg"></div>
+                    <h3>Päikeseloojanguvaade</h3>
+                    <p>Kaunis vaade suurtest akendest — ideaalne taust pidude ja ürituste jaoks.</p>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon"><img src="images/icons/icon-baby.png" alt="Beebisõbralik" class="ti-lg"></div>
+                    <h3>Beebisõbralik</h3>
+                    <p>Eraldi beebituba ja turvaline mänguala ka kõige väiksematele.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="meist">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Tere tulemast!</span>
+                <h2 class="section-title">Miks sõita Tallinnasse, kui parim on siin?</h2>
+                <p class="section-desc">Rae valla peredel pole enam vaja kaugele sõita. Hüppa&Hulla on Jüri suurim ja mitmekülgseim mängutuba — privaatne, avar ja kõik vajalik ühe katuse all.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="about-feature">
+                        <div class="feature-icon"><img src="images/icons/icon-checkmark.png" alt="" class="ti-sm"></div>
+                        <div>
+                            <h4>Privaatne rendipind</h4>
+                            <p>Kogu 2-korruseline mängutuba on ainult teie kasutuses. Pole teisi peresid — ainult teie seltskond!</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon"><img src="images/icons/icon-checkmark.png" alt="" class="ti-sm"></div>
+                        <div>
+                            <h4>Avar ja turvaline</h4>
+                            <p>Suurepärane ventilatsioon, ohtralt valgust ja pehmendatud põrandad — laste turvalisus on meie prioriteet.</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon"><img src="images/icons/icon-checkmark.png" alt="" class="ti-sm"></div>
+                        <div>
+                            <h4>Paindlik kasutus</h4>
+                            <p>Lastepidudest kuni pere- ja firmaüritusteni — sina otsustad, meie pakume ruumi!</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon"><img src="images/icons/icon-checkmark.png" alt="" class="ti-sm"></div>
+                        <div>
+                            <h4>Täisvarustuses köök</h4>
+                            <p>Köök kohapeal — valmista ise toitu või telli catering. Kohv ja tee alati tasuta!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/pro/about.jpg" alt="Hüppa&Hulla peoruumi" class="about-img">
+                    <div class="about-badge">
+                        <span class="badge-number">14</span>
+                        <span class="badge-text">soovitust<br>Facebookis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playroom Tour Section -->
+    <section class="tour-section" id="mangutuba">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Virtuaaltuur</span>
+                <h2 class="section-title">Avasta meie mängutuba</h2>
+                <p class="section-desc">Kahe korrusega mänguparadiis, kus iga laps leiab endale midagi põnevat!</p>
+            </div>
+            <div class="tour-grid">
+                <div class="tour-card tour-card-large">
+                    <img src="images/pro/tour-climbing.jpg" alt="Ronimiskeskus" class="tour-img">
+                    <div class="tour-overlay">
+                        <h3>Ronimiskeskus</h3>
+                        <p>Mitmetasandiline ronimisala liuväljadega, tunnelite ja pallibasseiniga</p>
+                    </div>
+                </div>
+                <div class="tour-card">
+                    <img src="images/pro/tour-party.jpg" alt="Peoruumi söögilaud" class="tour-img">
+                    <div class="tour-overlay">
+                        <h3>Peoruum</h3>
+                        <p>Suur laud kuni 12 täiskasvanule + laste laud</p>
+                    </div>
+                </div>
+                <div class="tour-card">
+                    <img src="images/pro/tour-play.jpg" alt="Lastepidu" class="tour-img">
+                    <div class="tour-overlay">
+                        <h3>Pidude ala</h3>
+                        <p>Kaunistatud ja valmis peoks!</p>
+                    </div>
+                </div>
+                <div class="tour-card">
+                    <img src="images/pro/tour-costumes.jpg" alt="Kaunistused" class="tour-img">
+                    <div class="tour-overlay">
+                        <h3>Teemakaunistused</h3>
+                        <p>Lisateenus: täielik kaunistus vaid 35&#8364;</p>
+                    </div>
+                </div>
+                <div class="tour-card">
+                    <img src="images/pro/tour-baby.jpg" alt="Mänguala" class="tour-img">
+                    <div class="tour-overlay">
+                        <h3>Mänguala</h3>
+                        <p>Kostüümid, mängulaud, beebiala ja palju muud</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included Section -->
+    <section class="included-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Kõik hinnas</span>
+                <h2 class="section-title">Mida sa saad?</h2>
+            </div>
+            <div class="included-grid">
+                <div class="included-item">
+                    <img src="images/icons/icon-coffee.png" alt="" class="ti">
+                    <span>Kohv ja tee</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-parking.png" alt="" class="ti">
+                    <span>Tasuta parkimine</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-ventilation.png" alt="" class="ti">
+                    <span>Suurepärane ventilatsioon</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-sunset.png" alt="" class="ti">
+                    <span>Päikeseloojanguvaade</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-kitchen.png" alt="" class="ti">
+                    <span>Täisvarustatud köök</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-babycrib.png" alt="" class="ti">
+                    <span>Beebituba</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-toilet.png" alt="" class="ti">
+                    <span>WC mõlemal korrusel</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-stairs.png" alt="" class="ti">
+                    <span>2 korrust mänguala</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-tv.png" alt="" class="ti">
+                    <span>TV ekraan</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-climbing.png" alt="" class="ti">
+                    <span>Ronimiskeskus</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-costume.png" alt="" class="ti">
+                    <span>Kostüüminurk</span>
+                </div>
+                <div class="included-item">
+                    <img src="images/icons/icon-discoball.png" alt="" class="ti">
+                    <span>Diskoball</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="hinnakiri">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Hinnakiri</span>
+                <h2 class="section-title">Vali sobiv aeg</h2>
+                <p class="section-desc">Kõik broneeringud kestavad <strong>3 tundi</strong> (+ 15 min ettevalmistus ja 15 min koristus)</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-badge">Soodsaim</div>
+                    <div class="price-header">
+                        <h3>Tööpäev hommik</h3>
+                        <p>Esmaspäev - Neljapäev</p>
+                    </div>
+                    <div class="price-amount">
+                        <span class="price-currency">&#8364;</span>
+                        <span class="price-number">180</span>
+                    </div>
+                    <div class="price-time">10:00 - 13:00</div>
+                    <ul class="price-features">
+                        <li>3 tundi privaatset kasutust</li>
+                        <li>Kogu mängutuba teie päralt</li>
+                        <li>Kohv, tee ja köök kaasas</li>
+                        <li>Tasuta parkimine</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline">Broneeri</a>
+                </div>
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>Tööpäev pärastlõuna / õhtu</h3>
+                        <p>Esmaspäev - Neljapäev</p>
+                    </div>
+                    <div class="price-amount">
+                        <span class="price-currency">&#8364;</span>
+                        <span class="price-number">200</span>
+                    </div>
+                    <div class="price-time">14:00 - 17:00 või 18:00 - 21:00</div>
+                    <ul class="price-features">
+                        <li>3 tundi privaatset kasutust</li>
+                        <li>Kogu mängutuba teie päralt</li>
+                        <li>Kohv, tee ja köök kaasas</li>
+                        <li>Tasuta parkimine</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline">Broneeri</a>
+                </div>
+                <div class="price-card price-card-featured">
+                    <div class="price-badge">Populaarne</div>
+                    <div class="price-header">
+                        <h3>Nädalavahetus</h3>
+                        <p>Laupäev - Pühapäev</p>
+                    </div>
+                    <div class="price-amount">
+                        <span class="price-currency">&#8364;</span>
+                        <span class="price-number">250</span>
+                    </div>
+                    <div class="price-time">Kõik ajad (10-13 / 14-17 / 18-21)</div>
+                    <ul class="price-features">
+                        <li>3 tundi privaatset kasutust</li>
+                        <li>Kogu mängutuba teie päralt</li>
+                        <li>Kohv, tee ja köök kaasas</li>
+                        <li>Tasuta parkimine</li>
+                        <li>Ideaalne sünnipäevaks!</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-primary">Broneeri</a>
+                </div>
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>Reede</h3>
+                        <p>Reede</p>
+                    </div>
+                    <div class="price-amount">
+                        <span class="price-currency">&#8364;</span>
+                        <span class="price-number">200<span class="price-dash">-</span>220</span>
+                    </div>
+                    <div class="price-time">Hommik 200&#8364; / Pärastlõuna 220&#8364;</div>
+                    <ul class="price-features">
+                        <li>3 tundi privaatset kasutust</li>
+                        <li>Kogu mängutuba teie päralt</li>
+                        <li>Kohv, tee ja köök kaasas</li>
+                        <li>Tasuta parkimine</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline">Broneeri</a>
+                </div>
+            </div>
+
+            <div class="pricing-extras">
+                <div class="extra-card">
+                    <h4><img src="images/icons/icon-balloon.png" alt="" class="ti-inline"> Täielik koristusteenuse</h4>
+                    <p>Lisa kaunistused juurde vaid <strong>35&#8364;</strong> eest — meie kaunistame, sina naudid!</p>
+                </div>
+                <div class="extra-card">
+                    <h4><img src="images/icons/icon-creditcard.png" alt="" class="ti-inline"> Broneerimine</h4>
+                    <p>Broneerimistasu <strong>30%</strong> ettemaks. Ülejäänu eelmisel päeval või kohapeal. Maksmine ülekande või sularahaga.</p>
+                </div>
+                <div class="extra-card">
+                    <h4><img src="images/icons/icon-socks.png" alt="" class="ti-inline"> Sokkide kandmine kohustuslik!</h4>
+                    <p>Laste turvalisuse tagamiseks palume kõigil külastajatel kanda sokke.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-on Services -->
+    <section class="addons-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-et="Lisateenused" data-ru="Доп. услуги">Lisateenused</span>
+                <h2 class="section-title" data-et="Tee oma pidu veelgi erilisemaks" data-ru="Сделайте праздник ещё особенней">Tee oma pidu veelgi erilisemaks</h2>
+                <p class="section-desc" data-et="Lisa juurde teenuseid, mis muudavad sünnipäeva unustamatuks!" data-ru="Добавьте услуги, которые сделают день рождения незабываемым!">Lisa juurde teenuseid, mis muudavad sünnipäeva unustamatuks!</p>
+            </div>
+            <div class="addons-grid">
+                <div class="addon-card">
+                    <img src="images/icons/icon-balloon.png" alt="" class="ti-lg">
+                    <h3 data-et="Täielik kaunistus" data-ru="Полное оформление">Täielik kaunistus</h3>
+                    <p class="addon-price">35&#8364;</p>
+                    <p data-et="Meie kaunistame ruumi enne teie saabumist — õhupallid, kardinad, teemakaunistused." data-ru="Мы украсим зал до вашего прихода — шарики, гирлянды, тематическое оформление.">Meie kaunistame ruumi enne teie saabumist — õhupallid, kardinad, teemakaunistused.</p>
+                </div>
+                <div class="addon-card">
+                    <img src="images/icons/icon-discoball.png" alt="" class="ti-lg">
+                    <h3 data-et="Laste disko" data-ru="Детская дискотека">Laste disko</h3>
+                    <p class="addon-price" data-et="Küsi hinda" data-ru="Узнай цену">Küsi hinda</p>
+                    <p data-et="Diskopall, värvilised tuled, laste lemmikmuusika ja mänguline diskoõhtu!" data-ru="Диско-шар, цветные огни, любимая музыка и весёлая дискотека для детей!">Diskopall, värvilised tuled, laste lemmikmuusika ja mänguline diskoõhtu!</p>
+                </div>
+                <div class="addon-card">
+                    <img src="images/icons/icon-costume.png" alt="" class="ti-lg">
+                    <h3 data-et="Kostüümipidu" data-ru="Костюмированная вечеринка">Kostüümipidu</h3>
+                    <p class="addon-price" data-et="Tasuta" data-ru="Бесплатно">Tasuta</p>
+                    <p data-et="Meie kostüüminurgas on printsessikleidid, superkangelaste mantlid ja palju muud!" data-ru="В нашем уголке костюмов — платья принцесс, плащи супергероев и многое другое!">Meie kostüüminurgas on printsessikleidid, superkangelaste mantlid ja palju muud!</p>
+                </div>
+                <div class="addon-card addon-card-highlight">
+                    <img src="images/icons/icon-star.png" alt="" class="ti-lg">
+                    <h3 data-et="Püsikliendi soodustus" data-ru="Скидка для постоянных клиентов">Püsikliendi soodustus</h3>
+                    <p class="addon-price">-10%</p>
+                    <p data-et="Alates 3. broneeringust saad automaatselt 10% soodustust! Lihtsalt mainige broneerides." data-ru="С 3-го бронирования автоматически скидка 10%! Просто упомяните при бронировании.">Alates 3. broneeringust saad automaatselt 10% soodustust! Lihtsalt mainige broneerides.</p>
+                </div>
+            </div>
+            <div class="invitation-builder" id="invitationBuilder">
+                <div class="inv-header">
+                    <img src="images/icons/icon-star.png" alt="" class="ti-lg">
+                    <div>
+                        <h3 data-et="AI loob Sinu lapsele unikaalse kutse!" data-ru="ИИ создаст уникальное приглашение!">AI loob Sinu lapsele unikaalse kutse!</h3>
+                        <p data-et="Täida paar rida — meie tehisintellekt genereerib 2 kaunist kutset. Saadame e-postile!" data-ru="Заполни пару строк — наш ИИ сгенерирует 2 красивых приглашения. Отправим на e-mail!">Täida paar rida — meie tehisintellekt genereerib 2 kaunist kutset. Saadame e-postile!</p>
+                    </div>
+                </div>
+                <div class="inv-content">
+                    <div class="inv-form" id="invForm">
+                        <div class="form-group">
+                            <label for="invEmail" data-et="Sinu e-post (saadame kutsed siia)" data-ru="Ваш e-mail (отправим приглашения сюда)">Sinu e-post (saadame kutsed siia)</label>
+                            <input type="email" id="invEmail" placeholder="teie@email.ee" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="invName" data-et="Lapse nimi" data-ru="Имя ребёнка">Lapse nimi</label>
+                                <input type="text" id="invName" placeholder="Nt: Mari" maxlength="25" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="invAge" data-et="Mitmendaks saab?" data-ru="Сколько исполняется?">Mitmendaks saab?</label>
+                                <input type="number" id="invAge" placeholder="5" min="1" max="18" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="invDate" data-et="Peo kuupäev" data-ru="Дата праздника">Peo kuupäev</label>
+                                <input type="date" id="invDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="invTime" data-et="Kellaaeg" data-ru="Время">Kellaaeg</label>
+                                <input type="text" id="invTime" placeholder="14:00" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="invTheme" data-et="Peo teema (valikuline)" data-ru="Тема праздника (по желанию)">Peo teema (valikuline)</label>
+                            <input type="text" id="invTheme" placeholder="Nt: Piraadid, printsessid, dinosaurused, kosmos..." maxlength="40">
+                        </div>
+                        <button type="button" class="btn btn-primary btn-full" id="generateInvitation">
+                            <img src="images/icons/icon-star.png" alt="" class="ti-btn"> Genereeri kutsed
+                        </button>
+                        <p class="form-note" data-et="Tehisintellekt loob 2 unikaalset kutset ~30 sekundiga. Tasuta!" data-ru="ИИ создаст 2 уникальных приглашения за ~30 секунд. Бесплатно!">Tehisintellekt loob 2 unikaalset kutset ~30 sekundiga. Tasuta!</p>
+                    </div>
+                    <div class="inv-preview" id="invPreview">
+                        <div class="inv-placeholder">
+                            <img src="images/icons/icon-lightbulb.png" alt="" class="ti-lg">
+                            <p data-et="Täida andmed ja AI genereerib sulle 2 unikaalset kutset!" data-ru="Заполни данные и ИИ сгенерирует 2 уникальных приглашения!">Täida andmed ja AI genereerib sulle 2 unikaalset kutset!</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Results (hidden by default) -->
+                <div class="inv-results" id="invResults" style="display:none;">
+                    <h4 data-et="Sinu kutsed on valmis!" data-ru="Ваши приглашения готовы!">Sinu kutsed on valmis!</h4>
+                    <div class="inv-results-grid">
+                        <div class="inv-result-card">
+                            <img id="invResult1" src="" alt="Kutse 1" class="inv-result-img">
+                            <a id="invDl1" href="" download class="btn btn-outline btn-full" data-et="Lae alla" data-ru="Скачать">Lae alla</a>
+                        </div>
+                        <div class="inv-result-card">
+                            <img id="invResult2" src="" alt="Kutse 2" class="inv-result-img">
+                            <a id="invDl2" href="" download class="btn btn-outline btn-full" data-et="Lae alla" data-ru="Скачать">Lae alla</a>
+                        </div>
+                    </div>
+                    <p class="form-note" data-et="Kutsed on saadetud ka sinu e-postile!" data-ru="Приглашения также отправлены на ваш e-mail!">Kutsed on saadetud ka sinu e-postile!</p>
+                </div>
+                <!-- Loading state -->
+                <div class="inv-loading" id="invLoading" style="display:none;">
+                    <div class="inv-spinner"></div>
+                    <p data-et="AI loob sinu kutseid..." data-ru="ИИ создаёт приглашения...">AI loob sinu kutseid...</p>
+                    <p class="inv-loading-sub" data-et="See võtab ~30 sekundit" data-ru="Это займёт ~30 секунд">See võtab ~30 sekundit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="galerii">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Galerii</span>
+                <h2 class="section-title">Hetked meie mängutoast</h2>
+                <p class="section-desc">Vaata, kuidas lapsed meie juures lõbutsevad!</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-item-wide">
+                    <img src="images/pro/gal-1.jpg" alt="Avar mänguala kostüümide ja ronimiskeskusega" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pro/gal-2.jpg" alt="Pallibassein liuväljaga" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pro/gal-3.jpg" alt="Peoruum õhupallikaarega" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pro/gal-4.jpg" alt="Laste mänguasjad" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pro/gal-5.jpg" alt="Hoone välisvaade" class="gallery-img">
+                </div>
+                <div class="gallery-item gallery-item-wide">
+                    <img src="images/pro/gal-6.jpg" alt="Öine atmosfäär diskovalgustatega" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pro/gal-7.jpg" alt="Ronimiskeskus öise valgustusega" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pro/gal-8.jpg" alt="Laste mänguköök" class="gallery-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Arvustused</span>
+                <h2 class="section-title">Mida pered arvavad?</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"></div>
+                    <p>"Super koht lastepeo pidamiseks! Ruumi on piisavalt, lapsed olid ülimalt elevil. Kindlasti tuleme tagasi!"</p>
+                    <div class="testimonial-author">
+                        <span class="author-name">&#8212; Õnnelik ema Facebookist</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"></div>
+                    <p>"Parim koht sünnipäeva pidamiseks! Privaatne, puhas ja lapsed armastavad ronimiskeskust. Soovitan soojalt!"</p>
+                    <div class="testimonial-author">
+                        <span class="author-name">&#8212; Rahulolev lapsevanem</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"><img src="images/icons/icon-star.png" alt="" class="ti-star"></div>
+                    <p>"Imeline koht! Köök oli väga mugav, sai ise toidu valmistada. Lapsed ei tahtnud ära tulla!"</p>
+                    <div class="testimonial-author">
+                        <span class="author-name">&#8212; Korduvkülastaja</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-cta">
+                <p><img src="images/icons/icon-star.png" alt="" class="ti-inline"> <strong>100% soovitavad</strong> 14 arvustuse põhjal Facebookis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="kkk">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">KKK</span>
+                <h2 class="section-title">Korduma kippuvad küsimused</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">Mis vanuses lastele mängutuba sobib?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Meie mängutuba sobib lastele vanuses 1-12 aastat. Väiksematele on eraldi beebituba turvalise mängualaga, suurematele mitmetasandiline ronimiskeskus, liuväljak ja palju muud!</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Mitu last mahub korraga?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Mängutuba on avar ja kahe korrusega — mugavalt mahub kuni 20-25 last koos vanematega. Täiskasvanute lauda mahub 12 inimest ja lastele on eraldi laud.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Kas toitu võib ise kaasa tuua?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Jah! Teil on kasutada täisvarustatud köök. Võite tuua oma toidu, valmistada kohapeal või tellida catering'u. Kohv ja tee on alati tasuta!</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Kuidas broneerimine käib?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Võta meiega ühendust telefoni, e-posti või Facebooki kaudu. Broneerimiseks on vajalik 30% ettemaks. Ülejäänud summa tasutakse eelmisel päeval pangaülekandega või kohapeal sularahas.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Kas parkimine on tasuta?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Jah! Maja ees on suur tasuta parkla, kuhu mahub palju autosid. Mugav ligipääs ka lapsevankriga.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Kas kaunistused on kaasa arvatud?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Põhikaunistus (diskoball, valgusefektid) on olemas. Soovi korral saab lisada täieliku teemakaunistuse vaid 35&#8364; eest — meie kaunistame ruumi enne teie saabumist!</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Miks peavad kõik sokke kandma?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Sokkide kandmine on kohustuslik hügieeni ja turvalisuse tagamiseks. Pehmendatud põrandatel on sokkidega mugavam ja turvalisem liikuda. Palume sokkid endal kaasa võtta!</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Miks meie?</span>
+                <h2 class="section-title">Hüppa&Hulla eelis</h2>
+                <p class="section-desc">Võrdle ise — miks Rae valla pered valivad meid!</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comp-row comp-header">
+                    <div class="comp-cell"></div>
+                    <div class="comp-cell comp-us">Hüppa&Hulla</div>
+                    <div class="comp-cell comp-them">Tüüpiline Tallinna mängutuba</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Privaatsus</div>
+                    <div class="comp-cell comp-us">Kogu ruum ainult teile</div>
+                    <div class="comp-cell comp-them">Sageli jagatud teiste peredega</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Ruum</div>
+                    <div class="comp-cell comp-us">2 korrust, avar</div>
+                    <div class="comp-cell comp-them">Tihti 1 korrus, kitsas</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Parkimine</div>
+                    <div class="comp-cell comp-us">Tasuta, kohe ukse ees</div>
+                    <div class="comp-cell comp-them">Tasuline või piiratud</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Sõiduaeg Jürist</div>
+                    <div class="comp-cell comp-us">2 minutit</div>
+                    <div class="comp-cell comp-them">20-30 minutit + liiklus</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Köök</div>
+                    <div class="comp-cell comp-us">Täisvarustatud</div>
+                    <div class="comp-cell comp-them">Sageli piiratud</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Beebiala</div>
+                    <div class="comp-cell comp-us">Eraldi turvaline tuba</div>
+                    <div class="comp-cell comp-them">Tihti puudub</div>
+                </div>
+                <div class="comp-row">
+                    <div class="comp-cell comp-label">Vaade</div>
+                    <div class="comp-cell comp-us">Kaunis päikeseloojang</div>
+                    <div class="comp-cell comp-them">Tihti akendeta keldripind</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Üritused</span>
+                <h2 class="section-title">Sobib igaks puhuks!</h2>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-icon"><img src="images/icons/icon-cake.png" alt="Sünnipäev" class="ti-lg"></div>
+                    <h3>Sünnipäevapeod</h3>
+                    <p>Korralda unistuste sünnipäev! Mänguala, köök, kaunistused — kõik ühe katuse all.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon"><img src="images/icons/icon-family.png" alt="Pereüritused" class="ti-lg"></div>
+                    <h3>Pereüritused</h3>
+                    <p>Ristsed, nimepäevad, perepühad — ideaalne koht kogu perele kokkusaamiseks.</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon"><img src="images/icons/icon-briefcase.png" alt="Firmaüritused" class="ti-lg"></div>
+                    <h3>Firmaüritused</h3>
+                    <p>Meeskonnapäev lastega? Firma jõulupidu? Meil on ruumi nii suurtele kui väikestele!</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon"><img src="images/icons/icon-dancer.png" alt="Laste disko" class="ti-lg"></div>
+                    <h3>Laste disko</h3>
+                    <p>Regulaarsed laste disko üritused diskopalliga, muusika ja lõbuga!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Booking Section -->
+    <section class="contact-section" id="kontakt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-et="Broneeri" data-ru="Бронируй">Broneeri</span>
+                <h2 class="section-title" data-et="Broneeri oma pidu" data-ru="Забронируйте праздник">Broneeri oma pidu</h2>
+                <p class="section-desc" data-et="Täida vorm või helista — vastame kiiresti!" data-ru="Заполните форму или позвоните — ответим быстро!">Täida vorm või helista — vastame kiiresti!</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <!-- Booking Form -->
+                    <form class="booking-form" id="bookingForm" action="https://formsubmit.co/huppajahulla@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="Uus broneering Hüppa&Hulla veebist">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" data-et="Nimi" data-ru="Имя">Nimi</label>
+                                <input type="text" id="name" name="Nimi" required placeholder="Teie nimi">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" data-et="Telefon" data-ru="Телефон">Telefon</label>
+                                <input type="tel" id="phone" name="Telefon" required placeholder="+372 ...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-et="E-post" data-ru="Э-почта">E-post</label>
+                            <input type="email" id="email" name="E-post" placeholder="teie@email.ee">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date" data-et="Soovitud kuupäev" data-ru="Желаемая дата">Soovitud kuupäev</label>
+                                <input type="date" id="date" name="Kuupäev" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="timeslot" data-et="Kellaaeg" data-ru="Время">Kellaaeg</label>
+                                <select id="timeslot" name="Kellaaeg" required>
+                                    <option value="" data-et="Vali aeg" data-ru="Выберите время">Vali aeg</option>
+                                    <option value="10:00-13:00">10:00 - 13:00</option>
+                                    <option value="14:00-17:00">14:00 - 17:00</option>
+                                    <option value="18:00-21:00">18:00 - 21:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-et="Lisainfo (laste arv, erivajadused)" data-ru="Доп. информация (кол-во детей, особые пожелания)">Lisainfo (laste arv, erivajadused)</label>
+                            <textarea id="message" name="Lisainfo" rows="3" placeholder="Nt: 15 last, vanuses 5-7, soovime kaunistust..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-full" data-et="Saada päring" data-ru="Отправить запрос">Saada päring</button>
+                        <p class="form-note" data-et="Vastame tavaliselt 1 tunni jooksul. See ei ole lõplik broneering — kinnitame saadavuse isiklikult." data-ru="Обычно отвечаем в течение 1 часа. Это не окончательное бронирование — подтвердим наличие лично.">Vastame tavaliselt 1 tunni jooksul. See ei ole lõplik broneering — kinnitame saadavuse isiklikult.</p>
+                    </form>
+
+                    <div class="contact-cards-row">
+                        <div class="contact-card">
+                            <div class="contact-icon"><img src="images/icons/icon-phone.png" alt="" class="ti-md"></div>
+                            <div>
+                                <h4 data-et="Helista" data-ru="Звоните">Helista</h4>
+                                <a href="tel:+3725070336" class="contact-link">+372 507 0336</a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon"><img src="images/icons/icon-email.png" alt="" class="ti-md"></div>
+                            <div>
+                                <h4>E-post</h4>
+                                <a href="mailto:huppajahulla@gmail.com" class="contact-link">huppajahulla@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon"><img src="images/icons/icon-mappin.png" alt="" class="ti-md"></div>
+                            <div>
+                                <h4 data-et="Aadress" data-ru="Адрес">Aadress</h4>
+                                <p class="contact-link">Ringi tee 11-14, Jüri 75301</p>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon"><img src="images/icons/icon-social.png" alt="" class="ti-md"></div>
+                            <div>
+                                <h4 data-et="Sotsiaalmeedia" data-ru="Соцсети">Sotsiaalmeedia</h4>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/profile.php?id=61578947632666" target="_blank" rel="noopener" class="social-btn">Facebook</a>
+                                    <a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="social-btn">Instagram</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-right">
+                    <div class="contact-map">
+                    <iframe
+                        src="https://www.google.com/maps?q=Ringi+tee+11,+J%C3%BCri,+75301,+Estonia&output=embed"
+                        width="100%"
+                        height="400"
+                        style="border:0; border-radius: 20px;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Hüppa&Hulla asukoht kaardil">
+                    </iframe>
+                    <div class="map-overlay-info">
+                        <p><img src="images/icons/icon-parking.png" alt="" class="ti-xs"> Tasuta parkimine maja ees &nbsp; <img src="images/icons/icon-mappin.png" alt="" class="ti-xs"> Jüri keskusest 2 min &nbsp; <img src="images/icons/icon-house.png" alt="" class="ti-xs"> Tallinnast ~15 min</p>
+                    </div>
+                    </div>
+                    <div class="booking-note">
+                        <h4><img src="images/icons/icon-lightbulb.png" alt="" class="ti-inline"> Kiire broneerimine</h4>
+                        <p>Kõige kiirem viis broneerimiseks on helistada või saata sõnum Facebooki kaudu. Vastame tavaliselt tunni jooksul!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Tips Section -->
+    <section class="blog-section" id="blogi">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-et="Nõuanded" data-ru="Советы">Nõuanded</span>
+                <h2 class="section-title" data-et="Kasulikud nipid lapsevanematele" data-ru="Полезные советы для родителей">Kasulikud nipid lapsevanematele</h2>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="images/pro/gal-3.jpg" alt="Sünnipäevapidu" class="blog-card-img">
+                    <div class="blog-card-body">
+                        <span class="blog-card-tag" data-et="Sünnipäev" data-ru="День рождения">Sünnipäev</span>
+                        <h3 data-et="10 nippi unistuste sünnipäevapeo korraldamiseks" data-ru="10 советов для организации идеального дня рождения">10 nippi unistuste sünnipäevapeo korraldamiseks</h3>
+                        <p data-et="Kuidas planeerida lapse sünnipäeva nii, et kõik oleksid õnnelikud — lapsed JA vanemad? Jagame oma kogemusi!" data-ru="Как спланировать день рождения ребёнка так, чтобы все были довольны — и дети, И родители? Делимся опытом!">Kuidas planeerida lapse sünnipäeva nii, et kõik oleksid õnnelikud — lapsed JA vanemad? Jagame oma kogemusi!</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="images/pro/blog-play.jpg" alt="Lapsed mängivad" class="blog-card-img">
+                    <div class="blog-card-body">
+                        <span class="blog-card-tag" data-et="Mängutuba" data-ru="Игровая">Mängutuba</span>
+                        <h3 data-et="Miks on mängutuba parem kui kodus pidu pidada?" data-ru="Почему игровая комната лучше, чем праздник дома?">Miks on mängutuba parem kui kodus pidu pidada?</h3>
+                        <p data-et="Koristamine, ruumipuudus, naabrite kaebus? Mängutuba lahendab kõik need mured korraga!" data-ru="Уборка, нехватка места, жалобы соседей? Игровая комната решает все эти проблемы разом!">Koristamine, ruumipuudus, naabrite kaebus? Mängutuba lahendab kõik need mured korraga!</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="images/pro/blog-decor.jpg" alt="Kaunistused" class="blog-card-img">
+                    <div class="blog-card-body">
+                        <span class="blog-card-tag" data-et="Kaunistused" data-ru="Оформление">Kaunistused</span>
+                        <h3 data-et="Populaarseimad sünnipäevapeo teemad 2026" data-ru="Самые популярные темы детских праздников 2026">Populaarseimad sünnipäevapeo teemad 2026</h3>
+                        <p data-et="Printsessid, dinosaurused või kosmos? Vaatame, millised teemad on sel aastal kõige populaarsemad!" data-ru="Принцессы, динозавры или космос? Смотрим, какие темы самые популярные в этом году!">Printsessid, dinosaurused või kosmos? Vaatame, millised teemad on sel aastal kõige populaarsemad!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="instagram-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Instagram</span>
+                <h2 class="section-title" data-et="Jälgi meid Instagramis!" data-ru="Подписывайтесь в Instagram!">Jälgi meid Instagramis!</h2>
+                <p class="section-desc"><a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="instagram-handle">@huppajahulla</a></p>
+            </div>
+            <div class="instagram-grid">
+                <a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="ig-item">
+                    <img src="images/pro/ig-1.jpg" alt="DJ pult ja disko" class="ig-img">
+                </a>
+                <a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="ig-item">
+                    <img src="images/pro/ig-2.jpg" alt="Telk ja vikerkaarevalgus" class="ig-img">
+                </a>
+                <a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="ig-item">
+                    <img src="images/pro/ig-3.jpg" alt="Pallibassein" class="ig-img">
+                </a>
+                <a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="ig-item">
+                    <img src="images/pro/ig-4.jpg" alt="Neonvalgus" class="ig-img">
+                </a>
+                <a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="ig-item">
+                    <img src="images/pro/ig-5.jpg" alt="Brändi padi" class="ig-img">
+                </a>
+                <a href="https://www.instagram.com/huppajahulla" target="_blank" rel="noopener" class="ig-item">
+                    <img src="images/pro/exterior-night.jpg" alt="Öine vaade" class="ig-img">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Valmis korraldama unistuste pidu?</h2>
+                <p>Broneeri Hüppa&Hulla mängutuba ja loo unustamatuid mälestusi!</p>
+                <div class="cta-buttons">
+                    <a href="tel:+3725070336" class="btn btn-white btn-lg"><img src="images/icons/icon-phone.png" alt="" class="ti-btn"> Helista 507 0336</a>
+                    <a href="https://www.facebook.com/profile.php?id=61578947632666" target="_blank" rel="noopener" class="btn btn-white-outline btn-lg"><img src="images/icons/icon-social.png" alt="" class="ti-btn"> Kirjuta Facebookis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo-ai.png" alt="Hüppa&Hulla" class="footer-logo">
+                    <p>Privaatne kahe korrusega mängutuba Jüris. Sünnipäevapeod, pereüritused ja laste lõbu!</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Lingid</h4>
+                    <ul>
+                        <li><a href="#avaleht">Avaleht</a></li>
+                        <li><a href="#meist">Meist</a></li>
+                        <li><a href="#mangutuba">Mängutuba</a></li>
+                        <li><a href="#hinnakiri">Hinnakiri</a></li>
+                        <li><a href="#galerii">Galerii</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Kontakt</h4>
+                    <p><img src="images/icons/icon-phone.png" alt="" class="ti-xs"> <a href="tel:+3725070336">+372 507 0336</a></p>
+                    <p><img src="images/icons/icon-email.png" alt="" class="ti-xs"> <a href="mailto:huppajahulla@gmail.com">huppajahulla@gmail.com</a></p>
+                    <p><img src="images/icons/icon-mappin.png" alt="" class="ti-xs"> Ringi tee 11-14, Jüri 75301</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hüppa&Hulla. Kõik õigused kaitstud.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Phone Button -->
+    <a href="tel:+3725070336" class="floating-phone" aria-label="Helista meile">
+        <img src="images/icons/icon-phone.png" alt="Helista" class="floating-phone-icon">
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
