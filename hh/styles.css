@@ -332,9 +332,7 @@ a {
     color: var(--white);
 }
 
-[data-theme="boy"] .hero-title {
-    color: var(--text);
-}
+/* hero title always white on dark overlay */
 
 [data-theme="boy"] .addon-card-highlight::before {
     background: var(--gradient-cta);
@@ -361,18 +359,7 @@ a {
     background: var(--gradient-cta);
 }
 
-[data-theme="boy"] .hero-overlay {
-    background: linear-gradient(
-        180deg,
-        rgba(227, 240, 255, 0.85) 0%,
-        rgba(209, 250, 229, 0.75) 40%,
-        rgba(254, 243, 199, 0.80) 100%
-    );
-}
-
-[data-theme="boy"] .trust-item {
-    background: rgba(227, 240, 255, 0.8);
-}
+/* boy theme uses same dark overlay on hero - no override needed */
 
 [data-theme="boy"] .comp-us {
     color: #059669;
@@ -539,14 +526,14 @@ a {
     z-index: 0;
 }
 
-.hero-overlay {
+.hero-overlay-dark {
     position: absolute;
     inset: 0;
     background: linear-gradient(
         180deg,
-        rgba(252, 228, 236, 0.85) 0%,
-        rgba(227, 245, 252, 0.75) 40%,
-        rgba(243, 232, 255, 0.80) 100%
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.55) 60%,
+        rgba(0, 0, 0, 0.7) 100%
     );
     z-index: 1;
 }
@@ -581,17 +568,18 @@ a {
 .hero-title {
     font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 16px;
-    color: var(--text);
-    text-shadow: 0 2px 10px rgba(255,255,255,0.5);
+    color: var(--white);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
     animation: fadeInUp 1s ease 0.2s both;
 }
 
 .hero-subtitle {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: var(--text-light);
+    color: rgba(255,255,255,0.9);
     max-width: 600px;
     margin: 0 auto 32px;
     animation: fadeInUp 1s ease 0.4s both;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
 }
 
 .hero-buttons {
@@ -617,11 +605,12 @@ a {
     gap: 10px;
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--text);
-    background: rgba(255,255,255,0.7);
+    color: var(--white);
+    background: rgba(255,255,255,0.15);
     padding: 8px 16px 8px 8px;
     border-radius: var(--radius-full);
     backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .trust-item .ti {
@@ -996,6 +985,131 @@ a {
 .tour-overlay p {
     font-size: 0.85rem;
     opacity: 0.9;
+}
+
+/* ===== GLASS BUTTON ===== */
+.btn-glass {
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(8px);
+}
+
+.btn-glass:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+}
+
+/* ===== INCLUDED STRIP ===== */
+.included-strip {
+    margin-top: 48px;
+    padding: 24px 32px;
+    background: var(--gradient-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(247,168,196,0.15);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.included-strip h3 {
+    font-size: 1rem;
+    white-space: nowrap;
+    color: var(--pink-dark);
+}
+
+.included-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.inc-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--white);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ===== FB REVIEWS CARD ===== */
+.fb-reviews-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 40px;
+    background: var(--gradient-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.fb-rating {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.fb-rating-stars {
+    display: flex;
+    gap: 4px;
+}
+
+.fb-rating-text {
+    font-size: 1.1rem;
+}
+
+.fb-rating-sub {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* ===== SOCKS HIGHLIGHT ===== */
+.extra-card-socks {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+}
+
+.extra-card-socks h4 {
+    color: #856404;
+}
+
+/* ===== CONTACT STACK ===== */
+.contact-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.contact-exterior {
+    margin-top: 16px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.exterior-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.contact-exterior p {
+    padding: 12px 16px;
+    background: var(--white);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* ===== INCLUDED SECTION ===== */
